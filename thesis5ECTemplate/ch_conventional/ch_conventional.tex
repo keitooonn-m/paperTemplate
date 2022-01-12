@@ -1,4 +1,215 @@
-\chapter{従来手法}
+\chapter{振動測定系と測定信号}
+\label{chap:conv}
+
+%----------------------------------------------
+\section{まえがき}
+%----------------------------------------------
+本章では，何らか法の従来手法を説明する．
+まず\ref{sec:conv:measurementcondition}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
+\ref{sec:conv:signal}節では，なんとかについて述べる．
+
+%----------------------------------------------
+\section{測定条件}
+\label{sec:conv:measurementcondition}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{測定で得られる信号}
+\label{sec:conv:signal}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{本章のまとめ}
+%----------------------------------------------
+本章では，何らか法の従来手法について説明した．
+次章以降では，より詳細な何とかや何らか法の適用範囲の拡大を達成するために，
+\ref{sec:conv:somewhat:derivation}節で導入した何とか法の発展的な理論拡張を提案する．
+
+
+\chapter{適用手法}
+\label{chap:conv}
+
+%----------------------------------------------
+\section{まえがき}
+%----------------------------------------------
+本章では，何らか法の従来手法を説明する．
+まず\ref{sec:conv:researchmotivation}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
+\ref{sec:conv:bssformularization}節では，なんとかについて述べる．
+\ref{sec:conv:isnmf}節では，なんとかについて述べる．
+\ref{sec:conv:ilrma}節では，なんとかについて述べる．
+\ref{sec:conv:tilrma}節では，なんとかについて述べる．
+\ref{sec:conv:heartrateestalgo}節では，なんとかについて述べる．
+
+%----------------------------------------------
+\section{本研究の動機}
+\label{sec:conv:researchmotivation}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{BSSの定式化}
+\label{sec:conv:bssformularization}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{Itakura-Saito ダイバージェンスに基づくNMF}
+\label{sec:conv:isnmf}
+%----------------------------------------------
+
+NMF~\cite{NMF}とは行列分解の方法の一つである．
+NMFが他の行列分解の方法であるLU分解や固有値分解と異なるのは非負値行列を対象としている点である．
+また，NMFは対象とする非負値行列の低ランク性を仮定して分解することで，行列の潜在パタンを抽出できるアルゴリズムである．
+そして，NMFは劣決定音源分離に適用することが可能である\cite{singlechsep, supNMF, MNMF_oz}．
+単一チャネルの音響信号をSTFTすることで得られるパワースペクトログラムのNMFによる分解は次式で表される．
+
+\begin{align}
+    |\bm{Z}|^{.2} = \bm{TV}
+\end{align}
+ここで，$| \cdot |$は要素ごとの絶対値を，ドット付きの指数は要素ごとの累乗を示す．よって，$|\bm{Z}|^{.2}$はパワースペクトログラムを表す．
+また，$\bm{T} \in \mathbb{R}^{I \times K}_{\geq 0}$を基底行列，$\bm{V} \in \mathbb{R}^{K \times J}_{\geq 0}$をアクティベーション行列という．
+$K$はNMFの分解において手動で与えるパラメタであり，基底行列$\bm{T}$の列ベクトルの本数（基底ベクトル数）である．従って，行列積$\bm{TV}$のランクは$K$と一致し，通常は$K \ll \min (I,J)$となるように設定される．
+つまり，Fig. \ref{fig:nmf_ps}に示すように単一チャネルの音響信号を対象としたNMFでは，パワースペクトログラムに対して低ランク近似を行うことで，$\bm{T}$が音響信号中の頻出スペクトルパタンとなり，$\bm{V}$が各スペクトルパタンの発音タイミング（アクティベーション）となるような分解が可能である．
+また，基底行列$\bm{T}$とアクティベーション行列$\bm{V}$は次式の最小化問題の解として推定される．
+
+\begin{align}
+    \nonumber \min_{\bm{T,V}} \mathcal{D}(|\bm{Z}|^{.2} | \bm{TV}) ~~ & \mathrm{s.t.} ~ t_{ik}, v_{kj} \geq 0 \\ &\forall i = 1, 2, ..., I, ~j = 1, 2, ..., J, ~k = 1, 2, ..., K 
+\end{align}
+ここで，$t_{ik}$及び$v_{kj}$は$\bm{T}$及び$\bm{V}$の要素である．
+また，$ \mathcal{D}(|\bm{Z}|^{.2} | \bm{TV})$は2つの行列（$|\bm{Z}|^{.2}$及び$\bm{TV}$）間の類似度を測る関数である．
+行列の類似度を図る関数には，次式で表される$\beta$-divergence~\cite{psi-div, ext_nmf}がよく利用される\cite{pssnmf}．
+\begin{align}
+  d_{\beta}(a|b) = \left\{ \begin{array}{lll}
+    \displaystyle \frac{a}{b} - \log \frac{a}{b} -1 & (\beta = 0) \\
+    a \log \displaystyle\frac{a}{b} + b - a & (\beta =1) \\
+    \displaystyle \frac{a^{\beta}}{\beta (\beta -1)} + \frac{b^{\beta}}{\beta} - \frac{ab^{\beta - 1}} {\beta - 1} & (\mathrm{otherwise}) 
+  \end{array} \right. \label{eq:betad}
+\end{align}
+$\beta$-divergenceの中でも特に$\beta= 2,1,0$の場合はそれぞれ二乗Euclid距離，一般化Kullback--Leiblerダイバージェンス及びItakura--Saitoダイバージェンスと呼ばれている．
+これらのうち，ダイバージェンスと名のつくものは以下に示す距離の公理
+\begin{enumerate}
+  \item 非負性：$\mathcal{D}(a|b) \geq 0 ~~\forall a,b \in \mathbb{R}$
+  \item 同一性：$\mathcal{D}(a|b) = 0 \Leftrightarrow a = b~~\forall a,b \in \mathbb{R}$
+  \item 対称性：$\mathcal{D}(a|b)= \mathcal{D}(a|b) ~~\forall a,b \in \mathbb{R}$
+  \item 三角不等式：$\mathcal{D}(a|b) + \mathcal{D}(b|c) \geq \mathcal{D}(a|c) ~~\forall a,b,c \in \mathbb{R}$
+\end{enumerate}
+のうち，対称性と三角不等式を満たさない．
+
+本論文ではItakura--Saitoダイバージェンスに基づくNMF（Itakura--Saito-divergence-based NMF: ISNMF）\cite{isnmf}について述べる．
+$\bm{Z}$の要素である複素スペクトル$z_{ij}$が以下の確率モデルに従って生成されていると仮定する．
+\begin{align}
+    z_{ij} = \sum_k c_{ij,k} \\
+    c_{ij,k} \sim \mathcal{N}_{\mathbb{C}} (0, t_{ik}v_{lj})
+\end{align}
+ここで，$c_{ij,k} \in \mathbb{C}$は全ての$i$，$j$及び$k$に関して互いに独立と仮定する．
+また，$c$を複素数の確率変数としたとき，$\mathcal{N}_{\mathbb{C}} (\mu, \sigma^2)$は一次元複素ガウス分布を表し，その確率密度関数は次式で与えられる．
+\begin{align}
+    p_c(c | \mu, \sigma^2) &= \frac{1}{\pi \sigma^2} \exp \left\{ -\frac{|c-\mu|^2}{\sigma^2} \right\}
+\end{align}
+ここで，$\mu$及び$\sigma^2$はそれぞれ平均及び分散を示す．
+また，$c_1$と$c_2$が独立である場合，ゼロ平均の一次元複素ガウス分布において以下の加法性が成り立つ．
+\begin{align}
+    c_1 \sim \mathcal{N}_{\mathbb{C}}(0,\sigma_1^2)かつc_2 \sim \mathcal{N}_{\mathbb{C}}(0,\sigma_2^2) ~~ \Longrightarrow ~~ c_1 + c_2 \sim \mathcal{N}_{\mathbb{C}}(0,\sigma_1^2 + \sigma_2^2)
+\end{align}
+よって，
+\begin{align}
+    \sum_k c_{ij,k} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik} v_{kj} \right)
+\end{align}
+を用いて次式が成り立つ．
+\begin{align}
+    z_{ij} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik} v_{kj} \right) \label{eq:nmfgen}
+\end{align}
+これがISNMFの生成モデルで，Fig. \ref{fig:gauss}のような球対称複素ガウス分布である．
+ここで，観測信号$z_{ij}$が与えられた場合における$t_{ik}$及び$v_{kj}$の最尤推定問題を考える．
+このとき，尤度関数は
+\begin{align}
+    \mathcal{L}(\bm{T}, \bm{V}) = \prod_{i,j} \frac{1}{\pi \sum_k t_{ik} v_{kj} } \exp \left( -\frac{|z_{ij}|^2}{\sum_k t_{ik} v_{kj}} \right)
+\end{align}
+となり，負対数尤度は
+\begin{align}
+    -\log\mathcal{L}(\bm{T}, \bm{V}) = \sum_{i,j} \left( \frac{|z_{ij}|^2}{\sum_k t_{ik} v_{kj}} + \log \sum_k t_{ik} v_{kj} + \log \pi \right)
+\end{align}
+で表される．
+これは観測信号のパワースペクトログラム$|z_{ij}|^2$に対するISNMFの目的関数(式（\ref{eq:betad})の$\beta = 0$の場合）と定数部分を除いて一致するので，尤度関数は以下のように書き換えられる．
+\begin{align}
+    -\log\mathcal{L}(\bm{T}, \bm{V}) = d_{\mathrm{IS}} \left( |z_{ij}|^2 | \sum_k t_{ik} v_{kj} \right) + \mathrm{const.}
+    \label{eq:isnmf}
+\end{align}
+ここで，$d_{\mathrm{IS}}( \cdot | \cdot )$は2つの行列間のItakura-Saitoダイバージェンスを示す．
+つまり，ISNMFを観測信号のパワースペクトログラム$|\bm{Z}|^{.2}$に適用したとき，複素スペクトル$z_{ij}$が式(\ref{eq:nmfgen})で表される生成モデルに従い，全時間周波数グリッドに関して互いに独立であると仮定されている．
+また，ISNMFの$\bm{T}$及び$\bm{V}$の最適化のための反復更新式は式(\ref{eq:MUT})及び式(\ref{eq:MUV})で表される\cite{MU}．
+
+\begin{align}
+    t_{ik} \leftarrow t_{ik} \sqrt \frac{ \sum_j |z_{ij}|^2 v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_j v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUT} \\
+    v_{kj} \leftarrow v_{kj} \sqrt \frac{ \sum_i |z_{ij}|^2 t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_i t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUV}
+\end{align}
+この更新式は乗算型反復更新式と呼ばれ，目的関数が単調非増加であることが保証されている．
+
+%----------------------------------------------
+\section{ILRMA}
+\label{sec:conv:ilrma}
+%----------------------------------------------
+
+ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
+ここで$\bm{T}_n$及び$\bm{V}_n$は$n$番目の音源のパワースペクトログラムをモデル化する基底行列及びアクティベーション行列を示す．
+ILRMAはIVAに対応する分離行列$\bm{W}_i$の反復最適化とISNMFの低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
+具体的には，分離行列$\bm{W}_i$により推定された分離信号をNMFによって非負低ランク行列でモデル化し，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）として用いて分離行列を再度推定する，というプロセスが反復的に行われる．
+ILRMAの生成モデルはISNMFと同様に次式の複素ガウス分布で表される．
+\begin{align}
+    y_{ij,n} &= \sum_k c_{ij,k,n} \\
+    c_{ij,k,n} &= \mathcal{N}_{\mathbb{C}}(0, t_{ik,n} v_{kj,n}) \label{eq:ilrma_gen}
+\end{align}
+ここで，$t_{ik,n}$及び$v_{kj,n}$は$n$番目の音源に関する基底行列$\bm{T}_n$及びアクティベーション行列$\bm{V}_n$の非負要素であり，$k = 1, 2, \cdots, K$は基底インデクスである．
+また，$c_{ij,k,n} \in \mathbb{C}$は互いに独立であると仮定する．
+このとき，観測$x_{ij,n}$が与えられた場合において$\bm{W}_i$，$\bm{T}_n$及び$\bm{V}_n$を最尤推定する問題を考える．
+ISNMFのときと同様に
+\begin{align}
+    \sum_k c_{ij,k,n} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik,n} v_{kj,n} \right)
+\end{align}
+より，
+\begin{align}
+    y_{ij,n} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik,n} v_{kj,n} \right) 
+\end{align}
+が成り立つので，この生成モデルに基づく観測信号の負対数尤度は次式で表される．
+\begin{align}
+    \mathcal{L}(\mathsf{W, T, V}) = -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ik,n}v_{kj,n}} + \log \sum_k t_{ik,n}v_{kj,n} \right)
+    \label{eq:ilrmalike2}
+\end{align}
+ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
+式(\ref{eq:ilrmalike2})を見ると，第一項と第二項は式(\ref{eq:ivalike})で表されるIVAの尤度関数に対応し，第二項と第三項は式(\ref{eq:isnmf})のISNMFの尤度関数に対応していることがわかる．
+
+分離行列$\bm{W}_i$の関する最適化は，分離ベクトル$\bm{w}_{i,n}$の更新を反復射影法（iterative projection: IP）\cite{auxIVA}を用いることで次式で行われる．
+\begin{align}
+\bm{U}_{i,n} &= \frac{1}{J} \sum_j \frac{1}{\sum_{l}t_{ik,n}v_{kj,n}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{eq:ip1} \\
+\bm{w}_{i,n} &\leftarrow (\bm{W}_i \bm{U}_{i,n})^{-1} \bm{e}_n \label{eq:ip2} \\
+\bm{w}_{i,n} &\leftarrow \bm{w}_{i,n} ( \bm{w}_{i,n}^{\mathrm{H}} \bm{U}_{i,n} \bm{w}_{i,n} )^{-\frac{1}{2}} \label{eq:ip3}
+\end{align}
+ここで，$\bm{e}_n \in \mathbb{R}_{\{0, 1\}}^{N}$は$n$番目の要素が1，他要素が0のベクトルである．
+
+NMFによる低ランクモデリングのパラメタ$\bm{T}_n\bm{V}_n$の最適化は式(\ref{eq:MUT})及び式(\ref{eq:MUV})の乗算型反復更新式を用いて次式で表される．
+\begin{align}
+t_{ik, n} &\leftarrow  t_{ik, n} \sqrt{ \frac{ \sum_{j} | \bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij} |^2 v_{kj, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-2} }{ \sum_{j} v_{kj, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-1} } } \label{eq:t} \\
+v_{kj, n} &\leftarrow  v_{kj, n} \sqrt{ \frac{ \sum_{i} | \bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij} |^2 t_{ik, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-2} }{ \sum_{i} t_{ik, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-1} } } \label{eq:v}
+\end{align}
+これらの更新式も式(\ref{eq:MUT})及び式(\ref{eq:MUV})と同様に目的関数式(\ref{eq:ilrmalike2})の値が単調非増加であることが保証されている．
+
+%----------------------------------------------
+\section{$t$-ILRMA}
+\label{sec:conv:tilrma}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{心拍推定アルゴリズム}
+\label{sec:conv:heartrateestalgo}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{本章のまとめ}
+%----------------------------------------------
+本章では，何らか法の従来手法について説明した．
+次章以降では，より詳細な何とかや何らか法の適用範囲の拡大を達成するために，
+\ref{sec:conv:somewhat:derivation}節で導入した何とか法の発展的な理論拡張を提案する．
+
+
+\chapter{観測信号にフィルタを適用しない場合のBSS及び心拍推定実験}
 \label{chap:conv}
 
 %----------------------------------------------
@@ -9,31 +220,77 @@
 \ref{sec:conv:somewhat}節では，なんとかについて述べる．
 
 %----------------------------------------------
-\section{何らか法}
+\section{実験条件}
 \label{sec:conv:something}
 %----------------------------------------------
 
-何らか法とは，何らか何らか何とかかんとかであり，次式で表される
-\begin{align}
-  \hat{\bm{\theta}} = \argmin_{\bm{\theta} \in S} \ \mathcal{J}(\bm{\theta})
-\end{align}
-
 %----------------------------------------------
-\section{何とか法}
+\section{実験結果}
 \label{sec:conv:somewhat}
 %----------------------------------------------
 
 %----------------------------------------------
-\subsection{表記の定義}
-\label{sec:conv:somewhat:definition}
+\subsection{基底数固定型ILRMAを適用した結果}
+\label{sec:conv:somewhat}
 %----------------------------------------------
-何とかかんとかと書ける．
 
 %----------------------------------------------
-\subsection{何とか法の導出}
-\label{sec:conv:somewhat:derivation}
+\subsection{基底数可変型LRMAを適用した結果}
+\label{sec:conv:somewhat}
 %----------------------------------------------
-何とかかんとかと導ける．
+
+%----------------------------------------------
+\subsection{$t$-ILRMAを適用した結果}
+\label{sec:conv:somewhat}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{本章のまとめ}
+%----------------------------------------------
+本章では，何らか法の従来手法について説明した．
+次章以降では，より詳細な何とかや何らか法の適用範囲の拡大を達成するために，
+\ref{sec:conv:somewhat:derivation}節で導入した何とか法の発展的な理論拡張を提案する．
+
+
+\chapter{観測信号にフィルタを適用した場合のBSS及び心拍推定実験}
+\label{chap:conv}
+
+%----------------------------------------------
+\section{まえがき}
+%----------------------------------------------
+本章では，何らか法の従来手法を説明する．
+まず\ref{sec:conv:something}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
+\ref{sec:conv:somewhat}節では，なんとかについて述べる．
+
+%----------------------------------------------
+\section{動機}
+\label{sec:conv:something}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{設計したフィルタ}
+\label{sec:conv:something}
+%----------------------------------------------
+
+%----------------------------------------------
+\section{実験結果}
+\label{sec:conv:somewhat}
+%----------------------------------------------
+
+%----------------------------------------------
+\subsection{基底数固定型ILRMAを適用した結果}
+\label{sec:conv:somewhat}
+%----------------------------------------------
+
+%----------------------------------------------
+\subsection{基底数可変型LRMAを適用した結果}
+\label{sec:conv:somewhat}
+%----------------------------------------------
+
+%----------------------------------------------
+\subsection{$t$-ILRMAを適用した結果}
+\label{sec:conv:somewhat}
+%----------------------------------------------
 
 %----------------------------------------------
 \section{本章のまとめ}
