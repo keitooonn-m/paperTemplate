@@ -283,6 +283,16 @@ Yoshii et al. が提案した$t$-NMFがISNMFやCauchy NMFと比較して性能�
     w_{i,n}\leftarrow\frac{w_{i,n}}{\sqrt{w_{i,n}^{\mathrm{H}}U_{i,n}w_{i,n}}} \label{eq:tip3}
 \end{align}
 
+NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
+\begin{align}
+    t_{il,n}\leftarrow t_{il,n}\left(\frac{\sum_{j}\frac{|y_ij,n|^{2}}{\frac{\nu}{\nu+2}\sigma_{ij,n}^{2}+\frac{2}{\nu+2}|y_{ij,n}|^{2}}\sigma_{ij,n}^{-p}v_{lj,n}^{-\frac{2}{p}}}{\sum_{i}\sigma_{ij,n}^{-p}v_{lj,n}}\right)^{\frac{p}{p+2}} \label{eq:tt}
+\end{align}
+\begin{align}
+    v_{lj,n}\leftarrow v_{lj,n}\left(\frac{\sum_{i}\frac{|y_ij,n|^{2}}{\frac{\nu}{\nu+2}\sigma_{ij,n}^{2}+\frac{2}{\nu+2}|y_{ij,n}|^{2}}\sigma_{ij,n}^{-p}t_{il,n}^{-\frac{2}{p}}}{\sum_{i}\sigma_{ij,n}^{-p}t_{il,n}}\right)^{\frac{p}{p+2}} \label{eq:tv}
+\end{align}
+これらの更新式も節\ref{sec:conv:ilrma}と同様にコスト関数式(\ref{eq:tcost})の値が単調非増加であり，収束することが保証されている．
+
+
 %----------------------------------------------
 \section{心拍推定アルゴリズム}
 \label{sec:conv:heartrateestalgo}
