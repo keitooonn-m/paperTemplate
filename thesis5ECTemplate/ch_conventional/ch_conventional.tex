@@ -4,14 +4,53 @@
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，何らか法の従来手法を説明する．
-まず\ref{sec:conv:measurementcondition}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
-\ref{sec:conv:signal}節では，なんとかについて述べる．
+本章では，本研究で扱う信号の測定条件と得られる信号について説明する．
+まず\ref{sec:conv:measurementcondition}節では，本研究で使用する信号の測定条件について説明する．
+\ref{sec:conv:signal}節では，\ref{sec:conv:measurementcondition}節で述べた測定条件から得られる信号について説明する
 
 %----------------------------------------------
 \section{測定条件}
 \label{sec:conv:measurementcondition}
 %----------------------------------------------
+本研究で使用する信号の測定系はFig\ref{fig:sensorstructure}に示されているとおりである．振動台の上に赤色で示すレーダを取り付けたシートを設置し，被験者が座った状態で計全体を振動させる．レーダはFig\ref{fig:sensorimg}に示されているようなビームフォーミングセンサを使用している．これを，シートの背中と臀部に取り付け測定を行う．測定系による振動はsin波で単軸加振であり，振動状態はFig\ref{fig:sensorimg}に示されているとおりである．その他の測定条件はTable\ref{tab:vibevacondition}に示されているとおりである．
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.7\hsize]{./ch_conventional/fig/sensorstructure.pdf}
+\caption{Image of shaking table.}
+\label{fig:sensorstructure}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.7\hsize]{./ch_conventional/fig/sensorimg.pdf}
+\caption{Image of shking table.}
+\label{fig:sensorimg}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{table}[b]
+  \caption{VIbration evaluation conditions}
+  \centering
+  \scalebox{0.8}[0.9]{
+  \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+    Data number & subject & Vibration direction & amplitude & Frequency &  Use of handles, etc. & part \\ \hline \hline
+    0 & \multirow{7}{*}{G} & - & - & - & - & \multirow{7}{*}{Back and Bottom}   \\ \cline{1-1} \cline{3-3} \cline{4-4} \cline{5-5} \cline{6-6}
+    1 & & \multirow{6}{*}{Up and Down} & 4 & 1.2 & - &  \\ \cline{1-1} \cline{4-4} \cline{5-5} \cline{6-6}
+    2 & &  & 10 & 1.2 & - &   \\ \cline{1-1} \cline{4-4} \cline{5-5} \cline{6-6}
+    3 & &  & 40 & 1.2 & - &   \\ \cline{1-1} \cline{4-4} \cline{5-5} \cline{6-6}
+    4 & &  & 40 & 1.2 & Use &   \\ \cline{1-1} \cline{4-4} \cline{5-5} \cline{6-6}
+    5 & &  & 4 & 2.4 & - &   \\ \cline{1-1} \cline{4-4} \cline{5-5} \cline{6-6}
+    6 & &  & 10 & 2.4 & - &   \\ \hline
+  \end{tabular}
+  }
+  \label{tab:vibevacondition}
+\end{table}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{測定で得られる信号}
@@ -32,13 +71,11 @@
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，何らか法の従来手法を説明する．
-まず\ref{sec:conv:researchmotivation}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
-\ref{sec:conv:bssformularization}節では，なんとかについて述べる．
-\ref{sec:conv:isnmf}節では，なんとかについて述べる．
-\ref{sec:conv:ilrma}節では，なんとかについて述べる．
-\ref{sec:conv:tilrma}節では，なんとかについて述べる．
-\ref{sec:conv:heartrateestalgo}節では，なんとかについて述べる．
+本章では，本研究で適用した手法について説明する．
+まず\ref{sec:conv:researchmotivation}節では，本研究の動機について説明する．
+\ref{sec:conv:bssformularization}節では，周波数領域におけるBSSの定式化を行う．
+\ref{sec:conv:isnmf}節では，行列分解の手法の一つであるNMFのうちItakura-Saitoダイバージェンスに基づくNMFについて説明する
+\ref{sec:conv:ilrma}節では，本研究で扱ったILRMA，\ref{sec:conv:tilrma}節では，本研究で扱った$t$-ILRMAについて，\ref{sec:conv:heartrateestalgo}節では，心拍推定アルゴリズムについて説明する．
 
 %----------------------------------------------
 \section{本研究の動機}
@@ -49,6 +86,31 @@
 \section{BSSの定式化}
 \label{sec:conv:bssformularization}
 %----------------------------------------------
+
+周波数領域のBSSの定式化を行う．
+複数の音源が混合している観測信号中の音源数及びチャネル数をそれぞれ$N$及び$M$と定義する．
+Fig. \ref{fig:bss}に$N=M=2$の場合のBSSの概略を示す．
+混合前の音源，観測信号及び分離信号に対して短時間フーリエ変換(short time fourier transformation: STFT)したものをそれぞれ
+\begin{align}
+\bm{s}_{ij} &= (s_{ij,1}, s_{ij,2}, \cdots, s_{ij,n}, \cdots, s_{ij,N})^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:s} \\
+\bm{x}_{ij} &= (x_{ij,1}, x_{ij,2}, \cdots, x_{ij,m}, \cdots, x_{ij,M})^{\mathrm{T}} \in \mathbb{C}^{M} \label{eq:x} \\
+\bm{y}_{ij} &= (y_{ij,1}, y_{ij,2}, \cdots, y_{ij,n}, \cdots, y_{ij,N})^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:y}
+\end{align}
+と定義する．
+ここで，$n=1, 2,  \cdots, N$及び$m=1, 2, \cdots, M$はそれぞれ音源及びチャネルのインデクスを表す．
+式(\ref{eq:s})から式(\ref{eq:y})と周波数ごとの時不変な（時間フレーム$j$に依存しない）混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いると，混合時の残響長がSTFTの短時間信号長（窓長）$L$よりも十分に短い場合，観測信号は次式で表せる.
+\begin{align}
+  \bm{x}_{ij} = \bm{A}_i \bm{s}_{ij} \label{eq:xas}
+\end{align}
+ここで，$M=N$かつ$\bm{A}_i$がフルランクの場合は，分離行列$\bm{W}_{i} = (\bm{w}_{i1}~\bm{w}_{i2}~\cdots~ ~\bm{w}_{iN})^{\mathrm{H}} \in \mathbb{C}^{N \times M} $が存在し，分離信号は次式で表せる．
+\begin{align}
+  \bm{y}_{ij} = \bm{W}_i \bm{x}_{ij} \label{eq:ywj}
+\end{align}
+ここで，$^{\mathrm{H}}$は行列またはベクトルのエルミート転置を表す．
+BSSは混合行列$\bm{A}_i$が未知の状態で分離行列$\bm{W}_{i}$を全ての周波数$i=1, 2, \cdots, I$において推定する問題である．
+
+パーミュテーション問題は様々な解決法が提案されており，後述のILRMAはパーミュテーション問題を回避する手法である．
+
 
 %----------------------------------------------
 \section{Itakura-Saito ダイバージェンスに基づくNMF}
@@ -174,7 +236,7 @@ ISNMFのときと同様に
     \label{eq:ilrmalike2}
 \end{align}
 ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
-式(\ref{eq:ilrmalike2})を見ると，第一項と第二項は式(\ref{eq:ivalike})で表されるIVAの尤度関数に対応し，第二項と第三項は式(\ref{eq:isnmf})のISNMFの尤度関数に対応していることがわかる．
+式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式(\ref{eq:isnmf})のISNMFの尤度関数に対応していることがわかる．
 
 分離行列$\bm{W}_i$の関する最適化は，分離ベクトル$\bm{w}_{i,n}$の更新を反復射影法（iterative projection: IP）\cite{auxIVA}を用いることで次式で行われる．
 \begin{align}
@@ -195,6 +257,31 @@ v_{kj, n} &\leftarrow  v_{kj, n} \sqrt{ \frac{ \sum_{i} | \bm{w}_{i,n}^{\mathrm{
 \section{$t$-ILRMA}
 \label{sec:conv:tilrma}
 %----------------------------------------------
+
+Yoshii et al. が提案した$t$-NMFがISNMFやCauchy NMFと比較して性能が向上したことに鑑み，複素Student's$t$分布を生成モデルに持つようなILRMAである$t$-ILRMAが提案された．複素Student's$t$分布二は形状パラメータ$\nu(\textgreater0)$があり，これを$\nu=1$とすると複素Cauchy分布のような安定性は何ため，スペクトログラムの加法の正当性が保証されない．しかし，$\nu=2$付近のときの$t$-NMFは，ISNMFやCaunchy NMFに比べて優れたロバストな結果を示すことが報告されている．$t$-ILRMAの生成モデルは次式で表される．
+\begin{align}
+     \prod_{i,j}p\left(y_{ij}\right)= \prod_{i,j} \frac{1}{\pi \sigma_{ij}^{2} } \left( 1+\frac{2}{\nu}\frac{|z_{ij}|^2}{\sigma_{ij}^{2}} \right)^{\frac{2+\nu}{2}}　\label{eq:tmodel}
+\end{align}
+\begin{align}
+     \sigma_{ij}^{p}=\sum_{l}t_{il}v_{lk}{eq:tsigma}
+\end{align}
+
+ここで，$\sigma_{ij}$は時間周波数ごとに時変な非負値であり，振幅スペクトラム$|z_{ij}|$に関係する量である．$p$はNMFモデルのドメインを決定する量であり，$1\leqq p \leqq$を満たしているとする，$p=1$のときは振幅ドメインのNMFモデルを，$p=2$のときはパワードメインのモデルを考えることに相当する．$p=2$，$\nu\rightarrow\infty$のときはISNMFのモデルに一致し，$p=1$，$\nu=1$のときはCauchyNMFのモデルに一致する，この負の対数尤度をとることにより，$t$-ILRMAのコスト関数
+\begin{align}
+    \mathcal{L}_{t} = \mathrm{const.}-2J\log|\mathrm{det}\bm{W}_{i}|+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|y_{ij}^{2}}{\sigma_{ij}^{2}}\right)+2\log\sigma_{ij}\right\rbrack{eq:tcost}
+\end{align}
+を得る．
+
+分離行列$\bm{W}_{i}$は節\ref{sec:conv:ilrma}と同様に分離ベクトル$w_{i,n}$の更新をIPを用いることで次式で行われる．
+\begin{align}
+    U_{i,n}=\frac{1}{J}\left(\frac{2}{\nu}+1\right)\sum_{j}\frac{1}{\alpha_{ij,n}\sigma_{ij,n}^{2}}x_{ij}x_{ij}^{\mathrm{H}} \label{eq:tip1}
+\end{align}
+\begin{align}
+    w_{i,n}\leftarrow\left(W_{i}U_{i,n}\right)^{-1}e_{n} \label{eq:tip2}
+\end{align}
+\begin{align}
+    w_{i,n}\leftarrow\frac{w_{i,n}}{\sqrt{w_{i,n}^{\mathrm{H}}U_{i,n}w_{i,n}}} \label{eq:tip3}
+\end{align}
 
 %----------------------------------------------
 \section{心拍推定アルゴリズム}
