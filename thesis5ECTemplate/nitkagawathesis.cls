@@ -127,19 +127,23 @@
 \renewcommand{\and}{\\ &}
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}% #1: 指導教員名 + 役職 [2005/12/09]
 \gdef\@supervisor@prefix{\if@english Supervisor\else 指導教員\fi}
+\newcommand*{\reviewer}[1]{\gdef\@reviewer{#1}}% #1: 指導教員名 + 役職
+\gdef\@reviewer@prefix{\if@english Reviewer\else 副査\fi}
+\newcommand*{\chairperson}[1]{\gdef\@chairperson{#1}}% #1: 指導教員名 + 役職
+\gdef\@chairperson@prefix{\if@english Chair Person\else 学科長\fi}
 \newcommand*{\handin}[2]{\year #1 \month #2 \day 0}% #1: 年, #2: 月
 \newcommand*{\eauthor}[1]{\gdef\@eauthor{#1}}% #1: 著者名英語つづり
 \newcommand*{\email}[1]{\gdef\authors@email{#1}}% #1: e-mail アドレス
 \newcommand*{\keywords}[1]{\gdef\@keywords{#1}}% #1: キーワード
-\gdef\@keywordsprefix{\if@english Keywords\else キーワード\fi}
 \if@undergraduate
   \if@english
     \gdef\@subtitle{Graduation~Thesis}
     \gdef\@belongsto{Department of Electrical and Computer Engineering\\%
         National Institute of Technology, Kagawa College}%
   \else
-    \gdef\@subtitle{卒業論文}
-    \gdef\@belongsto{香川高等専門学校電気情報工学科}%
+    \gdef\@subtitle{卒業研究論文}
+    \gdef\@belongsto{Department of Electrical and Computer Engineering\\%
+        National Institute of Technology, Kagawa College}%
   \fi
 \else
   \if@english
@@ -152,7 +156,7 @@
   \if@english
     \gdef\@subtitle{Bachelor's~Thesis}
   \else
-    \gdef\@subtitle{特別論文}
+    \gdef\@subtitle{特別研究論文}
   \fi
 \fi
 \renewcommand{\maketitle}{%
@@ -160,36 +164,41 @@
   \global\let\@thanks\@empty
   \begin{titlepage}%
     \let\footnote\relax
-    \null\vskip60\p@
+    \setlength{\topmargin}{-2cm}
     \begin{center}
-      {\headfont\Large \@subtitle \par}
+      \includegraphics[width=7cm]{logo.pdf} \\
+    \end{center}
+    \begin{center}
+      {\headfont\fontsize{30pt}{0pt}\selectfont \@subtitle \par}
+      \vskip 2cm
+      {\headfont\fontsize{16pt}{0pt}\selectfont 論文題目 \par}
+      \vskip 0.7cm
     \end{center}%
-    \begin{center}\headfont\Huge%
+    \begin{center}\headfont\Large%
       \parbox{\title@width}{\begin{center}\@title\end{center}}%
     \end{center}
-    \vfill
+    \vskip 2cm
     \begin{center}
-      \Large\headfont
-      {\begin{tabular}[t]{c}%
-        {\LARGE\@author} \\[16\p@]
-        \@supervisor@prefix \ \@supervisor
-      \end{tabular}\par}%
-      \vskip 2cm
-      {\@date\par}%
-      \vskip 2cm
-      {\@belongsto \par}%
-    \end{center}\par
-    \@thanks%
-    \vskip60\p@\null
-    \newpage\clearpage
+      \normalsize\headfont
+      \renewcommand{\arraystretch}{1.6}
+        {\begin{tabular}{|wc{5cm}|wc{6cm}wc{1cm}|}
+          \hline
+          \multicolumn{1}{|c|}{提出年月日} & \multicolumn{2}{c|}{\@date} \\ \hline
+          \multicolumn{1}{|c|}{学　　　　　　科} & \multicolumn{2}{c|}{電気情報工学科} \\ \hline
+          \multicolumn{1}{|c|}{氏　　　　　　名} & \@author & 印\\ \hline
+          \multicolumn{1}{|c|}{指導教員（主査）} & \@supervisor & 印\\ \hline
+          \multicolumn{1}{|c|}{副　　　　　　査} & \@reviewer & 印\\ \hline
+          \multicolumn{1}{|c|}{学　　 科 　　長} & \@chairperson & 印\\ \hline
+        \end{tabular}}
+    \end{center}
+    \begin{center}
+      \vskip 1.1cm
+      {\headfont\Huge 香川高等専門学校}
+      \vfill
+    \end{center}
     \thispagestyle{empty}
     \setcounter{page}{0}
-    \null\vfill
-    \begin{flushleft}
-      Copyright {\copyright} {\number\year},~%
-      \ifx\@eauthor\@undefined \@author\else\@eauthor\fi.
-    \end{flushleft}\par
-    \vskip60\p@\null
+    %\null\vfill
   \end{titlepage}
   \setcounter{footnote}{0}%
   \global\let\maketitle\relax
@@ -197,11 +206,12 @@
   \global\let\@date\@empty
   \global\let\@title\@empty
   \global\let\subtitle\relax
+  \global\let\logo\relax
   \global\let\title\relax
   \global\let\supervisor\relax
-  \global\let\belongto\relax
+  \global\let\reviewer\relax
+  \global\let\chairperson\relax
   \global\let\email\relax
-  \global\let\eauthor\relax
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
@@ -213,8 +223,9 @@
     \clearpage
   \fi
   \@mainmatterfalse
-  \pagenumbering{roman}}
+  \pagenumbering{empty}}
 \renewcommand\mainmatter{%
+  \setlength{\topmargin}{-5truemm}% 上部の余白確保
   \setlength{\headsep}{10truemm}% 上部の余白確保
   \setlength{\textheight}{229truemm}% 上部の余白確保
   \if@twoside
@@ -300,48 +311,85 @@
     {0.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
     {-1zw}% 改行せず 1zw のアキ
     {\normalfont\normalsize\headfont}}
-\newcommand{\abstractname}{\if@english Abstract\else 概要\fi}
-\renewenvironment{abstract}{%
-  \titlepage
-  \null\vfill
-  \@beginparpenalty\@lowpenalty
-  \begin{center}%
-    \headfont \abstractname
-    \@endparpenalty\@M
-  \end{center}\par}%
-  {\par%
-    \ifx\@keywords\@undefined\else%
-      \begin{description}%
-        \item[\@keywordsprefix]\@keywords%
-      \end{description}%
-    \fi%
-    \vfill\vfill\vfill\null
-    \endtitlepage}
+\newcommand{\abstractname}{\if@english {\bf Abstract}\else （和訳）\fi}
 %%%
-\newcommand{\eabstractname}{\if@english 概要 \else Abstract\fi}
+\newcommand{\eabstractname}{\if@english （和訳） \else {\bf Abstract}\fi}
 \newcommand*{\etitle}[1]{\gdef\@etitle{#1}}
-\newenvironment{eabstract}{%
-  \titlepage
+\newcommand*{\eabstract}[1]{\gdef\@eabstract{#1}}
+\renewcommand*{\abstract}[1]{\gdef\@abstract{#1}}
+\newcommand{\makeabstract}{
+  \setlength{\topmargin}{-2cm}
+  \begin{titlepage}
   \null
   \@beginparpenalty\@lowpenalty
   \begin{center}
-      \begin{center}\headfont\Large%
-	  \@etitle
+    \begin{center}\headfont\Large%
+      {\bf \@etitle}
+    \end{center}
+    \begin{center}\headfont\Large
+      {\rm \@eauthor}
+    \end{center}
+    \begin{center}\headfont\normalsize
+      {\rm \@belongsto}
     \end{center}
   \end{center}
-      \vskip2\baselineskip
+      \vskip1\baselineskip
   \begin{center}%
     \headfont \eabstractname
     \@endparpenalty\@M
-  \end{center}\par}%
-  {\par%
+  \end{center}\par%
+  \@eabstract
+  \par%
     \ifx\@keywords\@undefined\else%
       \begin{description}%
-        \item[\@keywordsprefix]\@keywords%
+        \item[{\bf \textit{Keywords:}}]\@keywords%
       \end{description}%
     \fi%
-    \vfill\vfill\vfill\null
-    \endtitlepage}
+  \begin{center}%
+    \headfont \abstractname
+    \@endparpenalty\@M
+  \end{center}\par%
+  \@abstract
+  \end{titlepage}
+}
+\newcommand{\makeseparatedabstract}{
+  \setlength{\topmargin}{-2cm}
+  \begin{titlepage}
+  \null
+  \@beginparpenalty\@lowpenalty
+  \begin{center}
+    \begin{center}\headfont\Large%
+      {\bf \@etitle}
+    \end{center}
+    \begin{center}\headfont\Large
+      {\rm \@eauthor}
+    \end{center}
+    \begin{center}\headfont\normalsize
+      {\rm \@belongsto}
+    \end{center}
+  \end{center}
+      \vskip1\baselineskip
+  \begin{center}%
+    \headfont \eabstractname
+    \@endparpenalty\@M
+  \end{center}\par%
+  \@eabstract
+  \par%
+    \ifx\@keywords\@undefined\else%
+      \begin{description}%
+        \item[{\bf \textit{Keywords:}}]\@keywords%
+      \end{description}%
+    \fi%
+    \newpage
+    \thispagestyle{empty}
+    \addtolength{\topmargin}{2cm}
+    \begin{center}%
+      \headfont \abstractname
+      \@endparpenalty\@M
+    \end{center}\par%
+    \@abstract
+  \end{titlepage}
+}
 %%%
 \renewenvironment{thebibliography}[1]{%
   \global\let\presectionname\relax
@@ -399,7 +447,7 @@
       \number\month 月
       %\number\day 日
     \else
-      平成\number\heisei 年
+      令和\number\heisei 年
       \number\month 月
       %\number\day 日
     \fi
@@ -410,4 +458,4 @@
 \raggedbottom
 \endinput
 %%
-%% End of file `nitkcthesis.cls'.
+%% End of file `nitkagawathesis.cls'.
