@@ -14,6 +14,23 @@
 %----------------------------------------------
 本研究で使用する信号の測定系はFig\ref{fig:sensorstructure}に示されているとおりである．振動台の上に赤色で示すレーダを取り付けたシートを設置し，被験者が座った状態で計全体を振動させる．レーダはFig\ref{fig:sensorimg}に示されているようなビームフォーミングセンサを使用している．これを，シートの背中と臀部に取り付け測定を行う．測定系による振動はsin波で単軸加振であり，振動状態はFig\ref{fig:sensorimg}に示されているとおりである．その他の測定条件はTable\ref{tab:vibevacondition}に示されているとおりである．
 
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \begin{center}
+   \includegraphics[width=70mm]{./ch_conventional/fig/sensorstructure.pdf}
+  \end{center}
+  \caption{Image of shaking table.}
+  \label{fig:one}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \begin{center}
+   \includegraphics[width=70mm]{./ch_conventional/fig/sensorimg.pdf}
+  \end{center}
+  \caption{Image of shking table.}
+  \label{fig:sensorimg}
+ \end{minipage}
+\end{figure}
+
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
@@ -56,6 +73,16 @@
 \section{測定で得られる信号}
 \label{sec:conv:signal}
 %----------------------------------------------
+\ref{sec:conv:measurementcondition}節の測定系によって得られる信号はFig\ref{fig:sensorimg}から分かるように4チャネルである．Fig\ref{fig:obssig}に示すような値が得られる．横軸は測定時間[s]，縦軸は体表面の変動[$\mathrm{\mu}$m]となっている．
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSig.pdf}
+\caption{Measurement signal.}
+\label{fig:obssig}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{本章のまとめ}
@@ -109,7 +136,64 @@ Fig. \ref{fig:bss}に$N=M=2$の場合のBSSの概略を示す．
 ここで，$^{\mathrm{H}}$は行列またはベクトルのエルミート転置を表す．
 BSSは混合行列$\bm{A}_i$が未知の状態で分離行列$\bm{W}_{i}$を全ての周波数$i=1, 2, \cdots, I$において推定する問題である．
 
-パーミュテーション問題は様々な解決法が提案されており，後述のILRMAはパーミュテーション問題を回避する手法である．
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.75\hsize]{./ch_conventional/fig/bss.pdf}
+\caption{Outline of BSS, where $N=M=2$.}
+\label{fig:bss}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+
+
+%----------------------------------------------
+\section{IVA}
+\label{sec:conv:iva}
+%----------------------------------------------
+%-%-%-%-%-%-%-%-%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\hsize]{./ch_conventional/fig/iva.pdf}
+\caption{Mixing and demixing model in IVA, where $N=M=2$.}
+\label{fig:ivamodel}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\hsize]{./ch_conventional/fig/laplace_sav.pdf}
+\caption{Zero-mean and spherically symmetric Laplace distribution, where $I=2$ and $s^*_{ij,n}$ can be considered as either real or imaginary part of $s_{ij,n}$.}
+\label{fig:laplace}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+Iここでは音源，観測信号及び分離信号それぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを
+\begin{align}
+    \overline{\bm{s}}_{j,n} &= (s_{1j,n}, s_{2j,n}, \cdots, s_{ij,n}, \cdots, s_{Ij,n} )^{\mathrm{T}} \in \mathbb{C}^{I} \\
+    \overline{\bm{x}}_{j,m} &= (x_{1j,m}, x_{2j,m}, \cdots, x_{ij,m}, \cdots, x_{Ij,m} )^{\mathrm{T}} \in \mathbb{C}^{I} \\
+    \overline{\bm{y}}_{j,n} &= (y_{1j,n}, y_{2j,n}, \cdots, y_{ij,n}, \cdots, y_{Ij,n} )^{\mathrm{T}} \in \mathbb{C}^{I}
+\end{align}
+と定義する．
+Fig. \ref{fig:ivamodel}に$M=N=2$の場合の混合分離モデルを示す．
+IVAは周波数ごとに独立した分離行列$\bm{W}_i$を推定する．
+ただし，推定の過程で全周波数を含む$I$次元分布を生成モデルとして仮定し，$I$次元ベクトル内の高次相関を仮定している．
+このIVAの生成モデルには，Fig. \ref{fig:laplace} で示すような球状対称ラプラス分布が用いられ，式(\ref{eq:iva_model})で表される．
+\begin{align}
+  p(\overline{\bm{y}}_{jn}) = \frac{1}{\pi \prod_{i} \sigma_{i,n}} \exp \left(  - \sqrt{ \sum_i \left| \frac{y_{ij,n}}{\sigma_{i,n}} \right|^2}  \right)
+\label{eq:iva_model}    
+\end{align}
+ここで，$\sigma_{i,n}$はスケールパラメタである．
+式(\ref{eq:iva_model})の多次元ラプラス分布は球対称性を持つため，同一ベクトル内の成分が高次相関を持つ．
+したがって，IVAは同時に生起する周波数成分を一つの音源としてまとめるという傾向がある．
+つまり，信号の基本周波数とその倍音成分が同一音源として扱われやすいと言える．
+音源周波数ベクトル間の独立性$p(\overline{\bm{y}}_{j,1}, \overline{\bm{y}}_{j,2}, \cdots, \overline{\bm{y}}_{j,N}) = \prod_n p(\overline{\bm{y}}_{i,n})$を仮定すると，IVAの観測信号に対する負対数尤度関数は次式で得られる．
+\begin{align}
+    \mathcal{L} = -2J \sum_i \log |\det \bm{W}_i| + \sum_{j,n} G(\overline{\bm{y}}_{j,n})
+    \label{eq:ivalike}
+\end{align}
+ここで，$G(\overline{\bm{y}}_{j,n})$はコントラスト関数と呼ばれ，$G(\overline{\bm{y}}_{j,n}) = -\log p(\overline{\bm{y}}_{j,n})$で定義される．
+IVAの最適化は補助関数法\cite{auxfunc}を用いた手法によって高速かつ安定に行える\cite{auxIVA, stable_auxIVA}．
 
 
 %----------------------------------------------
@@ -154,6 +238,23 @@ $\beta$-divergenceの中でも特に$\beta= 2,1,0$の場合はそれぞれ二乗
   \item 三角不等式：$\mathcal{D}(a|b) + \mathcal{D}(b|c) \geq \mathcal{D}(a|c) ~~\forall a,b,c \in \mathbb{R}$
 \end{enumerate}
 のうち，対称性と三角不等式を満たさない．
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.95\hsize]{./ch_conventional/fig/NMF_ps.pdf}
+\caption{NMF decomposition of power spectrogram, where $| \cdot |$  and dotted exponent for matrices denote entrywise absolute value and entrywise exponent, respectively.}
+\label{fig:nmf_ps}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!b]
+\centering
+\includegraphics[width=0.95\hsize]{./ch_conventional/fig/gauss_sav.pdf}
+\caption{Circularly symmetric complex Gauss distribution.}
+\label{fig:gauss}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 本論文ではItakura--Saitoダイバージェンスに基づくNMF（Itakura--Saito-divergence-based NMF: ISNMF）\cite{isnmf}について述べる．
 $\bm{Z}$の要素である複素スペクトル$z_{ij}$が以下の確率モデルに従って生成されていると仮定する．
@@ -211,6 +312,16 @@ $\bm{Z}$の要素である複素スペクトル$z_{ij}$が以下の確率モデ�
 %----------------------------------------------
 
 ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.95\hsize]{./ch_conventional/fig/ilrmaoutline.pdf}
+\caption{Outline of ILRMA.}
+\label{fig:ilrma_outline}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
 ここで$\bm{T}_n$及び$\bm{V}_n$は$n$番目の音源のパワースペクトログラムをモデル化する基底行列及びアクティベーション行列を示す．
 ILRMAはIVAに対応する分離行列$\bm{W}_i$の反復最適化とISNMFの低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
 具体的には，分離行列$\bm{W}_i$により推定された分離信号をNMFによって非負低ランク行列でモデル化し，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）として用いて分離行列を再度推定する，というプロセスが反復的に行われる．
@@ -268,7 +379,7 @@ Yoshii et al. が提案した$t$-NMFがISNMFやCauchy NMFと比較して性能�
 
 ここで，$\sigma_{ij}$は時間周波数ごとに時変な非負値であり，振幅スペクトラム$|z_{ij}|$に関係する量である．$p$はNMFモデルのドメインを決定する量であり，$1\leqq p \leqq$を満たしているとする，$p=1$のときは振幅ドメインのNMFモデルを，$p=2$のときはパワードメインのモデルを考えることに相当する．$p=2$，$\nu\rightarrow\infty$のときはISNMFのモデルに一致し，$p=1$，$\nu=1$のときはCauchyNMFのモデルに一致する，この負の対数尤度をとることにより，$t$-ILRMAのコスト関数
 \begin{align}
-    \mathcal{L}_{t} = \mathrm{const.}-2J\log|\mathrm{det}\bm{W}_{i}|+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|y_{ij}^{2}}{\sigma_{ij}^{2}}\right)+2\log\sigma_{ij}\right\rbrack{eq:tcost}
+    \mathcal{L}_{t} = \mathrm{const.}-2J\log|\mathrm{det}\bm{W}_{i}|+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|y_{ij}^{2}}{\sigma_{ij}^{2}}\right)+2\log\sigma_{ij}\right\rbrack \label{eq:tcost}
 \end{align}
 を得る．
 
@@ -298,6 +409,45 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 \label{sec:conv:heartrateestalgo}
 %----------------------------------------------
 
+測定した信号を$\left(x[t]\right)_{t=1}^{T}$とする．ここで，$t=1, 2, \cdots , T$は離散時間インデクスであり，$T$は観測時間長である．今回使用した心拍推定アルゴリズムは以降に示す式の通りである．この信号には0.5Hz付近に呼吸が強く入っているため，次式のような二回微分フィルタをかけることで呼吸を落とすことが可能である．二回微分フィルタは次式で表される．
+\begin{align}
+  \left\{ \begin{array}{ll}
+    x'[t]=x[t+1]-x[t]\quad\quad \forall{t} \\
+    x''[t]=x'[t+1]-x'[t]\hspace{12.5pt} \forall{t}
+  \end{array} \right. \label{eq:diffilter}
+\end{align}
+半波整流した後に，心拍の高周波成分である0.7Hz～1.4Hzを通すバンドパスフィルタをかける．半波整流とバンドパスフィルタ二よる処理は次式で表される．
+\begin{align}
+  x_{\mathrm{r}}[t] = \left\{ \begin{array}{ll}
+    x''[t]\quad \mathrm{if}\quad x''[t]\geqq0\quad \forall{t} \\
+    0\hspace{25pt} \mathrm{otherwise}\hspace{24pt} \forall{t}
+  \end{array} \right. \label{eq:hrec}
+\end{align}
+\begin{align}
+    \left(x_{\mathrm{BPF}}[t]\right)_{t=1}^{T}=\mathrm{BPF}\left[\left(x_{r}\right)_{t=1}^{T}\right]
+\end{align} \label{eq:bpf}
+
+次に，$\left(x_{\mathrm{BPF}}[t]\right)_{t=1}^{T}$を短時間区間信号に分割する．STFTの分析窓関数の長さ及びシフト長をそれぞれ$Q$及び$\tau$としたとき，$x_{\mathrm{BPF}}[t]$の$j$番目の短時間区間信号（時間フレーム）は次式で表される．
+\begin{align}
+  \nonumber \bm{x}^{[j]} &= \left[ x[(j-1)\tau +1], x[(j-1)\tau +2], \cdots, x[(j-1)\tau +Q] \right]^{\mathrm{T}} \\
+  &=  [ x^{[j]} [1], x^{[j]} [2], \cdots, x^{[j]} [q], \cdots, x^{[j]} [Q] ]^{\mathrm{T}} \in \mathbb{R}^Q
+\end{align}
+ここで，$l =1, 2, \cdots, L$，$j=1, 2, \cdots, J$及び$q=1, 2, \cdots, Q$はそれぞれ離散時間のインデクス，時間フレーム及び時間フレーム内のサンプルを示す．
+また，時間フレーム数$J$は次式によって与えられる．
+\begin{align}
+    J= \frac{L}{\tau}
+\end{align}
+ただし，信号長$L$はセグメント数$J$が整数となるように各時間フレームの信号の両端にゼロを挿入する処理（ゼロパディング）が施される．
+そして，信号$\bm{x} = [ x[1], x[2], \cdots, x[L] ]^{\mathrm{T}}  \in \mathbb{R}^L$のSTFTは次式のように表される．
+\begin{align}
+    \bm{X} = \mathrm{STFT}_{\bm{\omega}}(\bm{x}) \in \mathbb{C}^{I \times J}  \label{eq:tstft}
+\end{align}
+式(\ref{eq:tstft})によって得られた各要素に対して絶対値を取り，ピーク値のインデクス(周波数)を取得する．この処理は以下のように表される．
+\begin{align}
+    \hat{x}[j]=\argmax|x[j]|  \label{eq:searchmax}
+\end{align}
+得られたピーク値のインデクスを降順に並べ替える．これらの値のうち，推定範囲$0.7\leqq f \leqq 1.6$に収まるものだけを扱い，推定心拍は$\hat{h_{o}}[j]=60\hat{x}[j]$となる．
+
 %----------------------------------------------
 \section{本章のまとめ}
 %----------------------------------------------
@@ -312,7 +462,8 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，何らか法の従来手法を説明する．
+本章では，測定信号に対して，IVAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
+心拍推定の比較には接触型ECG（心電図（Electrocardiogram: ECG））センサBiopac社Bioharnessの測定値を使用している．
 まず\ref{sec:conv:something}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
 \ref{sec:conv:somewhat}節では，なんとかについて述べる．
 
@@ -320,26 +471,30 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 \section{実験条件}
 \label{sec:conv:something}
 %----------------------------------------------
+STFTの窓長を確定するために一つの測定信号に対し4パターンの窓長に変更しSTFTを行った．実験条件はTable\ref{tab:iva}に示す．
+%-%-%-%-%-%-%-%-%
+\begin{table}[t]
+  \caption{Experimental conditions of IVA}
+  \centering
+  \begin{tabular}{cc} \hline
+    Parameter & Value \\ \hline \hline
+    FFT length & 32, 64, 96, 128 samples  \\ \hline
+    Shift length & FFt length/16 samples \\ \hline
+    Channel number（Channel number: $N$） & 4 \\ \hline
+    frequency bins（frequency bins: $I$） & 17, 33, 49, 65 \\ \hline
+    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
+    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
+    Number of iterations & 100\\ \hline
+  \end{tabular}
+  \label{tab:iva}
+\end{table}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{実験結果}
 \label{sec:conv:somewhat}
 %----------------------------------------------
 
-%----------------------------------------------
-\subsection{基底数固定型ILRMAを適用した結果}
-\label{sec:conv:somewhat}
-%----------------------------------------------
-
-%----------------------------------------------
-\subsection{基底数可変型LRMAを適用した結果}
-\label{sec:conv:somewhat}
-%----------------------------------------------
-
-%----------------------------------------------
-\subsection{$t$-ILRMAを適用した結果}
-\label{sec:conv:somewhat}
-%----------------------------------------------
 
 %----------------------------------------------
 \section{本章のまとめ}
@@ -352,12 +507,15 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 \chapter{観測信号にフィルタを適用した場合のBSS及び心拍推定実験}
 \label{chap:conv}
 
+フィルタリングを行い
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，何らか法の従来手法を説明する．
+本章では，測定信号に対して，基底数固定型ILRMAと基底数可変型ILRMA，$t$-ILRMAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
+心拍推定の比較には接触型ECG（心電図（Electrocardiogram: ECG））センサBiopac社Bioharnessの測定値を使用している．
 まず\ref{sec:conv:something}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
 \ref{sec:conv:somewhat}節では，なんとかについて述べる．
+
 
 %----------------------------------------------
 \section{動機}
@@ -368,6 +526,71 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 \section{設計したフィルタ}
 \label{sec:conv:something}
 %----------------------------------------------
+
+%----------------------------------------------
+\section{実験条件}
+\label{sec:conv:something}
+%----------------------------------------------
+
+基底数固定型ILRMAは反復毎にプロジェクションバックで正規化し，反復毎にプロジェクションバックで正規化しない．基底数固定型ILRMA，基底数可変型ILRMA及び$t$-ILRMAの実験条件はそれぞれ表(\ref{tab:fixedilrma})，表（\ref{tab:variableilrma}）及び表（\ref{tab:tilrma}）に示す．
+%-%-%-%-%-%-%-%-%
+\begin{table}[t]
+  \caption{Experimental conditions of ILRMA with fixed basis}
+  \centering
+  \begin{tabular}{cc} \hline
+    Parameter & Value \\ \hline \hline
+    FFT length & 64 samples  \\ \hline
+    Shift length & 4 samples \\ \hline
+    Channel number（Channel number: $N$） & 4 \\ \hline
+    frequency bins（frequency bins: $I$） & 33 \\ \hline
+    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
+    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
+    Number of iterations & 100\\ \hline
+    Basis number & 3 \\ \hline \hline
+  \end{tabular}
+  \label{tab:fixedilrma}
+\end{table}
+%-%-%-%-%-%-%-%-%
+%-%-%-%-%-%-%-%-%
+\begin{table}[t]
+  \caption{Experimental conditions of ILRMA with variable basis}
+  \centering
+  \begin{tabular}{cc} \hline
+    Parameter & Value \\ \hline \hline
+    FFT length & 64 samples  \\ \hline
+    Shift length & 4 samples \\ \hline
+    Channel number（Channel number: $N$） & 4 \\ \hline
+    frequency bins（frequency bins: $I$） & 33 \\ \hline 
+    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
+    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
+    Number of iterations & 100\\ \hline
+    Basis number（Basis number: $K$） & 12 \\ \hline
+    Basis matrix（Basis matrix: $T$） & Uniform random values $(0,1)$ \\ \hline
+    Activation matrix（Activartion matrix: $V$） & Uniform random values $(0,1)$ \\ \hline 
+    Partition function matrix（Partition function matrix: $Z$） & Uniform random values $(0,1)$ \\ \hline \hline
+  \end{tabular}
+  \label{tab:variableilrma}
+\end{table}
+%-%-%-%-%-%-%-%-%
+%-%-%-%-%-%-%-%-%
+\begin{table}[t] 
+  \caption{Experimental conditions of $t$-ILRMA}
+  \centering
+  \begin{tabular}{cc}\hline
+    Parameter & Value \\ \hline \hline
+    FFT length & 64 samples  \\ \hline
+    Shift length & 4 samples \\ \hline
+    Channel number（Channel number: $N$） & 4 \\ \hline
+    frequency bins（frequency bins: $I$） & 33 \\ \hline
+    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
+    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
+    Number of iterations & 100\\ \hline
+    Freedom of student's $t$-distribution & 1, 2, 5\\ \hline
+    Domains in low-rank modeling of signal source & 1(Amplitude domain), 2(Power dmain)\\ \hline
+  \end{tabular}
+  \label{tab:tilrma}
+\end{table}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{実験結果}
