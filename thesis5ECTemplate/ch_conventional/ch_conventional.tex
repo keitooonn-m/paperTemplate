@@ -14,22 +14,24 @@
 %----------------------------------------------
 本研究で使用する信号の測定系はFig\ref{fig:sensorstructure}に示されているとおりである．振動台の上に赤色で示すレーダを取り付けたシートを設置し，被験者が座った状態で計全体を振動させる．レーダはFig\ref{fig:sensorimg}に示されているようなビームフォーミングセンサを使用している．これを，シートの背中と臀部に取り付け測定を行う．測定系による振動はsin波で単軸加振であり，振動状態はFig\ref{fig:sensorimg}に示されているとおりである．その他の測定条件はTable\ref{tab:vibevacondition}に示されているとおりである．
 
+%-%-%-%-%-%-%-%-%
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \begin{center}
    \includegraphics[width=70mm]{./ch_conventional/fig/sensorstructure.pdf}
   \end{center}
   \caption{Image of shaking table.}
-  \label{fig:one}
+  \label{fig:sensorstructure}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \begin{center}
    \includegraphics[width=70mm]{./ch_conventional/fig/sensorimg.pdf}
   \end{center}
-  \caption{Image of shking table.}
+  \caption{Image of sensor motion and position.}
   \label{fig:sensorimg}
  \end{minipage}
 \end{figure}
+%-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -457,21 +459,21 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 
 
 \chapter{観測信号にフィルタを適用しない場合のBSS及び心拍推定実験}
-\label{chap:conv}
+\label{chap:bsshrexp}
 
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，測定信号に対して，IVAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
-心拍推定の比較には接触型ECG（心電図（Electrocardiogram: ECG））センサBiopac社Bioharnessの測定値を使用している．
-まず\ref{sec:conv:something}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
-\ref{sec:conv:somewhat}節では，なんとかについて述べる．
+本章では，測定信号に対して，\ref{sec:conv:iva}節IVAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
+心拍推定の比較には接触型ECGセンサの測定値を使用している．
+まず\ref{sec:conv:expcondition4}節では，IVAを適用させる際のパラメタについて述べる．
+\ref{sec:conv:expresult4}節では，IVAを適用させて得られたスペクトログラムと心拍推定グラフについての解説を述べる．
 
 %----------------------------------------------
 \section{実験条件}
-\label{sec:conv:something}
+\label{sec:conv:expcondition4}
 %----------------------------------------------
-STFTの窓長を確定するために一つの測定信号に対し4パターンの窓長に変更しSTFTを行った．実験条件はTable\ref{tab:iva}に示す．
+STFTの窓長を確定するために一つの測定信号に対し4パターンの窓長に変更しIVAを適用した．実験条件はTable\ref{tab:iva}に示す．
 %-%-%-%-%-%-%-%-%
 \begin{table}[t]
   \caption{Experimental conditions of IVA}
@@ -492,14 +494,14 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 
 %----------------------------------------------
 \section{実験結果}
-\label{sec:conv:somewhat}
+\label{sec:conv:expresult4}
 %----------------------------------------------
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_obs.pdf}
-\caption{Observation signal Back\_No2.}
+\caption{Observation back signal no.~2.}
 \label{fig:siva32obs}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -508,7 +510,7 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
-\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=32$.}
+\caption{Estimated back signal no.~2, where FFT size is set to 32.}
 \label{fig:siva32est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -517,7 +519,7 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
-\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=64$.}
+\caption{Estimated back signal no.~2, where FFT size is set to 64.}
 \label{fig:siva64est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -526,7 +528,7 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
-\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=96$.}
+\caption{Estimated back signal no.~2, where FFT size is set to 96.}
 \label{fig:siva96est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -535,41 +537,71 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
-\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=128$.}
+\caption{Estimated back signal no.~2, where FFT size is set to 128.}
 \label{fig:siva128est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
+%-%-%-%-%-%-%-%-%
 \begin{figure}[htbp]
-    \begin{tabular}{cc}
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch1.pdf}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch1.pdf}
         \subcaption{Ch1}
-        \label{hriva32ch1}
-      \end{minipage} &
+        \label{fig:hva32ch1}
+      \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch2.pdf}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch2.pdf}
         \subcaption{Ch2}
-        \label{hriva32ch2}
+        \label{fig:hva32ch2}
+      \end{minipage} \\
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
+        \subcaption{Ch3}
+        \label{fig:hva32ch3}
+      \end{minipage} 
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch4.pdf}
+        \subcaption{Ch4}
+        \label{fig:hva32ch4}
+      \end{minipage} 
+     \caption{Estimated (red) and reference (blue) heart rates of back signal no.~2 obtained by IVA.}
+  \end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[htbp]
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
+        \subcaption{FFT size is set to 32}
+        \label{fig:hva32ch3}
+      \end{minipage} 
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
+        \subcaption{FFT size is set to 64}
+        \label{fig:hva64ch3}
       \end{minipage} \\
    
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch3.pdf}
-        \subcaption{Ch3}
-        \label{hriva32ch3}
-      \end{minipage} &
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_96_ch3.pdf}
+        \subcaption{FFT size is set to 96}
+        \label{fig:hva96ch3}
+      \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch4.pdf}
-        \subcaption{Ch4}
-        \label{hriva32ch4}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_128_ch3.pdf}
+        \subcaption{FFT size is set to 128}
+        \label{fig:hva128ch3}
       \end{minipage} 
-    \end{tabular}
-     \caption{Heart rate estimation of observed signal with IVA applied.}
+     \caption{Estimated (red) and reference (blue) heart rates of back channel 3 signal no.~2 obtained by IVA.}
   \end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{本章のまとめ}
@@ -582,35 +614,52 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \chapter{観測信号にフィルタを適用した場合のBSS及び心拍推定実験}
 \label{chap:conv}
 
-フィルタリングを行い
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，測定信号に対して，基底数固定型ILRMAと基底数可変型ILRMA，$t$-ILRMAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
-心拍推定の比較には接触型ECG（心電図（Electrocardiogram: ECG））センサBiopac社Bioharnessの測定値を使用している．
-まず\ref{sec:conv:something}節では，何らかの分野で従来より用いられる何とかについて何とかを導入する．
-\ref{sec:conv:somewhat}節では，なんとかについて述べる．
-
+本章では，測定信号に対して，フィルタをかけたIVA，基底数固定型ILRMA，基底数可変型ILRMA，$t$-ILRMAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
+心拍推定の比較には接触型ECGセンサの測定値を使用している．
+まず\ref{sec:conv:motivation}節では，\ref{chap:bsshrexp}章で得られた結果からフィルタリングを行った動機について述べる．
+\ref{sec:conv:filteroutline}節では，測定信号にかけるフィルタの設計について述べる．
+\ref{sec:conv:expcond5}節では，IVA,基底数固定型ILRMA，基底数可変型ILRMA，$t$-ILRMAを適用させる際のパラメタについて述べる．
 
 %----------------------------------------------
 \section{動機}
-\label{sec:conv:something}
+\label{sec:conv:motivation}
 %----------------------------------------------
 
 %----------------------------------------------
 \section{設計したフィルタ}
-\label{sec:conv:something}
+\label{sec:conv:filteroutline}
 %----------------------------------------------
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!t]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/ampprop.pdf}
+\caption{Amplitude responses.}
+\label{fig:ampres}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[!t]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/phaseprop.pdf}
+\caption{Phase responses.}
+\label{fig:phaseres}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{実験条件}
-\label{sec:conv:something}
+\label{sec:conv:expcond5}
 %----------------------------------------------
 
 基底数固定型ILRMAは反復毎にプロジェクションバックで正規化し，反復毎にプロジェクションバックで正規化しない．基底数固定型ILRMA，基底数可変型ILRMA及び$t$-ILRMAの実験条件はそれぞれ表(\ref{tab:fixedilrma})，表（\ref{tab:variableilrma}）及び表（\ref{tab:tilrma}）に示す．
 %-%-%-%-%-%-%-%-%
 \begin{table}[t]
-  \caption{Experimental conditions of ILRMA with fixed basis}
+  \caption{Experimental conditions of ILRMA without partitioning function}
   \centering
   \begin{tabular}{cc} \hline
     Parameter & Value \\ \hline \hline
@@ -628,7 +677,7 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 %-%-%-%-%-%-%-%-%
 %-%-%-%-%-%-%-%-%
 \begin{table}[t]
-  \caption{Experimental conditions of ILRMA with variable basis}
+  \caption{Experimental conditions of ILRMA with partitioning function}
   \centering
   \begin{tabular}{cc} \hline
     Parameter & Value \\ \hline \hline
@@ -669,23 +718,137 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 
 %----------------------------------------------
 \section{実験結果}
-\label{sec:conv:somewhat}
+\label{sec:conv:expresult5}
 %----------------------------------------------
+
+%----------------------------------------------
+\subsection{IVAを適用した結果}
+\label{sec:conv:resultiva}
+%----------------------------------------------
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_filter_64_obs.pdf}
+\caption{Observated back signal no.~2 with filter.}
+\label{fig:sfiva64obs}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_filter_64_est.pdf}
+\caption{Estimated back signal no~2 with filter}
+\label{fig:sfiva64obs}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \begin{center}
+   \includegraphics[width=70mm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
+  \end{center}
+  \caption{Estimated heart rate obtained by IVA.}
+  \label{fig:hiva64ch3}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \begin{center}
+   \includegraphics[width=70mm]{./ch_conventional/hrfig/hr_iva_filter_64_ch3.pdf}
+  \end{center}
+  \caption{Estimated heart rate obtained by IVA with filter.}
+  \label{fig:fhriva64ch3}
+ \end{minipage}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \subsection{基底数固定型ILRMAを適用した結果}
-\label{sec:conv:somewhat}
+\label{sec:conv:resultilrma1}
 %----------------------------------------------
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_ILRMA1_64_est.pdf}
+\caption{Estimated signal obtained by ILRMA without partitioning function.}
+\label{fig:silrma1}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/hrfig/hr_ILRMAtype1_64_ch3.pdf}
+\caption{Estimated heart rate obrtained by ILRMA without partitioning function.}
+\label{fig:hrilrma1}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \subsection{基底数可変型LRMAを適用した結果}
-\label{sec:conv:somewhat}
+\label{sec:conv:resultilrma2}
 %----------------------------------------------
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_ILRMA2_64_est.pdf}
+\caption{Estimated signal obtained by ILRMA with partitioning function.}
+\label{fig:silrma2}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/hrfig/hr_ILRMAtype2_64_ch3.pdf}
+\caption{Estimated heart rate obtained by ILRMA with partitioning function.}
+\label{fig:hrilrma2}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \subsection{$t$-ILRMAを適用した結果}
-\label{sec:conv:somewhat}
+\label{sec:conv:resulttilrma}
 %----------------------------------------------
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_tILRMA_ampdom_dofp5_64_est.pdf}
+\caption{Estimated signal obtained by $t$-ILRMA, where $p=1$ and $\nu=5$.}
+\label{fig:stilrmaa5}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_tILRMA_powdom_dofp5_64_est.pdf}
+\caption{Estimated signal obtained by $t$-ILRMA, where $p=2$ and $\nu=5$.}
+\label{fig:stilrmap5}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/hrfig/hr_tILRMA_ampdom_dofp5_64_ch3.pdf}
+\caption{Estimated heart rate obtained by $t$-ILRMA, where $p=1$ and $\nu=5$.}
+\label{fig:hrtilrmaa5}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/hrfig/hr_tILRMA_powdom_dofp5_64_ch3.pdf}
+\caption{Estimated heart rate obtained by $t$-ILRMA, where $p=2$ and $\nu=5$.}
+\label{fig:hrtilrmap5}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{本章のまとめ}
