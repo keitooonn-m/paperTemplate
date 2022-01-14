@@ -495,6 +495,81 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \label{sec:conv:somewhat}
 %----------------------------------------------
 
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_obs.pdf}
+\caption{Observation signal Back\_No2.}
+\label{fig:siva32obs}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
+\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=32$.}
+\label{fig:siva32est}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
+\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=64$.}
+\label{fig:siva64est}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
+\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=96$.}
+\label{fig:siva96est}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
+\caption{Estimation signal Back\_No2 $\mathrm{FFT size}=128$.}
+\label{fig:siva128est}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+\begin{figure}[htbp]
+    \begin{tabular}{cc}
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch1.pdf}
+        \subcaption{Ch1}
+        \label{hriva32ch1}
+      \end{minipage} &
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch2.pdf}
+        \subcaption{Ch2}
+        \label{hriva32ch2}
+      \end{minipage} \\
+   
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch3.pdf}
+        \subcaption{Ch3}
+        \label{hriva32ch3}
+      \end{minipage} &
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.8]{./ch_conventional/fig/hr_iva_32_ch4.pdf}
+        \subcaption{Ch4}
+        \label{hriva32ch4}
+      \end{minipage} 
+    \end{tabular}
+     \caption{Heart rate estimation of observed signal with IVA applied.}
+  \end{figure}
 
 %----------------------------------------------
 \section{本章のまとめ}
