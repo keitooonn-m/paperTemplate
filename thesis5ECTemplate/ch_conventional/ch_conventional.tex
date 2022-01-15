@@ -730,6 +730,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
 \subsection{IVAを適用した結果}
 \label{sec:conv:resultiva}
 %----------------------------------------------
+Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用した測定信号である．Fig. \ref{fig:sfiva64est}はFig. \ref{fig:sfiva64obs}にIVAを適用した結果である．Fig. \ref{fig:hriva64ch3}はフィルタリングしていない推定信号に対して心拍推定アルゴリズムを適用した推定心拍値である．Fig. \ref{fig:fhriva64ch3}はフィルタリングした推定信号に対して心拍推定アルゴリズムを適用した結果である．Fig. \ref{fig:fhriva64ch3}はよりリファレンスデータの推定心拍値に近い値を示していることが分かる．そのためフィルタリングを行うことで推定精度が向上するといえる．しかし，振動の開始時からの約2分間と終了時は体動が大きくなることから，推定心拍値がレファレンスデータに対して大きな差が表れている．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -745,7 +746,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_filter_64_est.pdf}
 \caption{Estimated back signal no~2 with filter}
-\label{fig:sfiva64obs}
+\label{fig:sfiva64est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -756,7 +757,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
    \includegraphics[width=70mm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
   \end{center}
   \caption{Estimated heart rate obtained by IVA.}
-  \label{fig:hiva64ch3}
+  \label{fig:hriva64ch3}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \begin{center}
@@ -772,6 +773,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
 \subsection{基底数固定型ILRMAを適用した結果}
 \label{sec:conv:resultilrma1}
 %----------------------------------------------
+Fig. \ref{fig:silrma1}は基底数固定型ILRMAを適用した推定信号である．チャネル3のスペクトログラムに心拍成分が多く分離されているが，振動開始時と終了時の振動成分が強力であるため，分離しきれず残留している．その他のチャネルには振動成分が分離されている．また，チャネル2の3$\sim$5Hzにも心拍成分が分離してしまっている．Fig. \ref{fig:hrilrma1}は推定信号に対して心拍推定アルゴリズムを適用した推定心拍値である．IVAを適用したFig. \ref{fig:fhriva64ch3}と比較すると，非常にリファレンスデータに近い心拍推定値となっている．しかし，振動の開始時と終了時はリファレンスデータに対して心拍推定値に差が表れている．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -795,6 +797,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
 \subsection{基底数可変型LRMAを適用した結果}
 \label{sec:conv:resultilrma2}
 %----------------------------------------------
+Fig. \ref{fig:silrma2}は基底数可変型ILRMAを適用した推定信号である．チャネル3のスペクトログラムに心拍成分が多く分離されている．また，Fig. \ref{fig:silrma1}と比較するとチャネル2に分離されていた心拍成分がチャネル3におおよそ分離できている．Fig. \ref{fig:hrilrma2}は推定信号に対して心拍推定アルゴリズムを適用した推定心拍値である．基底数固定型ILRMAを適用したFig. \ref{fig:heilrma1}と比較すると，振動開始時に大きく差が表れていた心拍値がよりリファレンスデータの心拍値に近い値を示している．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -818,6 +821,7 @@ Fig. \ref{fig:siva32obs} $\sim$ Fig. \ref{fig:siva128est}から約0.3Hzに確認
 \subsection{$t$-ILRMAを適用した結果}
 \label{sec:conv:resulttilrma}
 %----------------------------------------------
+Fig. \ref{fig:stilrmaa5}は$p=1$, $\nu = 5$，\ref{fig:stilrmap5}は$p=2$, $\nu = 5$で$t$-ILRMAを適用した推定信号である．Fig. \ref{fig:silrma1}, Fig. \ref{fig:silrma2}よりチャネル3に品p九成分が分離できている．Fig. \ref{fig:hrtilrmaa5}, Fig. \ref{fig:hrtilrmap5}はFig. \ref{fig:stilrmaa5}，\ref{fig:stilrmap5}に心拍推定アルゴリズムを適用した推定心拍値である．$p$の値を変更したことによる心拍推定結果の差はほとんど見られない．Fig. \ref{fig:hrilrma1}に比べて，振動開始時の心拍推定値のリファレンスデータの心拍値に対する差が小さい．Fig. \ref{fig:hrilrma2}では振動終了時にリファレンスデータの心拍値と差があったが
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
