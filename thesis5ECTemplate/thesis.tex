@@ -17,21 +17,21 @@
 %\documentclass[senkouka,english]{nitkagawathesis}%特論（専攻科2年）英語用
 
 %%%%% タイトル %%%%%
-\title{\underline{北村研究室用}\\\underline{卒業論文テンプレートファイル}}
+\title{ブラインド信号源分離に基づく\\心拍推定}
 %\titlewidth{}% タイトル幅 (指定するときは単位つきで)
 
 %%%%% 著者 %%%%%
-\author{高専 太郎}
-\eauthor{Taro Kosen}% Copyright表示で使われる
+\author{村田 佳斗}
+\eauthor{Keito Muarta}% Copyright表示で使われる
 
 %%%%% 指導教員名 %%%%%
 \supervisor{北村 大地 講師}% 1つ引数をとる (役職まで含めて書く)
 
 %%%%% 副査教員名 %%%%%
-\reviewer{高専 花子 准教授}% 1つ引数をとる (役職まで含めて書く)
+\reviewer{柿本 健 准教授}% 1つ引数をとる (役職まで含めて書く)
 
 %%%%% 学科長教員名 %%%%%
-\chairperson{高専 光男 教授}% 1つ引数をとる (役職まで含めて書く)
+\chairperson{辻 正敏 教授}% 1つ引数をとる (役職まで含めて書く)
 
 %%%%% 提出年月 %%%%%
 \date{令和X年X月X日} % 和暦表示（卒論はこっちが正しい）
@@ -56,38 +56,29 @@
 \frontmatter
 
 %%%%% English title %%%%%
-\etitle{Template File of Graduate Thesis Produced Only for Kitamura Laboratory}
+\etitle{Heart Rate Estimation Based on Blind Source Separation}
 
 %%%%% Abstract %%%%%
 \eabstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
-  English abstract goes here. English abstract goes here. English abstract goes here. English abstract goes here.
+Audio source separation is a technique for separating original sources from an observed mixture signal.
+For example, it can be used for a pre-process of an automatic speech recognition system.
+Audio source separation is utilized for separating a target speech signal and the other speech or background noise.
+In particular, audio source separation that does not utilize any prior information about mixing system is called blind source separation (BSS).
+In this thesis, IVA, ILRMA, , which are typical methods of BSS, and $t$-ILRMA are applied to the measurement signal to estimate the heart rate.
+The experimental results show it was confirmed that breathing may affect the estimation results. Therefore, a filter was designed and applied as a pre-process. As a result of applying each method to the filtered measurement signal, we confirmed that $t$-ILRMA has the highest separation.
 }
 
 %%%%% 概要 %%%%%
 \abstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．
-  日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述．日本語の概要をここに記述
+音源分離とは，複数の音源が混合している観測信号から混合前の音源を推定する技術である．
+この技術は，例えば音声認識の前段処理に用いられる．
+目的話者の音声信号とその他の音声や背景雑音等の分離に音源分離が活用される．
+特に，音源の混合系に関する事前情報を全く用いずに音源を分離する技術はブラインド音源分離（blind source separation: BSS）と呼ばれる．
+本論文では，BSSの代表的手法であるIVAやILRMA, $t$-ILRMAを測定信号に適用し心拍推定を行う．
+実験結果より，呼吸が推定結果に影響を与えている恐れがあることを確認した．そのため，前処理としてフィルタを設計して適用した．フィルタリングを行った測定信号に各手法を適用した結果$t$-ILRMAが最も分離制度が高いことを確認した．
 }
 
-\keywords{Keyword1, Keyword2, Keyword3}
+%\keywords{Keyword1, Keyword2, Keyword3}
 
 \makeseparatedabstract % 英語アブストと日本語アブストをそれぞれ独立したページとする
 %\makeabstract % 英語アブストと日本語アブスト合わせて1枚に収まる場合はこちらを使ってもよい，ただし2枚になる場合はエラーが出る
@@ -125,28 +116,139 @@
 %%%%% 参考文献（直接書く場合） %%%%%
 \addcontentsline{toc}{chapter}{\bibname} % 参考文献を目次に表示
 \begin{thebibliography}{99}
-  \bibitem{Kitamura2016taslp}
+    \bibitem{NMF}
+  D.~D.~Lee and H.~S.~Seung,
+  ``Learning the parts of objects by non-negative matrix factorization,''
+  {\em Nature}, vol.~401, no.~6755, pp.~788--791, 1999.
+  
+  \bibitem{singlechsep}
+  P.~Smaragdis, B.~Raj, and M.~Shashanka, 
+  ``Supervised and semi-supervised separation of sounds from single-channel mixtures,''  
+  {\em Proc. International Conference on Independent Component Analysis and Signal Separation}, no. 1, 2007, pp. 414–421.
+  
+  \bibitem{supNMF}
+  D.~Kitamura, H.~Saruwatari, Y.~Kosuke, K.~Shikano, Y.~Takahashi, and K.~Kondo, 
+  ``Music signal separation based on supervised nonnegative matrix factorization with orthogonality and maximum-divergence penalties,'' 
+  {\em IEICE Trans. Fundamentals}, vol. 97-A, no. 5, pp. 1113–1118, 2014.
+  
+  \bibitem{MNMF_oz}
+  A.~Ozerov and C.~Févotte,
+  ``Multichannel nonnegative matrix factorization in convolutive mixtures for audio source separation,'' 
+  {\em IEEE Trans. Audio, Speech, and Language Processing,} vol.~18, no.~3, pp. 550--563, 2010.
+  
+  \bibitem{bss_review}
+  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
+  {\em APSIPA Trans. Signal and Information Processing,} vol.~8, no.~e12, pp.~1--14, 2019.
+
+  \bibitem{Kim2007_iva}
+  T.~Kim, H.~T.~Attias, S.-Y.~Lee, and T.-W.~Lee, ``Blind source separation exploiting higher-order frequency dependencies,'' 
+  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~15, no.~1, pp.~70--79, 2007.
+
+  \bibitem{auxIVA}
+  N.~Ono and S.~Miyabe, ``Auxiliary-function-based independent component analysis for super-Gaussian sources,'' 
+  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation,} pp.165--172, 2010.
+    
+  \bibitem{ILRMA}
   D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari,
-  ``Determined blind source separation unifying independent vector analysis and nonnegative matrix factorization,''
-  \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, vol. 24, no. 9, pp. 1626--1641, 2016.
+  ``Determined blind source separation unifying independent vector analysis and nonnegative matrix factorization,'' 
+  {\em IEE/ACM Trans. Audio, Speech, and Language Processing}, vol.~24, no.~9, pp.~1626--1641, 2016.
 
-  \bibitem{Kitamura2016IWAENC}
-  D.~Kitamura, N.~Ono, H.~Saruwatari, Y.~Takahashi, and K. Kondo,
-  ``Discriminative and reconstructive basis training for audio source separation with semi-supervised nonnegative matrix factorization,''
-  \emph{in Proceedings of International Workshop on Acoustic Signal Enhancement}, 2016, pp. 1--5.
+  \bibitem{Kitamura2018_ilrma}
+  D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari, ``Determined blind source separation with independent low-rank matrix analysis,'' 
+  {\em Audio Source Separation}, S.~Makino, Ed., pp. 125--155. Springer, Cham, 2018.
+
+  \bibitem{PB}
+  K.~Matsuoka and S.~Nakashima,
+  ``Minimal distortion principle for blind source separation,''
+  {\em Proc. SICE Annual Conference}, pp.~722--727, 2001.
+  
+  \bibitem{stable_auxIVA}
+  N.~Ono,
+  ``Stable and fast update rules for independent vector analysis based on auxiliary function technique,''
+  {\em Proc. IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pp.189--192, 2011.
+  
+%   \bibitem{undnmf}
+%   S.~Arberet, A.~Ozerov, N.Q.~Duong, E.~Vincent, R.~Gribonval, F.~Bimbot, P.~Vandergheynst,
+%   ``Nonnegative matrix factorization and spatial covariance model for under-determined reverberant audio source separation,''
+%   in {\em 10th International Conference on Information Sciences Signal Processing and their Applications (ISSPA)}, pp.~1--4, 2010.
+  
+  \bibitem{psi-div}
+  S.~Eguchi and Y.~Kano, 
+  ``Robustifing maximum likelihood estimation by psi- divergence,'' 
+  {\em ISM Research Memorandum}, 2001.
+  
+  \bibitem{ext_nmf}
+  A.~Cichocki, S.~Amari, R.~Zdunek, R.~Kompass, G.~Hori, and Z.~He, 
+  ``Extended SMART algorithms for non-negative matrix factorization,'' 
+  {\em Proc. International Conference on Artificial Intelligence and Soft Computing}, pp.~548--562, 2006.
+  
+  \bibitem{pssnmf}
+  D.~Kitamura, N.~Ono, H.~Saruwatari, Y.~Takahashi, and K.~Kondo, 
+  ``Effective basis learning for sound source separation by semi-supervised nonnegative matrix factorization,'' 
+  {\em IEICE Technical Report}, EA2015--130, vol.~115, no.~521, pp.~355--360, 2016.
+
+  \bibitem{isnmf}
+  C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
+  ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
+  {\em Neural Computation}, vol.~21, 793--830, 2009
+  
+  \bibitem{MU}
+  M.~Nakano, H.~Kameoka, J.~Le~Roux, Y.~Kitano, N.~Ono, S.~Sagayama, ``Convergence-guaranteed multiplicative algorithms for nonnegative matrix factorization with beta-divergence,''
+  {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, 2010, pp.~283--288.
+  
+  \bibitem{auxfunc}
+  D.~R.~Hunter and K.~Lange, ``A tutorial on MM algorithms,'' 
+  {\em The American Statistician,} vol.~58, no.~1, pp.~30-–37, 2004.
+  
+  \bibitem{paramilrma}
+  Y.~Mitsui, D.~Kitamura, N.~Takamune, H.~Saruwatari, Y.~Saruwatari and K.~Kondo, ``Independent low-rank matrix analysis based on parametric majorization-equalization algorithm,'' 
+  {\em Proc. IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing}, pp. 98--102, 2017.
+  
+  \bibitem{mm}
+  C.~Févotte and J.~Idier, 
+  ``Algorithms for nonnegative matrix factorization with the $\beta$-divergence,'' 
+  {\em Neural Computation}, vol.~23, no.~9, pp.~2421--2456, 2011.
+  
+  \bibitem{intBSS}
+  大島風雅, 中野将生, 北村大地,
+  ``ユーザーからの補助情報を用いる独立低ランク行列分析''
+  {\em 日本音響学会2020年秋季研究発表会講演論文集}, pp.~269--272, 2020.
+  
+  \bibitem{SDR}
+  E.~Vincent, R.~Gribonval, and C.~F\'evotte, ``Performance measurement in blind audio source separation,'' 
+  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~14, no.~4, pp.~1462--1469, 2006.
+  
+  \bibitem{sisec}
+  S.~Araki, A.~Ozerov, V.~Gowreesunker, H.~Sawada, F.~Theis, G.~Nolte, D.~Lutter, and N.~Q.~K.~Duong, 
+  ``The 2010 signal separation evaluation campaign (SiSEC2010): Audio source separation,'' 
+  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation}, 2010, pp. 114–122.
+  
+  \bibitem{E2A}
+  S.~Nakamura, K.~Hiyane, F.~Asano, T.~Nishiura, and T.~Yamada, 
+  ``Acoustical sound database in real environments for sound scene understanding and hands-free speech recognition,'' 
+  {\em Proc. International Conference on Language Resources and Evaluation}, 2000, pp. 965–968.
+
+  \bibitem{tnmf}
+  K.~Yoshii, K.~Itoyama, and M.~Goto, ``Student's $t$ nonnegative matrix factorization and positive semidefinite tensor    
+  factorization for single-channel audio source separation,''
+  {\em Proc.~ICASSP}, pp.51-55, 2016.
+
+  \bibitem{cauchynmf}
+  A.~Liutkus, D>~FitsGerald, and R>~Badeau, ``Cauchy nonnegative matrix factorization,''
+  {\em Proc.~WASPAA}, 2015.
+
 \end{thebibliography}
-
 %%%%% 参考文献（BibTeXを使う場合） %%%%%
 % \addcontentsline{toc}{chapter}{\bibname} % 参考文献を目次に表示
 % \bibliography{ref_abb_full,references}
 
 %%%%% 発表文献一覧 %%%%%
-\input{publication/publication.tex}
+%\input{publication/publication.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 付録 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 
 %%%%% 付録A %%%%%
-\input{appendix_aux/appendix_aux.tex}
+%\input{appendix_aux/appendix_aux.tex}
 
 \end{document}
