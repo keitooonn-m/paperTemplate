@@ -40,14 +40,24 @@
 \label{sec:conv:signal}
 %----------------------------------------------
 \ref{sec:conv:measurementcondition}節の測定系によって得られる信号はFig\ref{fig:sensorimg}から分かるように4チャネルである．Fig\ref{fig:obssig}に示すような値が得られる．横軸は測定時間[s]，縦軸は体表面の変動[$\mathrm{\mu}$m]となっている．
-STFTについても述べる．スペクトログラムを用いて．
+また，観測信号に短時間フーリエ変換（short-time Fourier transformation: STFT）を行うことで，スペクトログラムを描画する．Fig. \ref{fig:obsspect}は，Fig. \ref{fig:obssig}にSTFTを行ったものである．60秒から360秒に横一直線に確認できる成分が振動成分，約3Hzに確認できる最も強い成分が呼吸成分，振動成分に隠れるように心拍成分が表れている．このように時間信号をスペクトログラム
+に描画することで，各成分が確認できるようになる．
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[b]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSig.pdf}
+\caption{Observation    signal.}
+\label{fig:obssig}
+\end{figure}
+%-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSig.pdf}
-\caption{Measurement signal.}
-\label{fig:obssig}
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
+\caption{Spectrogram obtained by observation signal..}
+\label{fig:obsspect}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -55,7 +65,7 @@ STFTについても述べる．スペクトログラムを用いて．
 \section{本章のまとめ}
 %----------------------------------------------
 本章では，測定条件と測定によって得られる信号について説明した．また，測定したデータとの比較を行うために使用した接触型ECGセンサについて説明した．
-次章では，測定によって得られる信号に適用する各手法と心拍推定アルゴリズムについて．
+次章では，測定によって得られる信号に適用する各手法と心拍推定アルゴリズムについて説明する．
 
 
 \chapter{適用手法}
