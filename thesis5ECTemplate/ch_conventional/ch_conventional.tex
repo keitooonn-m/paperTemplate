@@ -40,24 +40,34 @@
 \label{sec:conv:signal}
 %----------------------------------------------
 \ref{sec:conv:measurementcondition}節の測定系によって得られる信号はFig\ref{fig:sensorimg}から分かるように4チャネルである．Fig\ref{fig:obssig}に示すような値が得られる．横軸は測定時間[s]，縦軸は体表面の変動[$\mathrm{\mu}$m]となっている．
-また，観測信号に短時間フーリエ変換（short-time Fourier transformation: STFT）を行うことで，スペクトログラムを描画する．Fig. \ref{fig:obsspect}は，Fig. \ref{fig:obssig}にSTFTを行ったものである．60秒から360秒に横一直線に確認できる成分が振動成分，約3Hzに確認できる最も強い成分が呼吸成分，振動成分に隠れるように心拍成分が表れている．このように時間信号をスペクトログラム
-に描画することで，各成分が確認できるようになる．
+また，観測信号に短時間フーリエ変換（short-time Fourier transformation: STFT）を行うことで，スペクトログラムを描画する．
+Fig. \ref{fig:obsspect}は，Fig. \ref{fig:obssig}にSTFTを行ったものである．60秒から360秒に横一直線に確認できる成分が振動成分，約3Hzに確認できる最も強い成分が呼吸成分，振動成分に隠れるように心拍成分が表れている．このように時間信号をスペクトログラムに描画することで，各成分が確認できるようになる．
+Fig. \ref{fig:ecgsensor}は本研究で得る推定信号と比較するために使用する，接触型の心電図（electrocardiogram: ECG）センサ（以後，ECGセンサと呼ぶ）である．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[b]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSig.pdf}
-\caption{Observation    signal.}
+\caption{Observation signal.}
 \label{fig:obssig}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
+%\caption{Spectrogram obtained by observation signal.}
+%\label{fig:obsspect}
+%\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
-\caption{Spectrogram obtained by observation signal..}
-\label{fig:obsspect}
+\includegraphics[width=0.7\hsize]{./ch_conventional/fig/ecgsensor.pdf}
+\caption{Contact electrocardiogram sesor.}
+\label{fig:ecgsensor}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
