@@ -40,9 +40,9 @@
 \label{sec:conv:signal}
 %----------------------------------------------
 \ref{sec:conv:measurementcondition}節の測定系によって得られる信号はFig\ref{fig:sensorimg}から分かるように4チャネルである．Fig\ref{fig:obssig}に示すような値が得られる．横軸は測定時間[s]，縦軸は体表面の変動[$\mathrm{\mu}$m]となっている．
-また，観測信号に短時間フーリエ変換（short-time Fourier transformation: STFT）を行うことで，スペクトログラムを描画する．
+また，観測信号にSTFTを行うことで，スペクトログラムを描画する．
 Fig. \ref{fig:obsspect}は，Fig. \ref{fig:obssig}にSTFTを行ったものである．60秒から360秒に横一直線に確認できる成分が振動成分，約3Hzに確認できる最も強い成分が呼吸成分，振動成分に隠れるように心拍成分が表れている．このように時間信号をスペクトログラムに描画することで，各成分が確認できるようになる．
-Fig. \ref{fig:ecgsensor}は本研究で得る推定信号と比較するために使用する，接触型の心電図（electrocardiogram: ECG）センサ（以後，ECGセンサと呼ぶ）である．
+Fig. \ref{fig:ecgsensor}は本研究で得る推定信号と比較するために使用するECGセンサである．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[b]
@@ -54,18 +54,18 @@ Fig. \ref{fig:ecgsensor}は本研究で得る推定信号と比較するため�
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-%\begin{figure}[tb]
-%\centering
-%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
-%\caption{Spectrogram obtained by observation signal.}
-%\label{fig:obsspect}
-%\end{figure}
-%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
+\caption{Spectrogram obtained by observation signal.}
+\label{fig:obsspect}
+\end{figure}
+%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=0.7\hsize]{./ch_conventional/fig/ecgsensor.pdf}
+\includegraphics[width=0.45\hsize]{./ch_conventional/fig/ecgsensor.pdf}
 \caption{Contact electrocardiogram sesor.}
 \label{fig:ecgsensor}
 \end{figure}
@@ -243,7 +243,7 @@ $\beta$-divergenceの中でも特に$\beta= 2,1,0$の場合はそれぞれ二乗
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
-本論文ではItakura--Saitoダイバージェンスに基づくNMF（Itakura--Saito-divergence-based NMF: ISNMF）\cite{isnmf}について述べる．
+本論文ではISNMF\cite{isnmf}について述べる．
 $\bm{Z}$の要素である複素スペクトル$z_{ij}$が以下の確率モデルに従って生成されていると仮定する．
 \begin{align}
     z_{ij} = \sum_k c_{ij,k} \\

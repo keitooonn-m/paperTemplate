@@ -56,26 +56,25 @@
 \frontmatter
 
 %%%%% English title %%%%%
-\etitle{Heart Rate Estimation Based on Blind Source Separation}
+\etitle{Heart Rate Estimation Based on \\
+Blind Source Separation}
 
 %%%%% Abstract %%%%%
 \eabstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-Audio source separation is a technique for separating original sources from an observed mixture signal.
-For example, it can be used for a pre-process of an automatic speech recognition system.
-Audio source separation is utilized for separating a target speech signal and the other speech or background noise.
-In particular, audio source separation that does not utilize any prior information about mixing system is called blind source separation (BSS).
-In this thesis, IVA, ILRMA, , which are typical methods of BSS, and $t$-ILRMA are applied to the measurement signal to estimate the heart rate.
-The experimental results show it was confirmed that breathing may affect the estimation results. Therefore, a filter was designed and applied as a pre-process. As a result of applying each method to the filtered measurement signal, we confirmed that $t$-ILRMA has the highest separation.
+While driving a motor vehicle, the driver may suffer from sleep, sudden seizure, or loss of consciousness due to deterioration of physical condition, which is often fatal. Fatal accidents caused directly by the driver's condition account for a large percentage of all fatal accidents. Therefore, in modern society, where automobiles are indispensable to people's lives, one of the important issues is to manage the driver's condition in some way while driving.
+In order to solve this problem, we are dealing with a system that constantly monitors the driver's heartbeat during driving using a radar non-contact biometric sensor array (hereafter referred to as a radar sensor). In this research, a vibration measurement system with a seat on a vibrating plate is constructed to simulate the vibration during driving. The radar sensor is installed on the seat where the driver is seated, and measures the driver's body surface micro-displacement.
+However, in addition to the driver's heart rate signal, which is the target of the measurement, the vibration of the measurement system itself and the relative position variation between the sensor and the target are measured, so noise signals other than the heart rate signal are measured at the same time.
+A technique to extract only the target sound source from a signal source with mixed noise has been widely studied in the field of acoustic signal processing. In this thesis, we consider the application of blind source separation (BSS), which has a particularly long history of advanced development. We apply independent vector analysis (IVA) and independent low-rank matrix analysis (ILRMA), which are typical methods of BSS, and $t$-ILRMA, which has complex Student's $t$ distribution as a generating model, to ILRMA. We also applied each method. In order to compare the separation accuracy of the estimated signals using each method, we utilize a heart rate estimation algorithm and compare the results with heart rate values measured by a contact heart rate monitor.
 }
 
 %%%%% 概要 %%%%%
 \abstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-音源分離とは，複数の音源が混合している観測信号から混合前の音源を推定する技術である．
-この技術は，例えば音声認識の前段処理に用いられる．
-目的話者の音声信号とその他の音声や背景雑音等の分離に音源分離が活用される．
-特に，音源の混合系に関する事前情報を全く用いずに音源を分離する技術はブラインド音源分離（blind source separation: BSS）と呼ばれる．
-本論文では，BSSの代表的手法であるIVAやILRMA, $t$-ILRMAを測定信号に適用し心拍推定を行う．
-実験結果より，呼吸が推定結果に影響を与えている恐れがあることを確認した．そのため，前処理としてフィルタを設計して適用した．フィルタリングを行った測定信号に各手法を適用した結果$t$-ILRMAが最も分離制度が高いことを確認した．
+自動車の運転中に運転者が睡眠，突発的な発作，体調の悪化による意識喪失等に見舞われることは多くの場合致命的な状況となる．このような運転者の状況が直接的な要因となって引き起こされる死亡事故は，全死亡事故の内の少なくない割合を占めている．そのため，人々の暮らしに自動車が欠かせない現代社会においては，運転中に運転者の状態を何らかの方法で管理することが重要課題の一つとなっている．
+この問題を解決するために，運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステムを取り扱う．本研究では運転中の振動を模擬するために，振動版の上にシートを設置した振動測定系を構築している．このレーダセンサは運転者の着座するシートに設置し，運転者の体表面微小変位を測定する．
+しかしながら，測定時に目的としている運転者の心拍信号以外にも測定系自体の振動とセンサと対象の相対的位置の変動が測定しまうため心拍信号以外の雑音信号も同時に測定されてしまう．
+雑音が混在した信号源から目的音源のみを抽出する技術は音響信号処理の分野で広く研究されている．本論文ではその中でも特に高度に発展してきた歴史を持つブラインド信号源分離（blind source separation: BSS）の適用を考える．BSSは信号源の混合系に関する事前情報を全く用いずに信号源を分離する技術である．BSSの代表的手法である独立ベクトル分析（independent vector analysis: IVA）と独立低ランク行列分析（independent low-rank matrix analysis: ILRMA），ILRMAに複素Student's $t$分布を生成モデルに持つような$t$-ILRMAを適用する．また，各手法を適用した推定信号の分離精度を比較するために心拍推定アルゴリズムを活用し，接触型心拍計によって計測される心拍値との比較を行う．
+実験結果より，呼吸に起因する雑音信号が分離精度に影響していると考え呼吸成分をカットするフィルタを設計し適用した．前処理としてフィルタリングを行い再度実験を行った結果，$t$-ILRMAの心拍制度が最も良いことを確認した．
+本研究では，振動測定系を活用して測定を行ったため自動車の走行中の振動に対しても頑健な分離手法を提案することが今後の課題となる．
 }
 
 %\keywords{Keyword1, Keyword2, Keyword3}
@@ -116,6 +115,55 @@ The experimental results show it was confirmed that breathing may affect the est
 %%%%% 参考文献（直接書く場合） %%%%%
 \addcontentsline{toc}{chapter}{\bibname} % 参考文献を目次に表示
 \begin{thebibliography}{99}
+    \bibitem {sensorreview}
+  Y. Dong, Z. Hu, K. Uchimura, and N. Murayama, ``Driver inattention monitoring system for intelligent vehicles: A review,'' {\em IEEE Trans. Intelligent Transportation 
+  Systems}, vol.           
+  12, no. 2, pp. 596--614, 2011.
+
+    \bibitem{system1}
+  L. M. Bergasa, J. Nuevo, M. A. Sotelo, R. Barea, and M. E. Lopez, ``Real-time system for monitoring driver vigilance,'' {\em IEEE Trans. Intelligent Transportation 
+  Systems}, vol. 7, no. 
+  1, pp. 63--77, 2006.
+
+    \bibitem{system2}
+  V. E. Dahiphale and S. R. Rao, ``A review paper on portable driver monitoring system for real time fatigue,'' {\em Proc. International Conference on Computing 
+  Communication 
+  Control and Automation}, pp. 558--560, 2015.
+
+    \bibitem{system3}
+  L. Ma\v{s}anovi\'{c}, M. Vranje\v{s}, R. D\v{z}akula, and \v{Z}. Luka\v{c}, ``Driver monitoring using the in-vehicle camera,'' {\em Proc. Zooming Innovation in 
+  Consumer Technologies Conference}, pp. 
+  33--38, 2019.
+
+    \bibitem{contactsensor1}
+  J. A. Healey and R. W. Picard, ``Detecting stress during real-world driving tasks using physiological sensors,'' {\em IEEE Trans. Intelligent Transportation Systems}, 
+  vol. 6, no. 2, pp. 156--166, 2005.
+
+    \bibitem{contactsensor2}
+  M. Patel, S. K. L. Lal, D. Kavanagh, and P. Rossiter, ``Applying neural network analysis on heart rate variability data to assess driver fatigue,'' {\em Expert Systems 
+  with Applications}, vol. 38, no. 6, pp. 7235--7242, 2011.
+
+    \bibitem{eazyap1}
+  M. Osaka, H. Murata, Y. Fuwamoto, S. Nanba, K. Sakai, and T. Katoh, ``Application of heart rate variability analysis to electrocardiogram recorded outside the driver's 
+  awareness from an automobile steering wheel,'' {\em Circulation Journal}, vol. 72, no. 11, pp. 1867--1873, 2008.
+
+    \bibitem{eazyap2}
+  R. Cassani, A. Horai, L. A. Gheorghe, and T. H. Falk, ``Predicting driver stress levels with a sensor-equipped steering wheel and a quality-aware heart rate 
+  measurement algorithm,'' {\em Proc. Annual International Conference of the IEEE Engineering Medicine and Biology Society}, pp. 6822--6825, 2021.
+
+    \bibitem{eazyap3}
+  B. Babusiak, A. Hajducik, S. Medvecky, M. Lukac, and J. Klarak, ``Design of smart steering wheel for unobtrusive health and drowsiness monitoring,'' {\em Sensors}, 
+  vol. 21, no. 16, 5285, 2021.
+
+    \bibitem{originica}
+  P. Comon, "Independent component analysis, A new concept?," {\em Signal Processing}, vol. 36, no. 3, pp.287--314, 1994.
+
+    \bibitem{ica2}
+  H. Sawada, N. Ono, H. Kameoka, D. Kitamura, and H. Saruwatari, ``A review of
+  blind source separation methods: Two converging routes to ILRMA originating from
+  ICA and NMF,'' {\em APSIPA Trans. Signal and Information Processing}, vol. 8, no. e12,
+  pp. 1–14, 2019.
+
     \bibitem{NMF}
   D.~D.~Lee and H.~S.~Seung,
   ``Learning the parts of objects by non-negative matrix factorization,''
