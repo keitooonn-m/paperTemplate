@@ -12,7 +12,9 @@
 \section{測定条件}
 \label{sec:conv:measurementcondition}
 %----------------------------------------------
-本研究で使用する信号の測定系はFig. \ref{fig:sensorstructure}に示されているとおりである．\textcolor{red}{運転者を模した}被験者が座った状態で\textcolor{red}{振動測定系}全体を振動させる．Fig.~\ref{fig:sensorimg}に示されている\textcolor{red}{レーダセンサ}を，シートの\textcolor{red}{背部}と臀部\textcolor{red}{の内部に埋め込み}，測定を行う．\textcolor{red}{振動測定系の振動はsin波で単軸加振であり，Fig.~\ref{fig:sensorstructure}に示すとおり，前後・上下・左右方向に振動する．本研究で使用したデータはTable~\ref{tab:vibevacondition}に示すようにNo.~0～No.~6まである．No.~0は振動を加えずに運転者を模した被験者を観測しており，このデータのみ観測時間が5分となっている．No.~1～No.~6のデータは観測時間が7分である．観測開始から1分間は振動を加えていない状態で観測し，その後の5分間は振動を加えた状態，残りの1分間は再度，振動を加えていない状態で観測している．振動は上下方向に加えている．No.~1～No.4~の振幅値はそれぞれ，4~mm, 10~mm, 40~mm, 40~mmで周波数の値は1.2~Hz，No.~5, No.~6の振幅値はそれぞれ4~mm, 10~mmで周波数の値は2.4~Hzとなっている．また，No.~4では，振動の軽減の程度を確認するために被験者はハンドルを握りシートベルトを着用している．}
+本研究で使用する信号の測定系はFig. \ref{fig:sensorstructure}に示されているとおりである．\textcolor{red}{運転者を模した}被験者が座った状態で\textcolor{red}{振動測定系}全体を振動させる．Fig.~\ref{fig:sensorimg}に示されている\textcolor{red}{レーダセンサ}を，\textcolor{red}{背部と臀部にあたるシートの内部に埋め込み}，測定を行う．\textcolor{red}{振動測定系の振動はsin波で単軸加振であり，Fig.~\ref{fig:sensorstructure}に示すとおり，前後・上下・左右方向に振動する．本研究で使用したデータはTable~\ref{tab:vibevacondition}に示すようにNo.~0～No.~6まである．No.~0は振動を加えずに運転者を模した被験者を観測しており，このデータのみ観測時間が5分となっている．No.~1～No.~6のデータは観測時間が7分である．観測開始から1分間は振動を加えていない状態で観測し，その後の5分間は振動を加えた状態，残りの1分間は再度，振動を加えていない状態で観測している．振動は上下方向に加えている．No.~1～No.4~の振幅値はそれぞれ，4~mm, 10~mm, 40~mm, 40~mmで周波数の値は1.2~Hz，No.~5, No.~6の振幅値はそれぞれ4~mm, 10~mmで周波数の値は2.4~Hzとなっている．また，No.~4では，振動の軽減の程度を確認するために被験者はハンドルを握りシートベルトを着用している．}
+
+また，本研究で分離した信号と比較する正解値としてFig.~\ref{fig:ecgsensor}に示す接触型ECGセンサをを用いて心拍のリファレンスデータを取得する．接触型ECGセンサはTable~\ref{tab:ecgdata}に示すように，ECGセンサ生データ，ピエゾセンサ生データ，R-R間隔，心拍数，呼吸数，及び呼吸の深さを測定する．また，サンプリング周波数は250~Hzである．
 
 
 %-%-%-%-%-%-%-%-%
@@ -32,6 +34,69 @@
   \end{tabular}
   }
   \label{tab:vibevacondition}
+\end{table}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.45\hsize]{./ch_conventional/fig/ecgsensor.pdf}
+\caption{Contact electrocardiogram sesor.}
+\label{fig:ecgsensor}
+\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{table}[tb]
+  \caption{\textcolor{red}{Data of contact ECG sensor.}}
+  \centering
+  \scalebox{1.0}[1.0]{
+  \begin{tabular}{|c|c|c|c|c|c|} \hline
+    \begin{tabular}{c} 
+    Raw data \\
+    obtained by \\
+    ECG sensor \\
+    \relax [mV]
+    \end{tabular} &
+    \begin{tabular}{c} 
+    Raw data \\
+    obtained by \\
+    piezo sensor \\
+    \relax [mV]
+    \end{tabular} &
+    \begin{tabular}{c}
+    RRI \\
+    \relax [sec]
+    \end{tabular} &
+    \begin{tabular}{c}
+    Heart \\
+    rate \\
+    \relax [bpm]
+    \end{tabular} &
+    \begin{tabular}{c}
+    Breathing \\
+    rate \\
+    \relax [bpm]
+    \end{tabular} &
+    \begin{tabular}{c}
+    Depth \\
+    of \\
+    breathing
+    \end{tabular} \\ \hline \hline
+    54.5852 & 0.0574969 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0574969 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
+    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864    \\ \hline
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ \hline	
+  \end{tabular}
+  }
+  \label{tab:ecgdata}
 \end{table}
 %-%-%-%-%-%-%-%-%
 
@@ -62,15 +127,6 @@ Fig.~\ref{fig:ecgsensor}は本研究で得る推定信号と比較するため�
 \label{fig:4chobsspect}
 \end{figure}
 %-%-%-%-%-%-%-%
-
-%-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.45\hsize]{./ch_conventional/fig/ecgsensor.pdf}
-\caption{Contact electrocardiogram sesor.}
-\label{fig:ecgsensor}
-\end{figure}
-%-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{本章のまとめ}
