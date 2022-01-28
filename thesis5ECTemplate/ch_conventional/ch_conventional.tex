@@ -105,10 +105,9 @@
 \section{測定で得られる信号}
 \label{sec:conv:signal}
 %----------------------------------------------
-\ref{sec:conv:measurementcondition}節の\textcolor{red}{振動測定系}によって得られる\textcolor{red}{観測信号はFig.~\ref{fig:sensorimg}に示すように4チャネルの時間波形である．一例として，Tabel~\ref{tab:vibevacondition}に示すData no.1の時間波形をFig.~\ref{fig:obssig}に示す．このとき，横軸及び縦軸は，それぞれ測定時間及び体表面の変位量となっている．\ref{sec:conv:measurementcondition}節で述べた通り，\ref{fig:obssig}の60秒から360秒の間で振動が加えられているため時間波形が他の時間の時間波形とは異なっていることがわかる．振動が加えられていない時間での時間波形には，心拍，呼吸，及び，体動の信号に由来する成分が現れている．また，レーダセンサはチャネル間で近い距離にビームを当てて測定しているため，完全に一致した時間波形ではないが，チャネル間に強い相関を持っていることも確認できる．}
+\ref{sec:conv:measurementcondition}節の\textcolor{red}{振動測定系}によって得られる\textcolor{red}{観測信号はFig.~\ref{fig:sensorimg}に示すように4チャネルの時間波形である．一例として，Tabel~\ref{tab:vibevacondition}に示すData no.~1の時間波形をFig.~\ref{fig:obssig}に示す．このとき，横軸及び縦軸は，それぞれ測定時間及び体表面の変位量となっている．\ref{sec:conv:measurementcondition}節で述べた通り，Fig.~\ref{fig:obssig}の60秒から360秒の間で振動が加えられているため時間波形が他の時間の時間波形とは異なっていることがわかる．振動が加えられていない時間での時間波形には，心拍，呼吸，及び，体動の信号に由来する成分が現れている．また，レーダセンサはチャネル間で近い距離にビームを当てて測定しているため，完全に一致した時間波形ではないが，チャネル間に強い相関を持っていることも確認できる．}
 
-\textcolor{red}{また，観測信号にSTFTを適用して得られる，パワースペクトログラムをFig.~\ref{fig:4chobsspect}に示す．Fig.~\ref{fig:4chobsspect}は4チャネルのパワースペクトログラムで，カラーマップは4チャネルで共通化している．Fig.~\ref{fig:1chobsspect}はFig.~\ref{fig:4chobsspect}のCh.~1のパワースペクトログラムである．60秒から360秒までの間に約1.2~Hz，そしてその整数倍の2.4~Hz, 3.6~Hz, 4.8~Hz, 6.0~Hz, 7.2~Hzの直線の成分は振動台による振動成分である．約0.3Hzに確認できる最も強い成分が呼吸成分，振動成分に隠れるように心拍成分が表れている．このように時間波形をスペクトログラムに描画することで，振動台の振動成分，心拍や呼吸由来の成分，及び体動等のその他の成分が確認できる．
-Fig.~\ref{fig:ecgsensor}は本研究で得る推定信号と比較するために使用するECGセンサである．}
+\textcolor{red}{また，観測信号にSTFTを適用して得られる，パワースペクトログラムをFig.~\ref{fig:4chobsspect}に示す．Fig.~\ref{fig:4chobsspect}は4チャネルのパワースペクトログラムで，カラーマップは4チャネルで共通化している．Fig.~\ref{fig:1chobsspect}はFig.~\ref{fig:4chobsspect}のCh.~1のパワースペクトログラムである．60秒から360秒までの間に約1.2~Hz，そしてその整数倍の2.4~Hz, 3.6~Hz, 4.8~Hz, 6.0~Hz, 7.2~Hzの直線の成分は振動台による振動成分である．呼吸成分が約0.3~Hzに，そして1.5~Hz, 3.2~Hz, 4.0~Hzに呼吸の高調波成分が確認できる．このように時間波形をスペクトログラムに描画することで，振動台の振動成分，心拍や呼吸由来の成分，及び体動等のその他の成分が確認できる．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[b]
@@ -123,8 +122,17 @@ Fig.~\ref{fig:ecgsensor}は本研究で得る推定信号と比較するため�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/obsSpect.pdf}
-\caption{\textcolor{red}{Spectrograms of four-channel oobserved signals calculated by STFT.}}
+\caption{\textcolor{red}{Spectrograms of four-channel observed signals calculated by STFT.}}
 \label{fig:4chobsspect}
+\end{figure}
+%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/1chobsspect.pdf}
+\caption{\textcolor{red}{Each component in spectrogram of observed signal calculated by STFT.}}
+\label{fig:1chobsspect}
 \end{figure}
 %-%-%-%-%-%-%-%
 
