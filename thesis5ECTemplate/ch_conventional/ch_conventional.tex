@@ -128,12 +128,12 @@
 %-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-%\begin{figure}[tb]
-%\centering
-%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/1chobsspect.pdf}
-%\caption{\textcolor{red}{Each component in spectrogram of observed signal calculated by STFT.}}
-%\label{fig:1chobsspect}
-%\end{figure}
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1.0\hsize]{./ch_conventional/fig/1chobsspect.pdf}
+\caption{\textcolor{red}{Each component in spectrogram of observed signal calculated by STFT.}}
+\label{fig:1chobsspect}
+\end{figure}
 %-%-%-%-%-%-%-%
 
 %----------------------------------------------
@@ -188,7 +188,7 @@
 \bm{x}_{ij} &= [x_{ij1}, x_{ij2}, \cdots, x_{ijm}, \cdots, x_{ijM}]^{\mathrm{T}} \in \mathbb{C}^{M} \label{eq:x} \\
 \bm{y}_{ij} &= [y_{ij1}, y_{ij2}, \cdots, y_{ijn}, \cdots, y_{ijN}]^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:y}
 \end{align}
-ここで，\textcolor{red}{$i=1, 2,  \cdots, I$, $j=1, 2,  \cdots, J$, $n=1, 2,  \cdots, N$, 及び$m=1, 2, \cdots, M$はそれぞれ周波数ビン，時間フレーム，信号源，及びチャネルのインデクスを表す．また，$^{\mathrm{T}}$は行列及びベクトルの転置を表す．}
+ここで，\textcolor{red}{$i=1, 2,  \cdots, I$, $j=1, 2,  \cdots, J$, $n=1, 2,  \cdots, N$, 及び$m=1, 2, \cdots, M$はそれぞれ周波数ビン，時間フレーム，信号源，及びチャネルのインデクスを表す．ここで，$^{\mathrm{T}}$は行列及びベクトルの転置を表す．また，式(\ref{eq:s})--式(\ref{eq:y})の各信号においては，時間周波数行列としての表記もそれぞれ$\bm{S}_n\in\mathbb{C}^{{I\times J}}$, $\bm{X}_m\in\mathbb{C}^{{I\times J}}$，及び$\bm{Y}_n\in\mathbb{C}^{{I\times J}}$として定義しておく．}
 \textcolor{red}{式(\ref{eq:s})--式(\ref{eq:y})において}，周波数ごとの時不変な（時間フレーム$j$に依存しない）混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いると，混合時の\textcolor{red}{畳み込み長}がSTFTの短時間信号長（窓長）$L$よりも十分に短い場合，観測信号は次式で表せる.
 \begin{align}
   \bm{x}_{ij} = \bm{A}_i \bm{s}_{ij} \label{eq:xas}
@@ -217,12 +217,12 @@
 %-%-%-%-%-%-%-%-%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\hsize]{./ch_conventional/fig/laplace_sav.pdf}
+\includegraphics[width=0.8\hsize]{./ch_conventional/fig/laplace_sav.pdf}
 \caption{Zero-mean and spherically symmetric Laplace distribution, where $I=2$ and $s^*_{ijn}$ can be considered as either real or imaginary part of $s_{ijn}$.}
 \label{fig:laplace}
 \end{figure}
 %-%-%-%-%-%-%-%-%
-Iここでは\textcolor{red}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
+ここでは\textcolor{red}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
 \begin{align}
     \overline{\bm{s}}_{jn} &= [s_{1jn}, s_{2jn}, \cdots, s_{ijn}, \cdots, s_{Ijn} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
     \overline{\bm{x}}_{jm} &= [x_{1jm}, x_{2jm}, \cdots, x_{ijm}, \cdots, x_{Ijm} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
@@ -233,7 +233,7 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 ただし，推定の過程\textcolor{red}{において，}全周波数を含む$I$次元\textcolor{red}{複素}分布を\textcolor{red}{$\overline{\bm{s}}_{jn}$の生成モデルと仮定されている．さらに，この}$I$次元ベクトル内には高次相関\textcolor{red}{（ベクトル内の要素の共起性）があることを仮定している．}
 このIVAの生成モデルには，Fig. \ref{fig:laplace} で示すような\textcolor{red}{$I$次元球対称複素Laplace分布}が用いられ，式(\ref{eq:iva_model})で表される．
 \begin{align}
-  p(\overline{\bm{s}}_{jn}) &= p(\overline{\bm{y}}_{jn}) \\
+  \nonumber p(\overline{\bm{s}}_{jn}) &= p(\overline{\bm{y}}_{jn}) \\
 &= \frac{1}{\pi \prod_{i} \sigma_{in}} \exp \left(  - \sqrt{ \sum_i \left| \frac{y_{ijn}}{\sigma_{in}} \right|^2}  \right)
 \label{eq:iva_model}    
 \end{align}
@@ -248,7 +248,7 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 \end{align}
 ここで，$G(\overline{\bm{y}}_{jn})$はコントラスト関数と呼ばれ，次式で定義される．
 \begin{align}
-  G(\overline{\bm{y}}_{jn}) &= -\log p(\overline{\bm{y}}_{j,n}) \\
+  \nonumber G(\overline{\bm{y}}_{jn}) &= -\log p(\overline{\bm{y}}_{j,n}) \\
   &= -\log \frac{1}{\pi \prod_{i} \sigma_{in}} \exp \left(  - \sqrt{ \sum_i \left| \frac{y_{ijn}}{\sigma_{in}} \right|^2}  \right)
 \end{align}
 IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（iterative projection: IP）\cite{auxIVA}を用いた最適化アルゴリズムによって，高速かつ安定に分離行列を推定できる\cite{stable_auxIVA}．この反復最適化更新則は下記の通りである．}
@@ -306,7 +306,7 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!b]
 \centering
-\includegraphics[width=0.95\hsize]{./ch_conventional/fig/gauss_sav.pdf}
+\includegraphics[width=0.8\hsize]{./ch_conventional/fig/gauss_sav.pdf}
 \caption{Circularly symmetric complex Gaussian distribution.}
 \label{fig:gauss}
 \end{figure}
@@ -321,7 +321,7 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 \begin{align}
     c_{ij,k} \sim \mathcal{N}_{\mathbb{C}} (c_{ijk}; 0, t_{ik}v_{kj})
 \end{align}
-ここで，$c_{ijk}$は全ての$i$，$j$, 及び$k$に関して互いに独立と仮定する．
+ここで，$c_{ijk}\in \mathbb{C}$は全ての$i$，$j$, 及び$k$に関して互いに独立と仮定する．
 また，$c$を複素数の確率変数としたとき，\textcolor{red}{$\mathcal{N}_{\mathbb{C}} (c; \mu, \sigma^2)$は原点対称複素Gauss分布を表し，その確率密度関数は次式で与えられる．}
 \begin{align}
     \mathcal{N}_{\mathbb{C}} (c; \mu, \sigma^2) &= \frac{1}{\pi \sigma^2} \exp \left( -\frac{|c-\mu|^2}{\sigma^2} \right) \label{eq:compGausiandist}
@@ -352,38 +352,45 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 \label{sec:conv:ilrma}
 %----------------------------------------------
 
-ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
+\textcolor{red}{IVAよりも高精度なBSSを達成できるアルゴリズムとしてILRMA[]が提案されている．本論文においても，ILRMAに基づく心拍信号のBSSを検討するため，本節ではILRMAの生成モデル及び反復更新式について概説する．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.95\hsize]{./ch_conventional/fig/ilrmaoutline.pdf}
-\caption{Outline of ILRMA.}
+\caption{Parameter updates of ILRMA.}
 \label{fig:ilrma_outline}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
-ここで$\bm{T}_n$及び$\bm{V}_n$は$n$番目の音源のパワースペクトログラムをモデル化する基底行列及びアクティベーション行列を示す．
-ILRMAはIVAに対応する分離行列$\bm{W}_i$の反復最適化とISNMFの低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
-具体的には，分離行列$\bm{W}_i$により推定された分離信号をNMFによって非負低ランク行列でモデル化し，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）として用いて分離行列を再度推定する，というプロセスが反復的に行われる．
-ILRMAの生成モデルはISNMFと同様に次式の複素ガウス分布で表される．
+ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
+\textcolor{red}｛図中の｝$\bm{T}_n\in\mathbb{R}_{\geq 0}^{I\times K}$及び$\bm{V}_n\in\mathbb{R}_{\geq 0}^{K\times J}$は，$n$番目の\textcolor{red}{信号源}のパワースペクトログラム\textcolor{red}{$|\bm{Y}_n|^{.2}$をISNMFで低ランク近似したモデル$_bm{T}_n\bm{V}_n$の基底行列及びアクティベーション行列である．}
+ILRMAは, IVAに\textcolor{red}{基づく}分離行列$\bm{W}_i$の反復最適化とISNMF\textcolor{red}{による分離信号源$|\bm{Y}_n|^{.2}$の}低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
+具体的には，分離行列$\bm{W}_i$により推定された分離信号\textcolor{red}{$|\bm{Y}_n|^{.2}$}をISNMF\textcolor{red}{で非負低ランク行列としてモデル化し}，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）に用いて分離行列\textcolor{red}{$\bm{W}_i$}を再度推定する，というプロセスが反復的に行われる．
+
+ILRMAの生成モデルはISNMFと同様に次式の複素ガウス分布\textcolor{red}{が仮定されている．}
 \begin{align}
-    y_{ij,n} &= \sum_k c_{ij,k,n} \\
-    c_{ij,k,n} &= \mathcal{N}_{\mathbb{C}}(0, t_{ik,n} v_{kj,n}) \label{eq:ilrma_gen}
+    y_{ijn} &= \sum_k c_{ijnk} \\
+    c_{ijnk} &= \mathcal{N}_{\mathbb{C}}(c_{ijnk}; 0, t_{ikn} v_{kjn}) \label{eq:ilrma_gen}
 \end{align}
-ここで，$t_{ik,n}$及び$v_{kj,n}$は$n$番目の音源に関する基底行列$\bm{T}_n$及びアクティベーション行列$\bm{V}_n$の非負要素であり，$k = 1, 2, \cdots, K$は基底インデクスである．
-また，$c_{ij,k,n} \in \mathbb{C}$は互いに独立であると仮定する．
-このとき，観測$x_{ij,n}$が与えられた場合において$\bm{W}_i$，$\bm{T}_n$及び$\bm{V}_n$を最尤推定する問題を考える．
-ISNMFのときと同様に
+\textcolor{red}{ここで，$t_{ikn}$及び$v_{kjn}$は$\bm{T}_n$及び$\bm{V}_n$の要素である．}
+また，$c_{ijnk} \in \mathbb{C}$は\textcolor{red}{$i, j, k, $及び$n$に関して}互いに独立であると仮定する．
+このとき，観測\textcolor{red}{信号$(\bm{X}_n)_{n=1}^N$}が与えられた場合において, $\bm{W}_i$，$\bm{T}_n$, 及び$\bm{V}_n$を最尤推定する問題を考える．
+ISNMFの\textcolor{red}{生成モデルより，}
 \begin{align}
-    \sum_k c_{ij,k,n} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik,n} v_{kj,n} \right)
+    y_{ijn} \sim \mathcal{N}_{\mathbb{C}}\left(y_{ijn};  0, \sum_k t_{ikn} v_{kjn} \right) 
 \end{align}
-より，
+が成り立つので，\textcolor{red}{全分離信号の結合分布は次式で表される．}
+\textcolor{red}{
 \begin{align}
-    y_{ij,n} \sim \mathcal{N}_{\mathbb{C}}\left( 0, \sum_k t_{ik,n} v_{kj,n} \right) 
-\end{align}
-が成り立つので，この生成モデルに基づく観測信号の負対数尤度は次式で表される．
+    \nonumber p(\bm{Y}_1, \bm{Y}_2, \cdots, \bm{Y}_N) &= \prod_n p(\bm{Y}_n) \\
+\nonumber &= \prod_{n, i, j} p(y_{ijn}) \\
+\nonumber &= \prod_{n, i, j} \mathcal{N}_{\mathbb{C}} \left(y_{ijn}; \sum_k t_{ikn}v_{kjn} \right) \\
+&= \prod_{n, i, j} \frac{1}{\pi \sigma^2} \exp \left( -\frac{|c-\mu|^2}{\sigma^2} \right)\left(y_{ijn}; \sum_k t_{ikn}v_{kjn} \right) \label{eq:combineddist}
+\end{align}}
+\textcolor{red}{式（\ref{eq:combineddist}）を用いて観測信号の不対数尤度関数を求めると次式となる．}
 \begin{align}
+　　\nonumber \mathcal{L}(\mathsf{W, T, V}) = - \logp(\bm{X}_1, \bm{X}_2, \cdots, \bm{X}_M) \\
     \mathcal{L}(\mathsf{W, T, V}) = -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ik,n}v_{kj,n}} + \log \sum_k t_{ik,n}v_{kj,n} \right)
     \label{eq:ilrmalike2}
 \end{align}
