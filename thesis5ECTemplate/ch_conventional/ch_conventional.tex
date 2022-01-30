@@ -254,8 +254,8 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（iterative projection: IP）\cite{auxIVA}を用いた最適化アルゴリズムによって，高速かつ安定に分離行列を推定できる\cite{stable_auxIVA}．この反復最適化更新則は下記の通りである．}
 \begin{align}
 \bm{G}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sqrt{\sum_{i} |\bm{w}_{in}^\mathrm{H}\bm{x}_{ij}|^{2}}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{ep:auxIVAip1} \\
-\bm{w}_{i,n} &\leftarrow (\bm{W}_i \bm{U}_{i,n})^{-1} \bm{e}_n \label{ep:auxIVAip2} \\
-\bm{w}_{i,n} &\leftarrow \bm{w}_{i,n} ( \bm{w}_{i,n}^{\mathrm{H}} \bm{U}_{i,n} \bm{w}_{i,n} )^{-\frac{1}{2}} \label{ep:auxIVAip3}
+\bm{w}_{in} &\leftarrow (\bm{W}_i \bm{U}_{in})^{-1} \bm{e}_n \label{ep:auxIVAip2} \\
+\bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{U}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{ep:auxIVAip3}
 \end{align}
 \textcolor{red}{式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）を反復計算して分離行列$\bm{W}_i$を求めることができる．なお，この反復最適化アルゴリズムは1回の更新で負対数尤度関数（\ref{eq:ivalike}）の値が減少する（または変動しない）ことが理論的に保証されている．}
 
@@ -292,7 +292,7 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
     t_{ik} \leftarrow t_{ik} \sqrt \frac{ \sum_j |z_{ij}|^2 v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_j v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUT} \\
     v_{kj} \leftarrow v_{kj} \sqrt \frac{ \sum_i |z_{ij}|^2 t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_i t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUV}
 \end{align}
-この更新式は乗算型反復更新式と呼ばれ，目的関数が単調非増加であることが保証されている．
+この更新式は乗算型反復更新式と呼ばれ，目的関数が単調非増加\textcolor{red}{となる}ことが保証されている．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
@@ -389,38 +389,36 @@ ISNMFの\textcolor{red}{生成モデルより，}
 &= \prod_{n, i, j} \frac{1}{\pi \sum_k t_{ikn}v_{kjn}} \exp \left( -\frac{|y_{ijn}|^2}{\sum_k t_{ikn}v_{kjn}} \right) \label{eq:combineddist}
 \end{align}}
 \textcolor{red}{式（\ref{eq:combineddist}）を用いて観測信号の負対数尤度関数を求めると次式となる．}
+\textcolor{red}{
 \begin{align}
 　　\nonumber \mathcal{L}(\mathsf{W, T, V}) &= - \log p(\bm{X}_1, \bm{X}_2, \cdots, \bm{X}_M) \\
     \nonumber &= -\log \left[p(\bm{Y}_1, \bm{Y}_2, \cdots, \bm{Y}_N) \cdot \prod_{i, j} |\det \bm{W}_i|^2\right] \\
     \nonumber &= -\log \left \{ \left[\prod_n p(\bm{Y}_n) \right] \cdot \prod_{i, j} |\det \bm{W}_i|^2\right \} \\
-    &= - 2J \sum_{i}  \log |\det \bm{W}_i| \\
-    \mathcal{L}(\mathsf{W, T, V}) &= -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ik,n}v_{kj,n}} + \log \sum_k t_{ik,n}v_{kj,n} \right)
+    \nonumber &= - 2J \sum_{i}  \log |\det \bm{W}_i| +\sum_{i,j,n} \left( \frac{|y_{ij}|^2}{\sum_k t_{ikn} v_{kjn}} + \log \sum_k t_{ikn} v_{kjn} + \log \pi \right) \\
+    \mathcal{L}(\mathsf{W, T, V}) &= -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ikn}v_{kjn}} + \log \sum_k t_{ikn}v_{kjn} \right)
     \label{eq:ilrmalike2}
-\end{align}
-ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
-式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式(\ref{eq:isnmf})のISNMFの尤度関数に対応していることがわかる．
+\end{align}}
+ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$, 及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
 
-分離行列$\bm{W}_i$の関する最適化は，分離ベクトル$\bm{w}_{i,n}$の更新をIP\cite{auxIVA}を用いることで次式で行われる．
-\begin{align}
-\bm{U}_{i,n} &= \frac{1}{J} \sum_j \frac{1}{\sum_{l}t_{ik,n}v_{kj,n}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{eq:ip1} \\
-\bm{w}_{i,n} &\leftarrow (\bm{W}_i \bm{U}_{i,n})^{-1} \bm{e}_n \label{eq:ip2} \\
-\bm{w}_{i,n} &\leftarrow \bm{w}_{i,n} ( \bm{w}_{i,n}^{\mathrm{H}} \bm{U}_{i,n} \bm{w}_{i,n} )^{-\frac{1}{2}} \label{eq:ip3}
-\end{align}
-ここで，$\bm{e}_n \in \mathbb{R}_{\{0, 1\}}^{N}$は$n$番目の要素が1，他要素が0のベクトルである．
+\textcolor{red}{式（\ref{eq:ilrmalike2}）を最小化するパラメタは，以下に示す反復最適化アルゴリズムで推定される．まず}
+式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式(\ref{eq:negativeloglikelihood})のISNMFの尤度関数\textcolor{red}{等価であることがわかる．}
 
-NMFによる低ランクモデリングのパラメタ$\bm{T}_n\bm{V}_n$の最適化は式(\ref{eq:MUT})及び式(\ref{eq:MUV})の乗算型反復更新式を用いて次式で表される．
+分離行列$\bm{W}_i$に関する最適化は，分離ベクトル$\bm{w}_{in}$をIP\cite{auxIVA}ｓｗ更新することで\textcolor{red}{達成される．}
 \begin{align}
-t_{ik, n} &\leftarrow  t_{ik, n} \sqrt{ \frac{ \sum_{j} | \bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij} |^2 v_{kj, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-2} }{ \sum_{j} v_{kj, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-1} } } \label{eq:t} \\
-v_{kj, n} &\leftarrow  v_{kj, n} \sqrt{ \frac{ \sum_{i} | \bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij} |^2 t_{ik, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-2} }{ \sum_{i} t_{ik, n} ( \sum_{k'} t_{ik', n} v_{k'j, n} )^{-1} } } \label{eq:v}
+\bm{U}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sum_{l}t_{ikn}v_{kjn}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{eq:ip1} \\
+\bm{w}_{in} &\leftarrow (\bm{W}_i \bm{U}_{in})^{-1} \bm{e}_n \label{eq:ip2} \\
+\bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{U}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{eq:ip3}
 \end{align}
-これらの更新式も式(\ref{eq:MUT})及び式(\ref{eq:MUV})と同様に目的関数式(\ref{eq:ilrmalike2})の値が単調非増加であることが保証されている．
+
+\textcolor{red}{これらの更新式も, IVAやISNMFと同様に，目的関数\ref{eq:ilrmalike2}）の値が単調非増加となることが保証されている．}
+
 
 %----------------------------------------------
 \section{$t$-ILRMA}
 \label{sec:conv:tilrma}
 %----------------------------------------------
 
-Yoshii et al. が提案した$t$-NMF\cite{tnmf}がISNMFやCauchy NMF\cite{cauchynmf}と比較して性能が向上したことに鑑み，複素Student's$t$分布を生成モデルに持つようなILRMAである$t$-ILRMAが提案された．複素Student's$t$分布二は形状パラメータ$\nu(\textgreater0)$があり，これを$\nu=1$とすると複素Cauchy分布のような安定性は何ため，スペクトログラムの加法の正当性が保証されない．しかし，$\nu=2$付近のときの$t$-NMFは，ISNMFやCaunchy NMFに比べて優れたロバストな結果を示すことが報告されている．$t$-ILRMAの生成モデルは次式で表される．
+\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GDD}や複素Student's $t$分布に基づくNMF（$t$-NMF）}\cite{tnmf}がISNMFやCauchy NMF\cite{cauchynmf}と比較して性能が向上したことに鑑み，複素Student's$t$分布を生成モデルに持つようなILRMAである$t$-ILRMAが提案された．複素Student's$t$分布二は形状パラメータ$\nu(\textgreater0)$があり，これを$\nu=1$とすると複素Cauchy分布のような安定性は何ため，スペクトログラムの加法の正当性が保証されない．しかし，$\nu=2$付近のときの$t$-NMFは，ISNMFやCaunchy NMFに比べて優れたロバストな結果を示すことが報告されている．$t$-ILRMAの生成モデルは次式で表される．
 \begin{align}
      \prod_{i,j}p\left(y_{ij}\right)= \prod_{i,j} \frac{1}{\pi \sigma_{ij}^{2} } \left( 1+\frac{2}{\nu}\frac{|z_{ij}|^2}{\sigma_{ij}^{2}} \right)^{\frac{2+\nu}{2}}　\label{eq:tmodel}
 \end{align}
