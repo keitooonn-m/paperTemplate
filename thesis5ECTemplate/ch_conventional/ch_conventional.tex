@@ -312,7 +312,7 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
-\textcolor{red}{ISNMFは，複素スペクトログラムに対する生成モデルを仮定した西邑推定問題と等価である{isnmf}．次節で述べるBSSアルゴリズムのILRMAの説明には，ISNMFの生成モデルが必要であるため，本節で述べる．}
+\textcolor{red}{ISNMFは，複素スペクトログラムに対する生成モデルを仮定した最尤推定問題と等価である．次節で述べるBSSアルゴリズムのILRMAの説明には，ISNMFの生成モデルが必要であるため，本節で述べる．}
 \textcolor{red}{複素スペクトログラムである$\bm{Z}$の要素である$z_{ij}$が，次式のように複素部分成分$c_{ijk}$に分解されることを仮定する．}確率モデルに従って生成されていると仮定する．
 \begin{align}
     z_{ij} = \sum_k c_{ijk}　\label{eq:zijmodel}
@@ -364,7 +364,7 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 %-%-%-%-%-%-%-%-%
 
 ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
-\textcolor{red}｛図中の｝$\bm{T}_n\in\mathbb{R}_{\geq 0}^{I\times K}$及び$\bm{V}_n\in\mathbb{R}_{\geq 0}^{K\times J}$は，$n$番目の\textcolor{red}{信号源}のパワースペクトログラム\textcolor{red}{$|\bm{Y}_n|^{.2}$をISNMFで低ランク近似したモデル$_bm{T}_n\bm{V}_n$の基底行列及びアクティベーション行列である．}
+\textcolor{red}｛図中の｝$\bm{T}_n\in\mathbb{R}_{\geq 0}^{I\times K}$及び$\bm{V}_n\in\mathbb{R}_{\geq 0}^{K\times J}$は，$n$番目の\textcolor{red}{信号源}のパワースペクトログラム\textcolor{red}{$|\bm{Y}_n|^{.2}$をISNMFで低ランク近似したモデル$\bm{T}_n\bm{V}_n$の基底行列及びアクティベーション行列である．}
 ILRMAは, IVAに\textcolor{red}{基づく}分離行列$\bm{W}_i$の反復最適化とISNMF\textcolor{red}{による分離信号源$|\bm{Y}_n|^{.2}$の}低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
 具体的には，分離行列$\bm{W}_i$により推定された分離信号\textcolor{red}{$|\bm{Y}_n|^{.2}$}をISNMF\textcolor{red}{で非負低ランク行列としてモデル化し}，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）に用いて分離行列\textcolor{red}{$\bm{W}_i$}を再度推定する，というプロセスが反復的に行われる．
 
@@ -385,13 +385,16 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \begin{align}
     \nonumber p(\bm{Y}_1, \bm{Y}_2, \cdots, \bm{Y}_N) &= \prod_n p(\bm{Y}_n) \\
 \nonumber &= \prod_{n, i, j} p(y_{ijn}) \\
-\nonumber &= \prod_{n, i, j} \mathcal{N}_{\mathbb{C}} \left(y_{ijn}; \sum_k t_{ikn}v_{kjn} \right) \\
-&= \prod_{n, i, j} \frac{1}{\pi \sigma^2} \exp \left( -\frac{|c-\mu|^2}{\sigma^2} \right)\left(y_{ijn}; \sum_k t_{ikn}v_{kjn} \right) \label{eq:combineddist}
+\nonumber &= \prod_{n, i, j} \mathcal{N}_{\mathbb{C}} \left(y_{ijn}; 0, \sum_k t_{ikn}v_{kjn} \right) \\
+&= \prod_{n, i, j} \frac{1}{\pi \sum_k t_{ikn}v_{kjn}} \exp \left( -\frac{|y_{ijn}|^2}{\sum_k t_{ikn}v_{kjn}} \right) \label{eq:combineddist}
 \end{align}}
-\textcolor{red}{式（\ref{eq:combineddist}）を用いて観測信号の不対数尤度関数を求めると次式となる．}
+\textcolor{red}{式（\ref{eq:combineddist}）を用いて観測信号の負対数尤度関数を求めると次式となる．}
 \begin{align}
-　　\nonumber \mathcal{L}(\mathsf{W, T, V}) = - \logp(\bm{X}_1, \bm{X}_2, \cdots, \bm{X}_M) \\
-    \mathcal{L}(\mathsf{W, T, V}) = -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ik,n}v_{kj,n}} + \log \sum_k t_{ik,n}v_{kj,n} \right)
+　　\nonumber \mathcal{L}(\mathsf{W, T, V}) &= - \log p(\bm{X}_1, \bm{X}_2, \cdots, \bm{X}_M) \\
+    \nonumber &= -\log \left[p(\bm{Y}_1, \bm{Y}_2, \cdots, \bm{Y}_N) \cdot \prod_{i, j} |\det \bm{W}_i|^2\right] \\
+    \nonumber &= -\log \left \{ \left[\prod_n p(\bm{Y}_n) \right] \cdot \prod_{i, j} |\det \bm{W}_i|^2\right \} \\
+    &= - 2J \sum_{i}  \log |\det \bm{W}_i| \\
+    \mathcal{L}(\mathsf{W, T, V}) &= -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{i,n}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ik,n}v_{kj,n}} + \log \sum_k t_{ik,n}v_{kj,n} \right)
     \label{eq:ilrmalike2}
 \end{align}
 ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
