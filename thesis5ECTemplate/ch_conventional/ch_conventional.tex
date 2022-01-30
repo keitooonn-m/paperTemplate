@@ -394,8 +394,8 @@ ISNMFの\textcolor{red}{生成モデルより，}
 　　\nonumber \mathcal{L}(\mathsf{W, T, V}) &= - \log p(\bm{X}_1, \bm{X}_2, \cdots, \bm{X}_M) \\
     \nonumber &= -\log \left[p(\bm{Y}_1, \bm{Y}_2, \cdots, \bm{Y}_N) \cdot \prod_{i, j} |\det \bm{W}_i|^2\right] \\
     \nonumber &= -\log \left \{ \left[\prod_n p(\bm{Y}_n) \right] \cdot \prod_{i, j} |\det \bm{W}_i|^2\right \} \\
-    \nonumber &= - 2J \sum_{i}  \log |\det \bm{W}_i| +\sum_{i,j,n} \left( \frac{|y_{ij}|^2}{\sum_k t_{ikn} v_{kjn}} + \log \sum_k t_{ikn} v_{kjn} + \log \pi \right) \\
-    \mathcal{L}(\mathsf{W, T, V}) &= -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ikn}v_{kjn}} + \log \sum_k t_{ikn}v_{kjn} \right)
+    \nonumber &= \mathrm{const.}- 2J \sum_{i}  \log |\det \bm{W}_i| +\sum_{i,j,n} \left( \frac{|y_{ij}|^2}{\sum_k t_{ikn} v_{kjn}} + \log \sum_k t_{ikn} v_{kjn}\right) \\
+    &= -2J \sum_i \log | \det \bm{W}_i | + \sum_{i,j,n} \left( \frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\sum_k t_{ikn}v_{kjn}} + \log \sum_k t_{ikn}v_{kjn} \right)
     \label{eq:ilrmalike2}
 \end{align}}
 ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$, 及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
@@ -410,7 +410,7 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{U}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{eq:ip3}
 \end{align}
 
-\textcolor{red}{これらの更新式も, IVAやISNMFと同様に，目的関数\ref{eq:ilrmalike2}）の値が単調非増加となることが保証されている．}
+\textcolor{red}{これらの更新式も, IVAやISNMFと同様に，目的関数（\ref{eq:ilrmalike2}）の値が単調非増加となることが保証されている．}
 
 
 %----------------------------------------------
@@ -418,39 +418,47 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \label{sec:conv:tilrma}
 %----------------------------------------------
 
-\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GDD}や複素Student's $t$分布に基づくNMF（$t$-NMF）}\cite{tnmf}がISNMFやCauchy NMF\cite{cauchynmf}と比較して性能が向上したことに鑑み，複素Student's$t$分布を生成モデルに持つようなILRMAである$t$-ILRMAが提案された．複素Student's$t$分布二は形状パラメータ$\nu(\textgreater0)$があり，これを$\nu=1$とすると複素Cauchy分布のような安定性は何ため，スペクトログラムの加法の正当性が保証されない．しかし，$\nu=2$付近のときの$t$-NMFは，ISNMFやCaunchy NMFに比べて優れたロバストな結果を示すことが報告されている．$t$-ILRMAの生成モデルは次式で表される．
-\begin{align}
-     \prod_{i,j}p\left(y_{ij}\right)= \prod_{i,j} \frac{1}{\pi \sigma_{ij}^{2} } \left( 1+\frac{2}{\nu}\frac{|z_{ij}|^2}{\sigma_{ij}^{2}} \right)^{\frac{2+\nu}{2}}　\label{eq:tmodel}
-\end{align}
-\begin{align}
-     \sigma_{ij}^{p}=\sum_{l}t_{il}v_{lk}{eq:tsigma}
-\end{align}
+\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GDD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
+複素Student's~$t$分布には形状パラメタ$\nu\textgreater0$があ\textcolor{red}{る．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow2$とすると複素Gauss分布に一致する．}
 
-ここで，$\sigma_{ij}$は時間周波数ごとに時変な非負値であり，振幅スペクトラム$|z_{ij}|$に関係する量である．$p$はNMFモデルのドメインを決定する量であり，$1\leqq p \leqq$を満たしているとする，$p=1$のときは振幅ドメインのNMFモデルを，$p=2$のときはパワードメインのモデルを考えることに相当する．$p=2$，$\nu\rightarrow\infty$のときはISNMFのモデルに一致し，$p=1$，$\nu=1$のときはCauchyNMFのモデルに一致する，この負の対数尤度をとることにより，$t$-ILRMAのコスト関数
+$t$-ILRMAの生成モデルは次式で表される．
+\textcolor{red}{
 \begin{align}
-    \mathcal{L}_{t} = \mathrm{const.}-2J\log|\mathrm{det}\bm{W}_{i}|+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|y_{ij}^{2}}{\sigma_{ij}^{2}}\right)+2\log\sigma_{ij}\right\rbrack \label{eq:tcost}
+     \prod_{i,j}\left(\bm{Y}_{n}\right)= \prod_{i,j}\frac{1}{\pi \sigma_{ijn}^{2} } \left( 1+\frac{2}{\nu}\frac{|y_{ijn}|^2}{\sigma_{ijn}^{2}} \right)^{\frac{2+\nu}{2}}　\label{eq:tmodel}
 \end{align}
-を得る．
+\begin{align}
+     \sigma_{ijn}^{p}=\left(\sum_{k}t_{ikn}v_{kjn}\right)^{p} \label{eq:tsigma}
+\end{align}}
 
-分離行列$\bm{W}_{i}$は節\ref{sec:conv:ilrma}と同様に分離ベクトル$w_{i,n}$の更新をIPを用いることで次式で行われる．
+ここで，\textcolor{red}{$\sigma_{ijn}$は時間周波数ごとに変動する非負パラメタであり，分離信号$\bm{Y}_{n}$の振幅スペクトログラム$|\bm{Y}_{n}|$のNMFモデルである．また，}$p$はNMFモデルの\textcolor{red}{信号領域]を決定する量であり}，$p=1$のときは振幅ドメイン，$p=2$のときはパワードメインを\textcolor{red}{モデル化することに}相当する．\textcolor{red}{従って}$p=2$\textcolor{red}{かつ}$\nu\rightarrow\infty$のときは，\textcolor{red}{式（\ref{eq:tmodel}）は}ISNMFの\textcolor{red}{生成}モデルに一致\textcolor{red}{する．}この\textcolor{red}{生成モデルの負対数尤度関数が$t$-ILRMAの目的関数であり，次式で与えられる．}
+\textcolor{red}{
 \begin{align}
-    U_{i,n}=\frac{1}{J}\left(\frac{2}{\nu}+1\right)\sum_{j}\frac{1}{\alpha_{ij,n}\sigma_{ij,n}^{2}}x_{ij}x_{ij}^{\mathrm{H}} \label{eq:tip1}
-\end{align}
-\begin{align}
-    w_{i,n}\leftarrow\left(W_{i}U_{i,n}\right)^{-1}e_{n} \label{eq:tip2}
-\end{align}
-\begin{align}
-    w_{i,n}\leftarrow\frac{w_{i,n}}{\sqrt{w_{i,n}^{\mathrm{H}}U_{i,n}w_{i,n}}} \label{eq:tip3}
-\end{align}
+    \nonumber \mathcal{L}_{t}(\mathsf{W, T, V}) =& \mathrm{const.}-2J \sum_{i}\log|\mathrm{det}\bm{W}_{i}| \\
+&+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\left(\sum_{k}t_{ikn}v_{kjn}\right)^2}\right)+2\log\left(\sum_{k}t_{ikn}v_{kjn}\right)\right\rbrack \label{eq:tcost}
+\end{align}}
 
-NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
+式（\ref{eq:tcost}）を最小化するNMFの最適化パラメタ$\bm{T}_{n}, \bm{V}_{n}$の更新式は次式で表される．
+\textcolor{red}{
 \begin{align}
-    t_{il,n}\leftarrow t_{il,n}\left(\frac{\sum_{j}\frac{|y_ij,n|^{2}}{\frac{\nu}{\nu+2}\sigma_{ij,n}^{2}+\frac{2}{\nu+2}|y_{ij,n}|^{2}}\sigma_{ij,n}^{-p}v_{lj,n}^{-\frac{2}{p}}}{\sum_{i}\sigma_{ij,n}^{-p}v_{lj,n}}\right)^{\frac{p}{p+2}} \label{eq:tt}
+    t_{ikn}\leftarrow t_{ikn}\left\lbrack\frac{\sum_{j}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tt}
 \end{align}
 \begin{align}
-    v_{lj,n}\leftarrow v_{lj,n}\left(\frac{\sum_{i}\frac{|y_ij,n|^{2}}{\frac{\nu}{\nu+2}\sigma_{ij,n}^{2}+\frac{2}{\nu+2}|y_{ij,n}|^{2}}\sigma_{ij,n}^{-p}t_{il,n}^{-\frac{2}{p}}}{\sum_{i}\sigma_{ij,n}^{-p}t_{il,n}}\right)^{\frac{p}{p+2}} \label{eq:tv}
+    v_{lj,n}\leftarrow v_{lj,n}\left\lbrack\frac{\sum_{i}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tv}
+\end{align}}
+
+\textcolor{red}{一方}分離行列$\bm{W}_{i}$は節\ref{sec:conv:ilrma}と同様に分離ベクトル$\bm{w}_{in}$の更新をIPを用いることで次式で行われる．
+\begin{align}
+    \bm{U}_{in}=\frac{1}{J}\left(\frac{2}{\nu}+1\right)\sum_{j}\frac{1}{\alpha_{ijn}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}}\bm{x}_{ij}\bm{x}_{ij}^{\mathrm{H}} \label{eq:tip1}
 \end{align}
-これらの更新式も節\ref{sec:conv:ilrma}と同様にコスト関数式(\ref{eq:tcost})の値が単調非増加であり，収束することが保証されている．
+\begin{align}
+    \bm{w}_{in}\leftarrow\left(\bm{W}_{i}\bm{U}_{in}\right)^{-1}\bm{e}_{n} \label{eq:tip2}
+\end{align}
+\begin{align}
+    \bm{w}_{in}\leftarrow\frac{\bm{w}_{in}}{\sqrt{\bm{w}_{in}^{\mathrm{H}}\bm{U}_{in}\bm{w}_{in}}} \label{eq:tip3}
+\end{align}
+\textcolor{red}{ここで，$¥aloha_{ijn}>0$は補助変数である．}
+
+これらの更新式も，\textcolor{red}{IVA, ISNMF, 及びILRMAと同様に，目的関数}(\ref{eq:tcost})の値が単調非増加となることが保証されている．
 
 
 %----------------------------------------------
@@ -458,44 +466,34 @@ NMFパラメタ$T_{n}V_{n}$の更新式は次式で表される．
 \label{sec:conv:heartrateestalgo}
 %----------------------------------------------
 
-測定した信号を$\left(x[t]\right)_{t=1}^{T}$とする．ここで，$t=1, 2, \cdots , T$は離散時間インデクスであり，$T$は観測時間長である．今回使用した心拍推定アルゴリズムは以降に示す式の通りである．この信号には0.5Hz付近に呼吸が強く入っているため，次式のような二回微分フィルタをかけることで呼吸を落とすことが可能である．二回微分フィルタは次式で表される．
+\textcolor{red}{本節では，レーダセンサの観測信号やBSSで推定された心拍信号等に対して適用する心拍推定アルゴリズムについて説明する．なお，本節では単一チャネルの時間信号を処理の対象としている．この時間信号を}$\left(x[l]\right)_{l=1}^{L}$とする．ここで，$l=1, 2, \cdots , L$は離散時間インデクスであり，$L$は\textcolor{red}{信号の}時間長である．\textcolor{red}{本論文で使用する心拍推定アルゴリズムを下記に順を追って示す．}
+
+\textcolor{red}{まず，信号の調波構造を強調しつつ低周波成分を除去するため，次式の二階微分フィルタを信号に適用する．}
+\begin{equation} 
+    \begin{cases}
+        \begin{split}
+        & x'[l]=x[l+1]-x[l] \\
+        & x''[l]=x'[l+1]-x'[l]
+        \end{split}                         &   \forall{l}
+    \end{cases}
+\end{equation}
+
+\textcolor{red}{次に，もう一度調波構造を強調する目的で，信号に半波整流を適用する．}
+\begin{equation} 
+x_{\mathrm{r}}[l] =
+    \begin{cases}
+        \begin{split}
+        & x''[l]\quad \mathrm{if}\quad x''[l]\geqq0 \\
+        & 0\hspace{25pt} \mathrm{otherwise}
+        \end{split}                         &   \forall{l}
+    \end{cases}
+\end{equation}
+\textcolor{red}{さらに，心拍信号が多く存在する帯域である.7--1.4~Hzを通過域とする次楕円IIRバンドパスディジタルフィルタを適用する．この処理を次式で表す．}
 \begin{align}
-  \left\{ \begin{array}{ll}
-    x'[t]=x[t+1]-x[t]\quad\quad \forall{t} \\
-    x''[t]=x'[t+1]-x'[t]\hspace{12.5pt} \forall{t}
-  \end{array} \right. \label{eq:diffilter}
-\end{align}
-半波整流した後に，心拍の高周波成分である0.7Hz～1.4Hzを通すバンドパスフィルタをかける．半波整流とバンドパスフィルタ二よる処理は次式で表される．
-\begin{align}
-  x_{\mathrm{r}}[t] = \left\{ \begin{array}{ll}
-    x''[t]\quad \mathrm{if}\quad x''[t]\geqq0\quad \forall{t} \\
-    0\hspace{25pt} \mathrm{otherwise}\hspace{24pt} \forall{t}
-  \end{array} \right. \label{eq:hrec}
-\end{align}
-\begin{align}
-    \left(x_{\mathrm{BPF}}[t]\right)_{t=1}^{T}=\mathrm{BPF}\left[\left(x_{r}\right)_{t=1}^{T}\right]
+    \left(x_{\mathrm{BPF}}[l]\right)_{l=1}^{L}=\mathrm{BPF}\left[\left(x_{\mathrm{r}}\right)_{l=1}^{L}\right]
 \end{align} \label{eq:bpf}
 
-次に，$\left(x_{\mathrm{BPF}}[t]\right)_{t=1}^{T}$を短時間区間信号に分割する．STFTの分析窓関数の長さ及びシフト長をそれぞれ$Q$及び$\tau$としたとき，$x_{\mathrm{BPF}}[t]$の$j$番目の短時間区間信号（時間フレーム）は次式で表される．
-\begin{align}
-  \nonumber \bm{x}^{[j]} &= \left[ x[(j-1)\tau +1], x[(j-1)\tau +2], \cdots, x[(j-1)\tau +Q] \right]^{\mathrm{T}} \\
-  &=  [ x^{[j]} [1], x^{[j]} [2], \cdots, x^{[j]} [q], \cdots, x^{[j]} [Q] ]^{\mathrm{T}} \in \mathbb{R}^Q
-\end{align}
-ここで，$l =1, 2, \cdots, L$，$j=1, 2, \cdots, J$及び$q=1, 2, \cdots, Q$はそれぞれ離散時間のインデクス，時間フレーム及び時間フレーム内のサンプルを示す．
-また，時間フレーム数$J$は次式によって与えられる．
-\begin{align}
-    J= \frac{L}{\tau}
-\end{align}
-ただし，信号長$L$はセグメント数$J$が整数となるように各時間フレームの信号の両端にゼロを挿入する処理（ゼロパディング）が施される．
-そして，信号$\bm{x} = [ x[1], x[2], \cdots, x[L] ]^{\mathrm{T}}  \in \mathbb{R}^L$のSTFTは次式のように表される．
-\begin{align}
-    \bm{X} = \mathrm{STFT}_{\bm{\omega}}(\bm{x}) \in \mathbb{C}^{I \times J}  \label{eq:tstft}
-\end{align}
-式(\ref{eq:tstft})によって得られた各要素に対して絶対値を取り，ピーク値のインデクス(周波数)を取得する．この処理は以下のように表される．
-\begin{align}
-    \hat{x}[j]=\argmax|x[j]|  \label{eq:searchmax}
-\end{align}
-得られたピーク値のインデクスを降順に並べ替える．これらの値のうち，推定範囲$0.7\leqq f \leqq 1.6$に収まるものだけを扱い，推定心拍は$\hat{h_{o}}[j]=60\hat{x}[j]$となる．
+\textcolor{red}{最後に}，$\left(x_{\mathrm{BPF}}[l]\right)_{l=1}^{L}$\textcolor{red}{にSTFTを適用してスペクトログラムに変換し，振幅スペクトログラムの最大ピークとなる周波数を時間フレーム毎に求めることで，推定心拍を得る．}
 
 %----------------------------------------------
 \section{本章のまとめ}
