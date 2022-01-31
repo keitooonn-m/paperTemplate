@@ -403,7 +403,7 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \textcolor{red}{式（\ref{eq:ilrmalike2}）を最小化するパラメタは，以下に示す反復最適化アルゴリズムで推定される．まず}
 式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式(\ref{eq:negativeloglikelihood})のISNMFの尤度関数\textcolor{red}{等価であることがわかる．}
 
-分離行列$\bm{W}_i$に関する最適化は，分離ベクトル$\bm{w}_{in}$をIP\cite{auxIVA}ｓｗ更新することで\textcolor{red}{達成される．}
+分離行列$\bm{W}_i$に関する最適化は，分離ベクトル$\bm{w}_{in}$をIPで更新することで\textcolor{red}{達成される．}
 \begin{align}
 \bm{U}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sum_{l}t_{ikn}v_{kjn}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{eq:ip1} \\
 \bm{w}_{in} &\leftarrow (\bm{W}_i \bm{U}_{in})^{-1} \bm{e}_n \label{eq:ip2} \\
@@ -418,8 +418,8 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \label{sec:conv:tilrma}
 %----------------------------------------------
 
-\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GDD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
-複素Student's~$t$分布には形状パラメタ$\nu\textgreater0$があ\textcolor{red}{る．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow2$とすると複素Gauss分布に一致する．}
+\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GGD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
+複素Student's~$t$分布には形状パラメタ$\nu~\textgreater~0$があ\textcolor{red}{る．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow2$とすると複素Gauss分布に一致する．}
 
 $t$-ILRMAの生成モデルは次式で表される．
 \textcolor{red}{
@@ -506,10 +506,19 @@ x_{\mathrm{r}}[l] =
 %----------------------------------------------
 \section{まえがき}
 %------------------------------------------
-本章では，測定信号に対して，\ref{sec:conv:iva}節IVAを適用した結果をスペクトログラムに描画し，心拍推定アルゴリズムによって心拍推定結果を比較した結果を説明する．
-心拍推定の比較には接触型ECGセンサの測定値を使用している．
+本章では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系で観測された4チャネルのレーダアレイの}測定信号に対して，\textcolor{red}{\ref{sec:conv:iva}節で述べた}IVAを適用した結果を\textcolor{red}{示し，}心拍推定アルゴリズム\textcolor{red}{の精度向上について実験的に検討する．但し，本節では，レーダセンサから得られる信号に前処理を加えず，そのままIVAを適用した結果を予備実験として示している．より詳細な実験については次章にまとめて示すが，\ref{chap:bsshrexp}章と\ref{chap:fbsshrexp}章の違いは，前処理として観測信号に呼吸による体動に由来するノイズを除去するためのハイパスフィルタの適用の有無である．}
+\textcolor{red}{なお，心拍推定の精度を確認するために必要な心拍の参考値（リファレンス）については，\ref{chap:measurementstructsig}章で述べた接触型ECGセンサの観測信号を心拍推定アルゴリズムに適用した推定値を用いている．}心拍推定の比較には，接触型ECGセンサの測定値を使用している．
+
 まず\ref{sec:conv:expcondition4}節では，IVAを適用させる際のパラメタについて述べる．
 \ref{sec:conv:expresult4}節では，IVAを適用させて得られたスペクトログラムと心拍推定グラフについての解説を述べる．
+
+%----------------------------------------------
+\section{本実験の動機}
+\label{sec:conv:expmotivation}
+%----------------------------------------------
+\textcolor{red}{まず，本章では\ref{chap:measurementstructsig}章で述べた振動測定系から得られる時間波形（Data. no0からData. no6）を使用する．振動測定系の混合系は未知であるため，最適なSTFTの窓長を定めることができない．しかしながら，これまで研究されてきたBSSの傾向としてSTFTの窓長は，分離精度にかなり影響を与えるパラメタであることが分かっている\cite{winlengthBSS}．従って，本実験における最適な窓長を実験的に調査する必要がある．}
+
+\textcolor{red}{本論文で取り扱う観測信号は音響信号ではないが，依然としてSTFTの窓長がBSSの性能に与える影響は大きいと予想される．そのため，本章では予備実験として4パターンのSTFTの窓長を試し，それぞれのBSの結果及び心拍推定アルゴリズムを適用した結果の精度について調査する．}
 
 %----------------------------------------------
 \section{実験条件}
@@ -538,7 +547,14 @@ STFTの窓長を確定するために一つの測定信号に対し4パターン
 \section{実験結果}
 \label{sec:conv:expresult4}
 %----------------------------------------------
-Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムである．Fig. \ref{fig:siva32est} $\sim$ Fig. \ref{fig:siva128est}はIVAを適用した観測信号のスペクトログラムで，FFTサイズを32$\sim$128に変更したものである．Fig. \ref{fig:hrivach}は心拍推定アルゴリズムによって推定された心拍値でチャネルごとの推定結果を比較している．Fig. \ref{fig:hva32ch3}がリファレンスの心拍値を最もとらえていることがわかる．その他のデータからも同様のことがいえるため，以後の実験結果は，チャネル3について述べる．Fig. \ref{fig:hrivafftsize}はFFTサイズを変更させて心拍推定値の比較を行っているものである．$\mathrm{FFT~size}=32,~64$の場合，リファレンスの心拍値をとらえていることがわかる．その他のデータも同様の比較を行った結果，$\mathrm{FFT~size}=64$の場合，リファレンスの心拍値を最もとらえられていたため，以後の実験結果は，$\mathrm{FFT~size}=64$について述べる．
+
+\textcolor{red}{本節以降では，\ref{chap:measurementstructsig}章のTable~\ref{tab:vibevacondition}で示した振動条件（Data no.~0からData no.~6）と2種類の測定部位（背部又は臀部）を組み合わせて実験データを参照する．例えば，Data no.~0の背部のレーダセンサから得られる観測信号を「Back no.~0」，Data no.~2の臀部のレーダセンサから得られる観測信号を「Bottom no.~2」等と呼称する．また，本節以降に多くのスペクトログラムを掲載するが，これらの図は窓長を〇〇点（××~ms），シフト長を〇〇点（××~ms）に設定したSTFTで計算されるものに統一されている．周波数領域BSSで処理の対象となる信号（$\bm{X}_m$等）とは，窓長及びシフト長が異なる点に注意する．}
+
+Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムである．\textcolor{red}{Figs. \ref{fig:siva32est}--\ref{fig:siva128est}は，Back no.~2の観測信号に対して，前節で述べた4種類の窓長及びシフト長でSTFTしIVAを適用することで得られる分離信号のスペクトログラムである．観測信号あh4チャネルであるため，BSSによる分離信号も4つ得られるが，理想的にはこの内のいずれかが心拍信号に対応することを想定している．なお，4つ分離信号から心拍信号を選択する方法については今後の課題とし，本論文では取り扱わない．}
+
+\textcolor{red}{このFigs. \ref{fig:siva32est}--\ref{fig:siva128est}からそれぞれ1つずつ心拍信号と思われる分離信号を選択し，さらに，それらを心拍推定アルゴリズムに適用した結果を，Fig. \ref{fig:hrivach}}
+
+Fig. \ref{fig:hrivach}は心拍推定アルゴリズムによって推定された心拍値でチャネルごとの推定結果を比較している．Fig. \ref{fig:hva32ch3}がリファレンスの心拍値を最もとらえていることがわかる．その他のデータからも同様のことがいえるため，以後の実験結果は，チャネル3について述べる．Fig. \ref{fig:hrivafftsize}はFFTサイズを変更させて心拍推定値の比較を行っているものである．$\mathrm{FFT~size}=32,~64$の場合，リファレンスの心拍値をとらえていることがわかる．その他のデータも同様の比較を行った結果，$\mathrm{FFT~size}=64$の場合，リファレンスの心拍値を最もとらえられていたため，以後の実験結果は，$\mathrm{FFT~size}=64$について述べる．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -553,7 +569,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
-\caption{Estimated back signal no.~2, where FFT size is set to 32.}
+\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 32 points.}
 \label{fig:siva32est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -562,7 +578,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
-\caption{Estimated back signal no.~2, where FFT size is set to 64.}
+\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 64 points.}
 \label{fig:siva64est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -571,7 +587,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
-\caption{Estimated back signal no.~2, where FFT size is set to 96.}
+\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 96 points.}
 \label{fig:siva96est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -580,7 +596,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
-\caption{Estimated back signal no.~2, where FFT size is set to 128.}
+\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 128 points.}
 \label{fig:siva128est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -589,29 +605,29 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[htbp]
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch1.pdf}
-        \subcaption{Ch1}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch1.pdf}
+        \subcaption{First estimated signal}
         \label{fig:hva32ch1}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch2.pdf}
-        \subcaption{Ch2}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch2.pdf}
+        \subcaption{Second estimated signal}
         \label{fig:hva32ch2}
       \end{minipage} \\
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
-        \subcaption{Ch3}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
+        \subcaption{Third estimated signal}
         \label{fig:hva32ch3}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch4.pdf}
-        \subcaption{Ch4}
+        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch4.pdf}
+        \subcaption{Fourth estimated signal}
         \label{fig:hva32ch4}
       \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of back signal no.~2 obtained by IVA.}
+     \caption{Estimated (red) and reference (blue) heart rates of Back no.~2 obtained by IVA for each separated signal.}
      \label{fig:hrivach}
   \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -621,29 +637,29 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
-        \subcaption{FFT size is set to 32}
+        \subcaption{Windw size is set to 32}
         \label{fig:hva32ch3}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
-        \subcaption{FFT size is set to 64}
+        \subcaption{Windw size is set to 64}
         \label{fig:hva64ch3}
       \end{minipage} \\
    
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_96_ch3.pdf}
-        \subcaption{FFT size is set to 96}
+        \subcaption{Windw size is set to 96}
         \label{fig:hva96ch3}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_128_ch3.pdf}
-        \subcaption{FFT size is set to 128}
+        \subcaption{Windw size is set to 128}
         \label{fig:hva128ch3}
       \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of back channel 3 signal no.~2 obtained by IVA.}
+     \caption{Estimated (red) and reference (blue) heart rates of separated heartbeat signals of Back no.~2 obtained by IVA with various window lengths: (a)~32 points, (b)~64 points, (c)~96, (d)~128 points.}
      \label{fig:hrivafftsize}
   \end{figure}
 %-%-%-%-%-%-%-%-%
