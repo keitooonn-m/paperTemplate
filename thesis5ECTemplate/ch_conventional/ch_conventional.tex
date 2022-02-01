@@ -506,8 +506,8 @@ x_{\mathrm{r}}[l] =
 %----------------------------------------------
 \section{まえがき}
 %------------------------------------------
-本章では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系で観測された4チャネルのレーダアレイの}測定信号に対して，\textcolor{red}{\ref{sec:conv:iva}節で述べた}IVAを適用した結果を\textcolor{red}{示し，}心拍推定アルゴリズム\textcolor{red}{の精度向上について実験的に検討する．但し，本節では，レーダセンサから得られる信号に前処理を加えず，そのままIVAを適用した結果を予備実験として示している．より詳細な実験については次章にまとめて示すが，\ref{chap:bsshrexp}章と\ref{chap:fbsshrexp}章の違いは，前処理として観測信号に呼吸による体動に由来するノイズを除去するためのハイパスフィルタの適用の有無である．}
-\textcolor{red}{なお，心拍推定の精度を確認するために必要な心拍の参考値（リファレンス）については，\ref{chap:measurementstructsig}章で述べた接触型ECGセンサの観測信号を心拍推定アルゴリズムに適用した推定値を用いている．}心拍推定の比較には，接触型ECGセンサの測定値を使用している．
+本章では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系で観測された4チャネルのレーダアレイの観測信号に対して，\textcolor{red}{\ref{sec:conv:iva}節で述べた}IVAを適用した結果を\textcolor{red}{示し，}心拍推定アルゴリズム\textcolor{red}{の精度向上について実験的に検討する．但し，本節では，レーダセンサから得られる信号に前処理を加えず，そのままIVAを適用した結果を予備実験として示している．より詳細な実験については次章にまとめて示すが，\ref{chap:bsshrexp}章と\ref{chap:fbsshrexp}章の違いは，前処理として観測信号に呼吸による体動に由来するノイズを除去するためのハイパスフィルタの適用の有無である．}
+\textcolor{red}{なお，心拍推定の精度を確認するために必要な心拍の参考値（リファレンス）については，\ref{chap:measurementstructsig}章で述べた接触型ECGセンサの観測信号を心拍推定アルゴリズムに適用した推定値を用いている．}心拍推定の比較には，接触型ECGセンサの測定値を用いている．
 
 まず\ref{sec:conv:expcondition4}節では，IVAを適用させる際のパラメタについて述べる．
 \ref{sec:conv:expresult4}節では，IVAを適用させて得られたスペクトログラムと心拍推定グラフについての解説を述べる．
@@ -557,111 +557,111 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 Fig. \ref{fig:hrivach}は心拍推定アルゴリズムによって推定された心拍値でチャネルごとの推定結果を比較している．Fig. \ref{fig:hva32ch3}がリファレンスの心拍値を最もとらえていることがわかる．その他のデータからも同様のことがいえるため，以後の実験結果は，チャネル3について述べる．Fig. \ref{fig:hrivafftsize}はFFTサイズを変更させて心拍推定値の比較を行っているものである．$\mathrm{FFT~size}=32,~64$の場合，リファレンスの心拍値をとらえていることがわかる．その他のデータも同様の比較を行った結果，$\mathrm{FFT~size}=64$の場合，リファレンスの心拍値を最もとらえられていたため，以後の実験結果は，$\mathrm{FFT~size}=64$について述べる．
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_obs.pdf}
-\caption{Observation back signal no.~2.}
-\label{fig:siva32obs}
-\end{figure}
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_obs.pdf}
+%\caption{Observation back signal no.~2.}
+%\label{fig:siva32obs}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 32 points.}
-\label{fig:siva32est}
-\end{figure}
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
+%\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 32 points.}
+%\label{fig:siva32est}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 64 points.}
-\label{fig:siva64est}
-\end{figure}
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
+%\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 64 points.}
+%\label{fig:siva64est}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 96 points.}
-\label{fig:siva96est}
-\end{figure}
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
+%\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 96 points.}
+%\label{fig:siva96est}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 128 points.}
-\label{fig:siva128est}
-\end{figure}
+%\begin{figure}[tb]
+%\centering
+%\includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
+%\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 128 points.}
+%\label{fig:siva128est}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[htbp]
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch1.pdf}
-        \subcaption{First estimated signal}
-        \label{fig:hva32ch1}
-      \end{minipage} 
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch2.pdf}
-        \subcaption{Second estimated signal}
-        \label{fig:hva32ch2}
-      \end{minipage} \\
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
-        \subcaption{Third estimated signal}
-        \label{fig:hva32ch3}
-      \end{minipage} 
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch4.pdf}
-        \subcaption{Fourth estimated signal}
-        \label{fig:hva32ch4}
-      \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of Back no.~2 obtained by IVA for each separated signal.}
-     \label{fig:hrivach}
-  \end{figure}
+%\begin{figure}[htbp]
+%     \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch1.pdf}
+%        \subcaption{First estimated signal}
+%        \label{fig:hva32ch1}
+%      \end{minipage} 
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch2.pdf}
+%        \subcaption{Second estimated signal}
+%        \label{fig:hva32ch2}
+%      \end{minipage} \\
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
+%        \subcaption{Third estimated signal}
+%        \label{fig:hva32ch3}
+%      \end{minipage} 
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch4.pdf}
+%        \subcaption{Fourth estimated signal}
+%        \label{fig:hva32ch4}
+%      \end{minipage} 
+%     \caption{Estimated (red) and reference (blue) heart rates of Back no.~2 obtained by IVA for each separated signal.}
+%     \label{fig:hrivach}
+%  \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
-\begin{figure}[htbp]
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
-        \subcaption{Windw size is set to 32}
-        \label{fig:hva32ch3}
-      \end{minipage} 
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
-        \subcaption{Windw size is set to 64}
-        \label{fig:hva64ch3}
-      \end{minipage} \\
+%\begin{figure}[htbp]
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
+%        \subcaption{Windw size is set to 32}
+%        \label{fig:hva32ch3}
+%      \end{minipage} 
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
+%        \subcaption{Windw size is set to 64}
+%        \label{fig:hva64ch3}
+%      \end{minipage} \\
    
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_96_ch3.pdf}
-        \subcaption{Windw size is set to 96}
-        \label{fig:hva96ch3}
-      \end{minipage} 
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_128_ch3.pdf}
-        \subcaption{Windw size is set to 128}
-        \label{fig:hva128ch3}
-      \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of separated heartbeat signals of Back no.~2 obtained by IVA with various window lengths: (a)~32 points, (b)~64 points, (c)~96, (d)~128 points.}
-     \label{fig:hrivafftsize}
-  \end{figure}
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_96_ch3.pdf}
+%      \subcaption{Windw size is set to 96}
+%        \label{fig:hva96ch3}
+%      \end{minipage} 
+%      \begin{minipage}[t]{0.45\hsize}
+%        \centering
+%        \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_128_ch3.pdf}
+%        \subcaption{Windw size is set to 128}
+%        \label{fig:hva128ch3}
+%      \end{minipage} 
+%     \caption{Estimated (red) and reference (blue) heart rates of separated heartbeat signals of Back no.~2 obtained by IVA with various window lengths: (a)~32 points, (b)~64 points, (c)~96, (d)~128 points.}
+%     \label{fig:hrivafftsize}
+%  \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
