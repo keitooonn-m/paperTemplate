@@ -418,7 +418,7 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \label{sec:conv:tilrma}
 %----------------------------------------------
 
-\textcolor{red}{近年，ISNMFの複素GAuss分布に基づくに基づく生成モデルを，一般化下NMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GGD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
+\textcolor{red}{近年，ISNMFの複素Gauss分布に基づくに基づく生成モデルを，一般化したNMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GGD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
 複素Student's~$t$分布には形状パラメタ$\nu~\textgreater~0$があ\textcolor{red}{る．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow2$とすると複素Gauss分布に一致する．}
 
 $t$-ILRMAの生成モデルは次式で表される．
@@ -430,7 +430,7 @@ $t$-ILRMAの生成モデルは次式で表される．
      \sigma_{ijn}^{p}=\left(\sum_{k}t_{ikn}v_{kjn}\right)^{p} \label{eq:tsigma}
 \end{align}}
 
-ここで，\textcolor{red}{$\sigma_{ijn}$は時間周波数ごとに変動する非負パラメタであり，分離信号$\bm{Y}_{n}$の振幅スペクトログラム$|\bm{Y}_{n}|$のNMFモデルである．また，}$p$はNMFモデルの\textcolor{red}{信号領域]を決定する量であり}，$p=1$のときは振幅ドメイン，$p=2$のときはパワードメインを\textcolor{red}{モデル化することに}相当する．\textcolor{red}{従って}$p=2$\textcolor{red}{かつ}$\nu\rightarrow\infty$のときは，\textcolor{red}{式（\ref{eq:tmodel}）は}ISNMFの\textcolor{red}{生成}モデルに一致\textcolor{red}{する．}この\textcolor{red}{生成モデルの負対数尤度関数が$t$-ILRMAの目的関数であり，次式で与えられる．}
+ここで，\textcolor{red}{$\sigma_{ijn}$は時間周波数ごとに変動する非負パラメタであり，分離信号$\bm{Y}_{n}$の振幅スペクトログラム$|\bm{Y}_{n}|$のNMFモデルである．また，}$p$はNMFモデルの\textcolor{red}{信号領域を決定する量であり}，$p=1$のときは振幅ドメイン，$p=2$のときはパワードメインを\textcolor{red}{モデル化することに}相当する．\textcolor{red}{従って}$p=2$\textcolor{red}{かつ}$\nu\rightarrow\infty$のときは，\textcolor{red}{式（\ref{eq:tmodel}）は}ISNMFの\textcolor{red}{生成}モデルに一致\textcolor{red}{する．}この\textcolor{red}{生成モデルの負対数尤度関数が$t$-ILRMAの目的関数であり，次式で与えられる．}
 \textcolor{red}{
 \begin{align}
     \nonumber \mathcal{L}_{t}(\mathsf{W, T, V}) =& \mathrm{const.}-2J \sum_{i}\log|\mathrm{det}\bm{W}_{i}| \\
@@ -456,7 +456,7 @@ $t$-ILRMAの生成モデルは次式で表される．
 \begin{align}
     \bm{w}_{in}\leftarrow\frac{\bm{w}_{in}}{\sqrt{\bm{w}_{in}^{\mathrm{H}}\bm{U}_{in}\bm{w}_{in}}} \label{eq:tip3}
 \end{align}
-\textcolor{red}{ここで，$¥aloha_{ijn}>0$は補助変数である．}
+\textcolor{red}{ここで，$\alpha_{ijn}>0$は補助変数である．}
 
 これらの更新式も，\textcolor{red}{IVA, ISNMF, 及びILRMAと同様に，目的関数}(\ref{eq:tcost})の値が単調非増加となることが保証されている．
 
@@ -690,71 +690,14 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \label{sec:conv:expcond5}
 %----------------------------------------------
 
-\textcolor{red}{前章の実験において，最もバランスよく心拍信号が分離されたSTFTの窓長及びシフト長はそれぞれ，64点（1.6~s）及び4点（0.1~s）であることが分かったため，これらをIVA，基底数固定型ILRMA，基底数可変型ILRMA，及び$t$-ILRMAのSTFTの窓長及びシフト長として設定した．IVA，基底数固定型ILRMA，基底数可変型ILRMA，及び$t$-ILRMAのその他の実験条件を以下に示す．}
+\textcolor{red}{前章の実験において，最もバランスよく心拍信号が分離されたSTFTの窓長及びシフト長はそれぞれ，64点（1.6~s）及び4点（0.1~s）であることが分かったため，これらをIVA，ILRMA（基底数固定型と基底数可変型を含む），及び$t$-ILRMAのSTFTの窓長及びシフト長として設定した．IVA，ILRMA，及び$t$-ILRMAのその他の実験条件を以下に示す．}
 
-\textcolor{red}{IVAの実験条件を示す．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して$N\times N$の単位行列とした．ここで$N$はチャネル数を表す．また，IVAの式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）に示した反復更新式の反復回数は100回に設定した．}
+\textcolor{red}{まず，IVAの実験条件を示す．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して$N\times N$の単位行列とした．ここで$N$はチャネル数を表す．また，IVAの式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）に示した反復更新式の反復回数は100回に設定した．}
 
-\textcolor{red}{ILRMAの実験条件（基底数固定型と基底数可変型を含む）を示す．\ref{sec:conv:ilrma}節で示した式（\ref{eq:ip1}）--（{eq:ip3}）の反復更新式の反復回数は100回に設定した．また基底数固定型ILRMAの基底数を各チャネル毎に3本とした．基底数可変型ILRMAでは基底数を12本とした．}
-前節で述べた通り，STFTの窓長は分離精度にかなり影響を与えるパラメタであることが知られている．そのため，本章の実験では，窓長を32点（0.8~s），64点（1.6~s），96点（2.4~s）, 及び128点（3.2~s）, シフト長をそれぞれ，2点（0.05~s），4点（0.1~s），6点（0.15~s）, 及び8点（0.2~s）に設定したSTFTによって計算される．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して$N\times N$の単位行列とした．ここで$N$はチャネル数を表す．また，IVAの式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）に示した反復更新式の反復回数は100回に設定した．}
-基底数固定型ILRMAは反復毎にプロジェクションバックで正規化し，反復毎にプロジェクションバックで正規化しない．基底数固定型ILRMA，基底数可変型ILRMA及び$t$-ILRMAの実験条件はそれぞれ表(\ref{tab:fixedilrma})，表（\ref{tab:variableilrma}）及び表（\ref{tab:tilrma}）に示す．
-%-%-%-%-%-%-%-%-%
-\begin{table}[t]
-  \caption{Experimental conditions of ILRMA without partitioning function}
-  \centering
-  \begin{tabular}{cc} \hline
-    Parameter & Value \\ \hline \hline
-    FFT length & 64 samples  \\ \hline
-    Shift length & 4 samples \\ \hline
-    Channel number（Channel number: $N$） & 4 \\ \hline
-    frequency bins（frequency bins: $I$） & 33 \\ \hline
-    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
-    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
-    Number of iterations & 100\\ \hline
-    Basis number & 3 \\ \hline \hline
-  \end{tabular}
-  \label{tab:fixedilrma}
-\end{table}
-%-%-%-%-%-%-%-%-%
-%-%-%-%-%-%-%-%-%
-\begin{table}[t]
-  \caption{Experimental conditions of ILRMA with partitioning function}
-  \centering
-  \begin{tabular}{cc} \hline
-    Parameter & Value \\ \hline \hline
-    FFT length & 64 samples  \\ \hline
-    Shift length & 4 samples \\ \hline
-    Channel number（Channel number: $N$） & 4 \\ \hline
-    frequency bins（frequency bins: $I$） & 33 \\ \hline 
-    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
-    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
-    Number of iterations & 100\\ \hline
-    Basis number（Basis number: $K$） & 12 \\ \hline
-    Basis matrix（Basis matrix: $T$） & Uniform random values $(0,1)$ \\ \hline
-    Activation matrix（Activartion matrix: $V$） & Uniform random values $(0,1)$ \\ \hline 
-    Partition function matrix（Partition function matrix: $Z$） & Uniform random values $(0,1)$ \\ \hline \hline
-  \end{tabular}
-  \label{tab:variableilrma}
-\end{table}
-%-%-%-%-%-%-%-%-%
-%-%-%-%-%-%-%-%-%
-\begin{table}[t] 
-  \caption{Experimental conditions of $t$-ILRMA}
-  \centering
-  \begin{tabular}{cc}\hline
-    Parameter & Value \\ \hline \hline
-    FFT length & 64 samples  \\ \hline
-    Shift length & 4 samples \\ \hline
-    Channel number（Channel number: $N$） & 4 \\ \hline
-    frequency bins（frequency bins: $I$） & 33 \\ \hline
-    Initial value of separating matrix & $N \times N \times I$ identity matrix  \\ \hline
-    Initial value per frequency & $N \times N$ identity matrix  \\ \hline
-    Number of iterations & 100\\ \hline
-    Freedom of student's $t$-distribution & 1, 2, 5\\ \hline
-    Domains in low-rank modeling of signal source & 1(Amplitude domain), 2(Power dmain)\\ \hline
-  \end{tabular}
-  \label{tab:tilrma}
-\end{table}
-%-%-%-%-%-%-%-%-%
+\textcolor{red}{次に，ILRMAの実験条件（基底数固定型と基底数可変型を含む）を示す．\ref{sec:conv:ilrma}節で示した式（\ref{eq:ip1}）--（\ref{eq:ip3}）の反復更新式の反復回数は100回に設定した．また基底数固定型ILRMAの基底数を各チャネル毎に3本とした．基底数可変型ILRMAでは基底数を12本とした．基底数固定型ILRMAは反復毎にプロジェクションバックで正規化を行い，反復毎にプロジェクションバックで正規化を行わない．その他の実験条件はIVAと同様である．}
+
+\textcolor{red}{最後に，$t$-ILRMAの実験条件を示す．複素Studen's~$t$分布の形状パラメタ$\nu$は1, 2, 及び5に設定し，NMFの信号領域を決定するパラメタ$p$は1（振幅ドメイン）及び2（パワードメイン）と設定した．また，\ref{sec:conv:tilrma}節で示した式（\ref{eq:tip1}）--（\ref{eq:tip3}）の反復更新式の反復回数は100回に設定した．その他の実験条件はIVA及びILRMAと同様である．}
+
 
 %----------------------------------------------
 \section{実験結果}
@@ -762,19 +705,25 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 %----------------------------------------------
 
 %----------------------------------------------
-\subsection{IVAを適用した結果}
+\subsection{\textcolor{red}{フィルタを適用した観測信号}}
 \label{sec:conv:resultiva}
 %----------------------------------------------
-Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用した測定信号である．Fig. \ref{fig:sfiva64est}はFig. \ref{fig:sfiva64obs}にIVAを適用した結果である．Fig. \ref{fig:hriva64ch3}はフィルタリングしていない推定信号に対して心拍推定アルゴリズムを適用した推定心拍値である．Fig. \ref{fig:fhriva64ch3}はフィルタリングした推定信号に対して心拍推定アルゴリズムを適用した結果である．Fig. \ref{fig:fhriva64ch3}はよりリファレンスデータの推定心拍値に近い値を示していることが分かる．そのためフィルタリングを行うことで推定精度が向上するといえる．しかし，振動の開始時からの約2分間と終了時は体動が大きくなることから，推定心拍値がレファレンスデータに対して大きな差が表れている．
+\textcolor{red}{Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用した測定信号である．1.5~Hz以下の信号がフィルタによって落とされているが，依然としてパワーの小さい領域において呼吸信号がみられる0.4~Hzの周波数成分及び振動台による振動の信号が卓越して残留している．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_filter_64_obs.pdf}
-\caption{Observated back signal no.~2 with filter.}
+\caption{Spectrograms of output signals obtained by high-pass filter with Back no.~2 inputs.}
 \label{fig:sfiva64obs}
 \end{figure}
 %-%-%-%-%-%-%-%-%
+
+%----------------------------------------------
+\subsection{IVAを適用した結果}
+\label{sec:conv:resultiva}
+%----------------------------------------------
+Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用した測定信号である．Fig. \ref{fig:sfiva64est}はFig. \ref{fig:sfiva64obs}にIVAを適用した結果である．Fig. \ref{fig:hriva64ch3}はフィルタリングしていない推定信号に対して心拍推定アルゴリズムを適用した推定心拍値である．Fig. \ref{fig:fhriva64ch3}はフィルタリングした推定信号に対して心拍推定アルゴリズムを適用した結果である．Fig. \ref{fig:fhriva64ch3}はよりリファレンスデータの推定心拍値に近い値を示していることが分かる．そのためフィルタリングを行うことで推定精度が向上するといえる．しかし，振動の開始時からの約2分間と終了時は体動が大きくなることから，推定心拍値がレファレンスデータに対して大きな差が表れている．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
