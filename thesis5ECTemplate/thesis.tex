@@ -171,16 +171,42 @@ A technique to extract only the target sound source from a signal source with mi
 
     \bibitem{bioharness}
    Zephr Bioharness, https://www.zephyranywhere.com/media/download/bioharness3-user-manual.pdf
+  
+%  \bibitem{bss_review}
+%  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
+%  {\em APSIPA Trans. Signal and Information Processing,} vol.~8, no.~e12, pp.~1--14, 2019.
 
-    \bibitem{NMF}
+  \bibitem{Kim2007_iva}
+  T.~Kim, H.~T.~Attias, S.-Y.~Lee, and T.-W.~Lee, ``Blind source separation exploiting higher-order frequency dependencies,'' 
+  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~15, no.~1, pp.~70--79, 2007.
+
+  \bibitem{auxfunc}
+  D.~R.~Hunter and K.~Lange, ``A tutorial on MM algorithms,'' 
+  {\em The American Statistician,} vol.~58, no.~1, pp.~30-–37, 2004.
+
+  \bibitem{auxIVA}
+  N.~Ono and S.~Miyabe, ``Auxiliary-function-based independent component analysis for super-Gaussian sources,'' 
+  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation,} pp.165--172, 2010.
+
+  \bibitem{stable_auxIVA}
+  N.~Ono,
+  ``Stable and fast update rules for independent vector analysis based on auxiliary function technique,''
+  {\em Proc. IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pp.189--192, 2011.
+
+  \bibitem{NMF}
   D.~D.~Lee and H.~S.~Seung,
   ``Learning the parts of objects by non-negative matrix factorization,''
   {\em Nature}, vol.~401, no.~6755, pp.~788--791, 1999.
-  
+
+  \bibitem{isnmf}
+  C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
+  ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
+  {\em Neural Computation}, vol.~21, 793--830, 2009
+
   \bibitem{singlechsep}
   P.~Smaragdis, B.~Raj, and M.~Shashanka, 
   ``Supervised and semi-supervised separation of sounds from single-channel mixtures,''  
-  {\em Proc. International Conference on Independent Component Analysis and Signal Separation}, no. 1, 2007, pp. 414–421.
+ {\em Proc. International Conference on Independent Component Analysis and Signal Separation}, no. 1, 2007, pp. 414–421.
   
   \bibitem{supNMF}
   D.~Kitamura, H.~Saruwatari, Y.~Kosuke, K.~Shikano, Y.~Takahashi, and K.~Kondo, 
@@ -191,18 +217,15 @@ A technique to extract only the target sound source from a signal source with mi
   A.~Ozerov and C.~Févotte,
   ``Multichannel nonnegative matrix factorization in convolutive mixtures for audio source separation,'' 
   {\em IEEE Trans. Audio, Speech, and Language Processing,} vol.~18, no.~3, pp. 550--563, 2010.
-  
-  \bibitem{bss_review}
-  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
-  {\em APSIPA Trans. Signal and Information Processing,} vol.~8, no.~e12, pp.~1--14, 2019.
 
-  \bibitem{Kim2007_iva}
-  T.~Kim, H.~T.~Attias, S.-Y.~Lee, and T.-W.~Lee, ``Blind source separation exploiting higher-order frequency dependencies,'' 
-  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~15, no.~1, pp.~70--79, 2007.
+  \bibitem{iwase}
+  Y.~Iwase and D.~Kitamura, 
+  ``Supervised audio source separation based on nonnegative matrix factorization with cosine similarity penalty''
+  {\em IEICE Transactions on Fundamentals of Electronics, Communications and Computer Sciences}, vol.~E105-A, no.~6, pp. ???–???, 2022.
 
-  \bibitem{auxIVA}
-  N.~Ono and S.~Miyabe, ``Auxiliary-function-based independent component analysis for super-Gaussian sources,'' 
-  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation,} pp.165--172, 2010.
+  \bibitem{MU}
+  M.~Nakano, H.~Kameoka, J.~Le~Roux, Y.~Kitano, N.~Ono, S.~Sagayama, ``Convergence-guaranteed multiplicative algorithms for nonnegative matrix factorization with beta-divergence,''
+  {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, 2010, pp.~283--288.
     
   \bibitem{ILRMA}
   D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari,
@@ -218,71 +241,53 @@ A technique to extract only the target sound source from a signal source with mi
   ``Minimal distortion principle for blind source separation,''
   {\em Proc. SICE Annual Conference}, pp.~722--727, 2001.
   
-  \bibitem{stable_auxIVA}
-  N.~Ono,
-  ``Stable and fast update rules for independent vector analysis based on auxiliary function technique,''
-  {\em Proc. IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pp.189--192, 2011.
-  
 %   \bibitem{undnmf}
 %   S.~Arberet, A.~Ozerov, N.Q.~Duong, E.~Vincent, R.~Gribonval, F.~Bimbot, P.~Vandergheynst,
 %   ``Nonnegative matrix factorization and spatial covariance model for under-determined reverberant audio source separation,''
 %   in {\em 10th International Conference on Information Sciences Signal Processing and their Applications (ISSPA)}, pp.~1--4, 2010.
   
-  \bibitem{psi-div}
-  S.~Eguchi and Y.~Kano, 
-  ``Robustifing maximum likelihood estimation by psi- divergence,'' 
-  {\em ISM Research Memorandum}, 2001.
+%  \bibitem{psi-div}
+%  S.~Eguchi and Y.~Kano, 
+%  ``Robustifing maximum likelihood estimation by psi- divergence,'' 
+%  {\em ISM Research Memorandum}, 2001.
   
-  \bibitem{ext_nmf}
-  A.~Cichocki, S.~Amari, R.~Zdunek, R.~Kompass, G.~Hori, and Z.~He, 
-  ``Extended SMART algorithms for non-negative matrix factorization,'' 
-  {\em Proc. International Conference on Artificial Intelligence and Soft Computing}, pp.~548--562, 2006.
+%  \bibitem{ext_nmf}
+%  A.~Cichocki, S.~Amari, R.~Zdunek, R.~Kompass, G.~Hori, and Z.~He, 
+%  ``Extended SMART algorithms for non-negative matrix factorization,'' 
+%  {\em Proc. International Conference on Artificial Intelligence and Soft Computing}, pp.~548--562, 2006.
   
-  \bibitem{pssnmf}
-  D.~Kitamura, N.~Ono, H.~Saruwatari, Y.~Takahashi, and K.~Kondo, 
-  ``Effective basis learning for sound source separation by semi-supervised nonnegative matrix factorization,'' 
-  {\em IEICE Technical Report}, EA2015--130, vol.~115, no.~521, pp.~355--360, 2016.
+%  \bibitem{pssnmf}
+%  D.~Kitamura, N.~Ono, H.~Saruwatari, Y.~Takahashi, and K.~Kondo, 
+%  ``Effective basis learning for sound source separation by semi-supervised nonnegative matrix factorization,'' 
+%  {\em IEICE Technical Report}, EA2015--130, vol.~115, no.~521, pp.~355--360, 2016.
+  
+%  \bibitem{paramilrma}
+%  Y.~Mitsui, D.~Kitamura, N.~Takamune, H.~Saruwatari, Y.~Saruwatari and K.~Kondo, ``Independent low-rank matrix analysis based on parametric majorization-equalization algorithm,'' 
+%  {\em Proc. IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing}, pp. 98--102, 2017.  
 
-  \bibitem{isnmf}
-  C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
-  ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
-  {\em Neural Computation}, vol.~21, 793--830, 2009
-  
-  \bibitem{MU}
-  M.~Nakano, H.~Kameoka, J.~Le~Roux, Y.~Kitano, N.~Ono, S.~Sagayama, ``Convergence-guaranteed multiplicative algorithms for nonnegative matrix factorization with beta-divergence,''
-  {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, 2010, pp.~283--288.
-  
-  \bibitem{auxfunc}
-  D.~R.~Hunter and K.~Lange, ``A tutorial on MM algorithms,'' 
-  {\em The American Statistician,} vol.~58, no.~1, pp.~30-–37, 2004.
-  
-  \bibitem{paramilrma}
-  Y.~Mitsui, D.~Kitamura, N.~Takamune, H.~Saruwatari, Y.~Saruwatari and K.~Kondo, ``Independent low-rank matrix analysis based on parametric majorization-equalization algorithm,'' 
-  {\em Proc. IEEE International Workshop on Computational Adv  
+%  \bibitem{mm}
+%  C.~Févotte and J.~Idier, 
+%  ``Algorithms for nonnegative matrix factorization with the $\beta$-divergence,'' 
+%  {\em Neural Computation}, vol.~23, no.~9, pp.~2421--2456, 2011.
 
-  \bibitem{mm}
-  C.~Févotte and J.~Idier, 
-  ``Algorithms for nonnegative matrix factorization with the $\beta$-divergence,'' 
-  {\em Neural Computation}, vol.~23, no.~9, pp.~2421--2456, 2011.
+%  \bibitem{intBSS}
+%  大島風雅, 中野将生, 北村大地,
+%``ユーザーからの補助情報を用いる独立低ランク行列分析''
+%  {\em 日本音響学会2020年秋季研究発表会講演論文集}, pp.~269--272, 2020.    
 
-  \bibitem{intBSS}
-  大島風雅, 中野将生, 北村大地,ances in Multi-Sensor Adaptive Processing}, pp. 98--102, 2017.
-``ユーザーからの補助情報を用いる独立低ランク行列分析''
-  {\em 日本音響学会2020年秋季研究発表会講演論文集}, pp.~269--272, 2020.    
-
-  \bibitem{SDR}
-  E.~Vincent, R.~Gribonval, and C.~F\'evotte, ``Performance measurement in blind audio source separation,'' 
-  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~14, no.~4, pp.~1462--1469, 2006.
+%  \bibitem{SDR}
+%  E.~Vincent, R.~Gribonval, and C.~F\'evotte, ``Performance measurement in blind audio source separation,'' 
+%  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~14, no.~4, pp.~1462--1469, 2006.
   
-  \bibitem{sisec}
-  S.~Araki, A.~Ozerov, V.~Gowreesunker, H.~Sawada, F.~Theis, G.~Nolte, D.~Lutter, and N.~Q.~K.~Duong, 
-  ``The 2010 signal separation evaluation campaign (SiSEC2010): Audio source separation,'' 
-  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation}, 2010, pp. 114–122.
+%  \bibitem{sisec}
+%  S.~Araki, A.~Ozerov, V.~Gowreesunker, H.~Sawada, F.~Theis, G.~Nolte, D.~Lutter, and N.~Q.~K.~Duong, 
+%  ``The 2010 signal separation evaluation campaign (SiSEC2010): Audio source separation,'' 
+%  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation}, 2010, pp. 114–122.
   
-  \bibitem{E2A}
-  S.~Nakamura, K.~Hiyane, F.~Asano, T.~Nishiura, and T.~Yamada, 
-  ``Acoustical sound database in real environments for sound scene understanding and hands-free speech recognition,'' 
-  {\em Proc. International Conference on Language Resources and Evaluation}, 2000, pp. 965–968.
+%  \bibitem{E2A}
+%  S.~Nakamura, K.~Hiyane, F.~Asano, T.~Nishiura, and T.~Yamada, 
+%  ``Acoustical sound database in real environments for sound scene understanding and hands-free speech recognition,'' 
+%  {\em Proc. International Conference on Language Resources and Evaluation}, 2000, pp. 965–968.
 
   \bibitem{GGD}
   D.~Kitamura,~``Nonnegative matrix factorization based on complex generative model,''

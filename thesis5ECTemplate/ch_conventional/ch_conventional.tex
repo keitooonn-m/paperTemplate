@@ -151,18 +151,18 @@
 \section{まえがき}
 %----------------------------------------------
 本章では，本研究で適用した手法について説明する．
-まず\ref{sec:conv:researchmotivation}節では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系において運転者の体表面とレーダセンサの相対的な位置関係は未知であること，及び音響信号処理分野で高度に発展しているBSSを観測信号に適用することは妥当であるという動機について述べる．}
+まず\ref{sec:conv:researchmotivation}節では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系において運転者の体表面とレーダセンサの相対的な位置関係は未知であること，及び音響信号処理分野で高度に発展していることから，BSSを観測信号に適用することは妥当であるという動機について述べる．}
 \ref{sec:conv:bssformularization}節では，時間周波数領域におけるBSSの定式化を行う．
 \textcolor{red}{\ref{sec:conv:iva}節では，音響信号処理分野で有名な周波数領域BSSの一つであるIVAについて説明する．}
 \ref{sec:conv:isnmf}節では，行列分解の手法の一つであるNMFのうちISNMFについて説明する
 \textcolor{red}{\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節では，IVAと同様に音響信号処理分野で有名な周波数領域BSSであるILRMA及び複素Student's $t$分布を生成モデルと仮定する$t$-ILRMAについて説明する．
-\ref{sec:conv:heartrateestalgo}節では，\ref{sec:conv:iva}節，\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節で説明する3手法によって得られる分離信号の心拍推定精度を確認するために用いる心拍推定アルゴリズムについて説明する．}
+\ref{sec:conv:heartrateestalgo}節では，\ref{sec:conv:iva}節，\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節で説明する三つの手法によって得られる分離信号の心拍推定精度を確認するために用いる心拍推定アルゴリズムについて説明する．}
 
 %----------------------------------------------
 \section{本研究の動機}
 \label{sec:conv:researchmotivation}
 %----------------------------------------------
-\textcolor{red}{運転者の体表面とレーダセンサの相対的な位置関係は未知としたまま心拍推定を行えることが望ましい．従って，BSSと呼ばれる手法を\ref{chap:measurementstructsig}章で述べた観測信号に適用することは妥当であると考えられる．さらに，BSSはとりわけ音響信号処理分野で高度に発展してきた歴史を持つ．音響信号処理分野では残響による信号源（音源）の混合が部屋の残響などによる畳み込み混合となってしまうため，時間領域でのBSSでは音源を分離することはできない．そのため，観測信号にSTFTを適用して時間周波数領域でBSSを行う手法が長く研究されており，近年においては，IVAやILRMA等，高度に発展したアルゴリズムが提案されている．このような，本論文では前述の音響信号処理分野で高度に発展したBSSアルゴリズムをレーダセンサで観測された4チャネルの信号に適用し，心拍由来の信号，呼吸，及び体動由来の信号等の分離が可能であるか，実験的に調査する．}
+\textcolor{red}{運転者の体表面とレーダセンサの相対的な位置関係は未知としたまま心拍推定を行えることが望ましい．従って，BSSと呼ばれる手法を\ref{chap:measurementstructsig}章で述べた観測信号に適用することは妥当であると考えられる．さらに，BSSはとりわけ音響信号処理分野で高度に発展してきた歴史を持つ．音響信号処理分野では残響による信号源（音源）の混合が部屋の残響などによる畳み込み混合となってしまうため，時間領域でのBSSでは音源を分離することはできない．そのため，観測信号にSTFTを適用して時間周波数領域でBSSを行う手法が長く研究されており，近年においては，IVAやILRMA等，高度に発展したアルゴリズムが提案されている．本論文では前述の音響信号処理分野で高度に発展したBSSアルゴリズムをレーダセンサから観測された4チャネルの信号に適用し，心拍由来の信号，呼吸，及び体動由来の信号等の分離が可能であるか，実験的に調査する．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
@@ -179,7 +179,7 @@
 \label{sec:conv:bssformularization}
 %----------------------------------------------
 
-\textcolor{red}{音響信号処理分野におけるBSSでは，録音時の部屋の残響や音速の遅さ等に起因して，音源の混合現象は時間領域での瞬時混合（Fig.~\ref{fig:bss}における混合行列$\bm{A}$の行列積）ではなく，畳み混み混合になる．このような複雑な混合系を持つ観測信号を単純な瞬時混合でモデル化するために，観測信号にSTFTを適用し，時価領域から時間周波数領域の信号に変換することが一般的である．時間領域での畳み込み混合は，時間周波数領域での瞬時混合とみなせるため，Fig.~\ref{fig:bss}に示すような混合系を周波数ごとに考えればよい．
+\textcolor{red}{音響信号処理分野におけるBSSでは，録音時の部屋の残響や音速の遅さ等に起因して，音源の混合現象は時間領域での瞬時混合（Fig.~\ref{fig:bss}における混合行列$\bm{A}$の行列積）ではなく，畳み混み混合になる．このような複雑な混合系を持つ観測信号を単純な瞬時混合でモデル化するために，観測信号にSTFTを適用し，時間領域から時間周波数領域の信号に変換することが一般的である．時間領域での畳み込み混合は，時間周波数領域での瞬時混合とみなせるため，Fig.~\ref{fig:bss}に示すような混合系を周波数ごとに考えればよい．
 このような混合系のモデル化に基づくBSSを周波数領域BSSと呼ばれ，音響信号処理においては効果的な音源分離を達成するための重要なモデルとなっている．本論文で取り扱うBSSであるIVA及びILRMAはいずれも周波数領域のBSSの一つである．}
 
 以下に，周波数領域BSSの定式化を行う．
@@ -190,8 +190,8 @@
 \bm{x}_{ij} &= [x_{ij1}, x_{ij2}, \cdots, x_{ijm}, \cdots, x_{ijM}]^{\mathrm{T}} \in \mathbb{C}^{M} \label{eq:x} \\
 \bm{y}_{ij} &= [y_{ij1}, y_{ij2}, \cdots, y_{ijn}, \cdots, y_{ijN}]^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:y}
 \end{align}
-ここで，\textcolor{red}{$i=1, 2,  \cdots, I$, $j=1, 2,  \cdots, J$, $n=1, 2,  \cdots, N$, 及び$m=1, 2, \cdots, M$はそれぞれ周波数ビン，時間フレーム，信号源，及びチャネルのインデクスを表す．ここで，$^{\mathrm{T}}$は行列及びベクトルの転置を表す．また，式(\ref{eq:s})--式(\ref{eq:y})の各信号においては，時間周波数行列としての表記もそれぞれ$\bm{S}_n\in\mathbb{C}^{{I\times J}}$, $\bm{X}_m\in\mathbb{C}^{{I\times J}}$，及び$\bm{Y}_n\in\mathbb{C}^{{I\times J}}$として定義しておく．}
-\textcolor{red}{式(\ref{eq:s})--式(\ref{eq:y})において}，周波数ごとの時不変な（時間フレーム$j$に依存しない）混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いると，混合時の\textcolor{red}{畳み込み長}がSTFTの短時間信号長（窓長）$L$よりも十分に短い場合，観測信号は次式で表せる.
+ここで，\textcolor{red}{$i=1, 2,  \cdots, I$, $j=1, 2,  \cdots, J$, $n=1, 2,  \cdots, N$, 及び$m=1, 2, \cdots, M$はそれぞれ周波数ビン，時間フレーム，信号源，及びチャネルのインデクスを表す．ここで，$^{\mathrm{T}}$は行列及びベクトルの転置を表す．また，式(\ref{eq:s})--(\ref{eq:y})の各信号においては，時間周波数行列としての表記もそれぞれ$\bm{S}_n\in\mathbb{C}^{{I\times J}}$, $\bm{X}_m\in\mathbb{C}^{{I\times J}}$，及び$\bm{Y}_n\in\mathbb{C}^{{I\times J}}$として定義しておく．}
+\textcolor{red}{式(\ref{eq:s})--(\ref{eq:y})において}，周波数ごとの時不変な（時間フレーム$j$に依存しない）混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いると，混合時の\textcolor{red}{畳み込み長}がSTFTの短時間信号長（窓長）$L$よりも十分に短い場合，観測信号は次式で表せる.
 \begin{align}
   \bm{x}_{ij} = \bm{A}_i \bm{s}_{ij} \label{eq:xas}
 \end{align}
@@ -224,7 +224,7 @@
 \label{fig:laplace}
 \end{figure}
 %-%-%-%-%-%-%-%-%
-ここでは\textcolor{red}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
+\textcolor{red}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
 \begin{align}
     \overline{\bm{s}}_{jn} &= [s_{1jn}, s_{2jn}, \cdots, s_{ijn}, \cdots, s_{Ijn} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
     \overline{\bm{x}}_{jm} &= [x_{1jm}, x_{2jm}, \cdots, x_{ijm}, \cdots, x_{Ijm} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
@@ -240,7 +240,7 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 \label{eq:iva_model}    
 \end{align}
 ここで，$\sigma_{in}>0$はスケールパラメタである．
-式(\ref{eq:iva_model})の分布は球対称性を持つため，同一ベクトル内の成分が高次相関を持つ．
+式(\ref{eq:iva_model})の分布は球対称性を持つため，同一ベクトル内の成分が高次相関を持つ\cite{Kim2007_iva}．
 したがって，IVAは同時に生起する周波数成分を一つの\textcolor{red}{信号源}としてまとめる傾向がある．\textcolor{red}{この性質は，信号源が基本周波数成分とその整数倍の周波数成分からなる場合（調波構造を持つ場合）に，それらの成分を同一の信号源の成分とみなすことに対応する．本論文で扱う信号源においては，Fig.~\ref{fig:4chobsspect}に示されるように，心拍由来の成分や振動台で加振される成分などに顕著な調波構造がみられる．そのため，IVAが仮定する周波数間の高次相関は，本論文が対象とする観測信号や信号源に対しても有効であると考えられる．}
 
 \textcolor{red}{信号源}周波数ベクトル間の独立性$p(\overline{\bm{y}}_{j1}, \overline{\bm{y}}_{j2}, \cdots, \overline{\bm{y}}_{jN}) = \prod_n p(\overline{\bm{y}}_{in})$を仮定すると，IVAの観測信号に対する負対数尤度関数は次式で得られる．
@@ -256,9 +256,10 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（iterative projection: IP）\cite{auxIVA}を用いた最適化アルゴリズムによって，高速かつ安定に分離行列を推定できる\cite{stable_auxIVA}．この反復最適化更新則は下記の通りである．}
 \begin{align}
 \bm{G}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sqrt{\sum_{i} |\bm{w}_{in}^\mathrm{H}\bm{x}_{ij}|^{2}}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{ep:auxIVAip1} \\
-\bm{w}_{in} &\leftarrow (\bm{W}_i \bm{U}_{in})^{-1} \bm{e}_n \label{ep:auxIVAip2} \\
-\bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{U}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{ep:auxIVAip3}
+\bm{w}_{in} &\leftarrow (\bm{W}_i \bm{G}_{in})^{-1} \bm{e}_n \label{ep:auxIVAip2} \\
+\bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{G}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{ep:auxIVAip3}
 \end{align}
+ここで，$\bm{e}_{n} \in \mathbb{R}^{N}_{\{0,1\}}$は$n$番目の要素が,他要素が0のベクトルである．
 \textcolor{red}{式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）を反復計算して分離行列$\bm{W}_i$を求めることができる．なお，この反復最適化アルゴリズムは1回の更新で負対数尤度関数（\ref{eq:ivalike}）の値が減少する（または変動しない）ことが理論的に保証されている．}
 
 
@@ -267,13 +268,13 @@ IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（ite
 \label{sec:conv:isnmf}
 %----------------------------------------------
 
-\textcolor{red}{本節では，次節で取り扱う周波数領域BSSであるILRMAを説明するために必要なNMFの理論（特にISNMFの生成モデル）について概説する．}
-NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{非負行列を低ランク近似する数理アルゴリズムの一つである．特に，少数の非負の来てベクトルを教師なし学習として推定できるため，観測された非負行列に含まれる非負潜在パターンを抽出することが可能である．音響信号処理分野では，NMFに基づくBSSも数多く提案されている\cite{singlechsep, supNMF, MNMF_oz}．}
+\textcolor{red}{本節では，次節で取り扱う周波数領域BSSであるILRMAを説明するために必要なNMF~\cite{NMF}の理論（特にISNMF~\cite{isnmf}の生成モデル）について概説する．}
+NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列を低ランク近似する数理アルゴリズムの一つである．特に，少数の非負の来てベクトルを教師なし学習として推定できるため，観測された非負行列に含まれる非負潜在パターンを抽出することが可能である．音響信号処理分野では，NMFに基づくBSSも数多く提案されている\cite{singlechsep, supNMF, MNMF_oz, iwase}．}
 
-単一チャネルの\textcolor{red}{観測信号（時間波形）にSTFTを適用することで得られる複素スペクトログラムを$\bm{Z}\in\mathbb{C}^{I\times J}$とする．この$\bm{Z}$に対するパワースペクトログラムを$|\bm{Z}|^{.2}$と表記する．ここで，行列に対する$|\cdot|$及びドット付きの指数乗はそれぞれ要素毎の絶対値及び要素毎の次数場を表す．パワースペクトログラムは非負行列であるため，NMFで次式のように低ランク近似することが可能である．}
+単一チャネルの\textcolor{red}{観測信号（時間波形）にSTFTを適用して得られる複素スペクトログラムを$\bm{B}\in\mathbb{C}^{I\times J}$とする．この$\bm{B}$に対するパワースペクトログラムを$|\bm{B}|^{.2}$と表記する．ここで，行列に対する$|\cdot|$及びドット付きの指数乗はそれぞれ要素毎の絶対値及び要素毎の次数場を表す．パワースペクトログラムは非負行列であるため，NMFで次式のように低ランク近似することが可能である．}
 
 \begin{align}
-    |\bm{Z}|^{.2} = \bm{TV}　\label{eq:powerspect}
+    |\bm{B}|^{.2} = \bm{TV}　\label{eq:powerspect}
 \end{align}
 ここで，$\bm{T} \in \mathbb{R}^{I \times K}_{\geq 0}$を基底行列，$\bm{V} \in \mathbb{R}^{K \times J}_{\geq 0}$をアクティベーション行列という．
 \textcolor{red}{また，$\bm{T}$の列数及び$\bm{V}$の行数である$K$は事前に設定するパラメタであり，式（\ref{eq:powerspect}）の右辺（モデル行列$\bm{TV}$）のランクに対応する．}通常は$K \ll \min (I,J)$となるように設定される．
@@ -282,17 +283,17 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 \textcolor{red}{ISNMFでは，}基底行列$\bm{T}$とアクティベーション行列$\bm{V}$は次式の最小化問題の解として推定される．
 
 \begin{align}
-    \nonumber \min_{\bm{T,V}} \mathcal{D}(|\bm{Z}|^{.2} | \bm{TV}) ~~\mathrm{s.t.} ~ t_{ik}, v_{kj} \geq 0 ~~\forall i,~j,~k
+    \min_{\bm{T,V}} \mathcal{D}(|\bm{B}|^{.2} | \bm{TV}) ~~\mathrm{s.t.} ~ t_{ik}, v_{kj} \geq 0 ~~\forall i,~j,~k
 \end{align}
 \begin{align}
-    \mathcal{D}(|\bm{Z}|^{.2}|\bm{TV}) = \sum_{i,j}\left[ \frac{ |z_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj} } - \log{\frac{ |z_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj}}} -1 \right] \label{eq:matrixisdiv}
+    \mathcal{D}(|\bm{B}|^{.2}|\bm{TV}) = \sum_{i,j}\left[ \frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj} } - \log{\frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj}}} -1 \right] \label{eq:matrixisdiv}
 \end{align}
-ここで，\textcolor{red}{$z_{ij}$，$t_{ik}$，及び$v_{kj}$はそれぞれ$\bm{Z}$, $\bm{T}$, 及び$\bm{V}$}の要素である．
-また，\textcolor{red}{$k= 1, 1, \cdots, K$は基底ベクトルのインデクスを表す．さらに，式（\ref{eq:matrixisdiv}）}は2つの行列（$|\bm{Z}|^{.2}$及び$\bm{TV}$）間の類似度を測る関数で\textcolor{red}{あり，Itakura--Saitoダイバージェンスと呼ばれる．}ISNMFの$\bm{T}$及び$\bm{V}$の最適化のための反復更新式は式(\ref{eq:MUT})及び式(\ref{eq:MUV})で表される\cite{MU}．
+ここで，\textcolor{red}{$b_{ij}$，$t_{ik}$，及び$v_{kj}$はそれぞれ$\bm{B}$, $\bm{T}$, 及び$\bm{V}$}の要素である．
+また，\textcolor{red}{$k= 1, 1, \cdots, K$は基底ベクトルのインデクスを表す．さらに，式（\ref{eq:matrixisdiv}）}は2つの行列（$|\bm{B}|^{.2}$及び$\bm{TV}$）間の類似度を測る関数で\textcolor{red}{あり，Itakura--Saitoダイバージェンスと呼ばれる．}ISNMFの$\bm{T}$及び$\bm{V}$の最適化のための反復更新式は式(\ref{eq:MUT})及び式(\ref{eq:MUV})で表される\cite{MU}．
 
 \begin{align}
-    t_{ik} \leftarrow t_{ik} \sqrt \frac{ \sum_j |z_{ij}|^2 v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_j v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUT} \\
-    v_{kj} \leftarrow v_{kj} \sqrt \frac{ \sum_i |z_{ij}|^2 t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_i t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUV}
+    t_{ik} \leftarrow t_{ik} \sqrt \frac{ \sum_j |b_{ij}|^2 v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_j v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUT} \\
+    v_{kj} \leftarrow v_{kj} \sqrt \frac{ \sum_i |b_{ij}|^2 t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_i t_{ik} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUV}
 \end{align}
 この更新式は乗算型反復更新式と呼ばれ，目的関数が単調非増加\textcolor{red}{となる}ことが保証されている．
 
@@ -315,9 +316,9 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 %-%-%-%-%-%-%-%-%
 
 \textcolor{red}{ISNMFは，複素スペクトログラムに対する生成モデルを仮定した最尤推定問題と等価である．次節で述べるBSSアルゴリズムのILRMAの説明には，ISNMFの生成モデルが必要であるため，本節で述べる．}
-\textcolor{red}{複素スペクトログラムである$\bm{Z}$の要素である$z_{ij}$が，次式のように複素部分成分$c_{ijk}$に分解されることを仮定する．}確率モデルに従って生成されていると仮定する．
+\textcolor{red}{複素スペクトログラムである$\bm{B}$の要素である$b_{ij}$が，次式のように複素部分成分$c_{ijk}$に分解されることを仮定する．}確率モデルに従って生成されていると仮定する．
 \begin{align}
-    z_{ij} = \sum_k c_{ijk}　\label{eq:zijmodel}
+    b_{ij} = \sum_k c_{ijk}　\label{eq:zijmodel}
 \end{align}
 \textcolor{red}{このとき，複素部分成分$c_{ijk}$に対して次式の生成モデルを仮定する．}
 \begin{align}
@@ -328,26 +329,26 @@ NMF~\cite{NMF}とは行列分解の方法の一つである．\textcolor{red}{�
 \begin{align}
     \mathcal{N}_{\mathbb{C}} (c; \mu, \sigma^2) &= \frac{1}{\pi \sigma^2} \exp \left( -\frac{|c-\mu|^2}{\sigma^2} \right) \label{eq:compGausiandist}
 \end{align}
-ここで，$\mu$及び$\sigma^2$はそれぞれ平均及び分散を示す．\textcolor{red}{この分布の外形をFig. \ref{fig:gauss}に示す．式（\ref{eq:compGausiandist}）は再生性を持つ分布であるため，式（\ref{eq:zijmodel}）で構成される$z_{ij}$もまた次式の生成モデルを持つことになる．}
+ここで，$\mu$及び$\sigma^2$はそれぞれ平均及び分散を示す．\textcolor{red}{この分布の外形をFig. \ref{fig:gauss}に示す．式（\ref{eq:compGausiandist}）は再生性を持つ分布であるため，式（\ref{eq:zijmodel}）で構成される$b_{ij}$もまた次式の生成モデルを持つことになる．}
 \begin{align}
-    z_{ij} \sim \mathcal{N}_{\mathbb{C}}\left( z_{ij}; 0, \sum_k t_{ik} v_{kj} \right) \label{eq:nmfgen}
+    b_{ij} \sim \mathcal{N}_{\mathbb{C}}\left( b_{ij}; 0, \sum_k t_{ik} v_{kj} \right) \label{eq:nmfgen}
 \end{align}
-\textcolor{red}{ISNMFでは}，観測信号$z_{ij}$が与えられた場合における$t_{ik}$及び$v_{kj}$の最尤推定問題を考える．
+\textcolor{red}{ISNMFでは}，観測信号$b_{ij}$が与えられた場合における$t_{ik}$及び$v_{kj}$の最尤推定問題を考える．
 このとき，尤度関数は
 \begin{align}
-    \mathcal{L}(\bm{T}, \bm{V}) = \prod_{i,j} \frac{1}{\pi \sum_k t_{ik} v_{kj} } \exp \left( -\frac{|z_{ij}|^2}{\sum_k t_{ik} v_{kj}} \right)
+    \mathcal{L}(\bm{T}, \bm{V}) = \prod_{i,j} \frac{1}{\pi \sum_k t_{ik} v_{kj} } \exp \left( -\frac{|b_{ij}|^2}{\sum_k t_{ik} v_{kj}} \right)
 \end{align}
 となり，負対数尤度\textcolor{red}{関数}は
 \begin{align}
-    -\log\mathcal{L}(\bm{T}, \bm{V}) = \sum_{i,j} \left( \frac{|z_{ij}|^2}{\sum_k t_{ik} v_{kj}} + \log \sum_k t_{ik} v_{kj} + \log \pi \right) \label{eq:negativeloglikelihood}
+    -\log\mathcal{L}(\bm{T}, \bm{V}) = \sum_{i,j} \left( \frac{|b_{ij}|^2}{\sum_k t_{ik} v_{kj}} + \log \sum_k t_{ik} v_{kj} + \log \pi \right) \label{eq:negativeloglikelihood}
 \end{align}
 で表される．
-\textcolor{red}{式（\ref{eq:negativeloglikelihood}）は，パワースペクトログラム$|Z_{ij}|^2$に対するISNMFの目的関数（式（\ref{eq:matrixisdiv}））と定数部分の違いを除いて一致する．そのため，負対数尤度関数は以下のように書き換えられる．}
+\textcolor{red}{式（\ref{eq:negativeloglikelihood}）は，パワースペクトログラム$|B_{ij}|^2$に対するISNMFの目的関数（式（\ref{eq:matrixisdiv}））と定数部分の違いを除いて一致する．そのため，負対数尤度関数は以下のように書き換えられる．}
 \begin{align}
-    -\log\mathcal{L}(\bm{T}, \bm{V}) = \mathcal{D} \left( |Z|^{.2} | \bm{TV} \right) + \mathrm{const.}
+    -\log\mathcal{L}(\bm{T}, \bm{V}) = \mathcal{D} \left( |B|^{.2} | \bm{TV} \right) + \mathrm{const.}
     \label{eq:isnmf}
 \end{align}
-\textcolor{red}{この事実はパワースペクトログラム$|\bm{Z}|^{.2}$にISNMFを適用することが，式(\ref{eq:nmfgen})の生成モデルを仮定した分散の最尤推定問題と等価であることを示している．}
+\textcolor{red}{この事実はパワースペクトログラム$|\bm{B}|^{.2}$にISNMFを適用することが，式(\ref{eq:nmfgen})の生成モデルを仮定した分散の最尤推定問題と等価であることを示している．}
 
 %----------------------------------------------
 \section{ILRMA}
@@ -421,9 +422,15 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \begin{align}
 \sigma_{ijn}^2 = \sum_{r} z_{nr}t_{ir}v_{ri}
 \end{align}
-\textcolor{red}{ここで，$z_{nr}\in [0, 1]$は分割関数と呼ばれ，$r$番目の基底を$n$番目の音源に分配する潜在変数である．従って，$\sum_{n} z_{nr} = 1$という制約がある．この分割関数を含めた基底数可変型ILRMAの更新式は次式となる．}
+\textcolor{red}{ここで，$z_{nr}\in [0, 1]$は分割関数と呼ばれ，$r$番目の基底を$n$番目の音源に分配する潜在変数である．従って，$\sum_{n} z_{nr} = 1$という制約がある．この分割関数を含めた基底数可変型ILRMAの更新式は次式となる．
+\begin{align}
+t_{ir}&\leftarrow t_{ir}\sqrt{\dfrac{\sum _{j,n}\left| b_{ijn}\right| ^{2}z_{nr}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{j,n}z_{nr}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip1} \\
+v_{ir}&\leftarrow v_{ir}\sqrt{\dfrac{\sum _{i,n}\left| b_{ijn}\right| ^{2}z_{nr}t_{ir}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{i,n}z_{nr}t_{ir}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip2} \\
+z_{nr}&\leftarrow z_{nr}\sqrt{\dfrac{\sum _{i,j}\left| b_{ijn}\right| ^{2}t_{ir}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{i,j}t_{ir}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip3} \\
+z_{nr}&\leftarrow \dfrac{z_{nr}}{\sum _{n'}z_{nr}} \label{eq:normalizez}
+\end{align}}
 
-\textcolor{red}{式（）--（）で音源モデルを更新した後は，基底数固定型ILRMAと同様に式（\ref{eq:ip1}）--（\ref{eq:ip3}）で分離行列を更新する．この手続きを反復する．}
+\textcolor{red}{式（\ref{eq:ilrma2ip1}）--（\ref{eq:ilrma2ip3}）で音源モデルを更新した後は，基底数固定型ILRMAと同様に式（\ref{eq:ip1}）--（\ref{eq:ip3}）で分離行列を更新する．この手続きを反復する．また，式（\ref{eq:normalizez}）は前述した通り，$\sum_{n} z_{nr} = 1$を保証するために計算される．}
 
 \textcolor{red}{本論文では，本節で説明したILRMAに関しては基底数固定型及び基底数可変型の2つのアルゴリズムを適用する．しかしながら，次節で述べる$t$-ILRMAにおいては，基底数固定型のみ適用する．}
 
