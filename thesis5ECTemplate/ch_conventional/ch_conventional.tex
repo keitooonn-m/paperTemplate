@@ -5,17 +5,17 @@
 \section{まえがき}
 %----------------------------------------------
 本章では，本研究で扱う信号の測定条件と得られる信号について説明する．
-\textcolor{red}{まず\ref{sec:conv:measurementcondition}節では，本研究で使用する観測信号の測定条件，及び観測信号から分離した心拍信号と比較する正解値として用いる接触型ECGセンサについて説明する．
-\ref{sec:conv:signal}節では，\ref{sec:conv:measurementcondition}節で述べた測定条件から得られる時間波形，及び時間波形にSTFTを適用して得られるパワースペクトログラムについて説明する．また，接触型ECGセンサから得られる信号にSTFTを適用し，観測信号のパワースペクトログラムと比較することで振動台の成分，心拍，呼吸，及び体動等のその他の成分を確認する．
+\textcolor{black}{まず\ref{sec:conv:measurementcondition}節では，本研究で使用する観測信号の測定条件，及び心拍\textcolor{red}{の参照値}として用いる接触型ECGセンサについて説明する．
+\ref{sec:conv:signal}節では，\ref{sec:conv:measurementcondition}節で述べた測定条件\textcolor{red}{とレーダセンサ}から得られる時間波形，及び時間波形にSTFTを適用して得られるパワースペクトログラム\textcolor{red}{を掲載し，考察を述べる}．また，接触型ECGセンサから得られる信号のパワースペクトログラムと比較することで\textcolor{red}{，}振動台の成分，心拍，呼吸，及び体動等のその他の成分を確認する．
 \ref{sec:conv:conclusion2}節では，本章のまとめを述べる．}
 
 %----------------------------------------------
 \section{測定条件}
 \label{sec:conv:measurementcondition}
 %----------------------------------------------
-本研究で使用する信号の\textcolor{red}{振動測定系}はFig.~\ref{fig:sensorstructure}に示すとおりである．\textcolor{red}{運転者を模した}被験者が座った状態で\textcolor{red}{振動測定系}全体を振動させる．Fig.~\ref{fig:sensorimg}に示されている\textcolor{red}{レーダセンサ}を，\textcolor{red}{背部と臀部にあたるシートの内部に埋め込み}，測定を行う．レーダセンサのサンプリング周波数は40~Hzである．\textcolor{red}{振動測定系の振動はsin波の単軸加振であり，Fig.~\ref{fig:sensorstructure}に示す通り，前後・上下・左右方向に振動する．本研究で使用したデータはTable~\ref{tab:vibevacondition}に示すようにNo.~0--No.~6まである．No.~0は振動を加えずに運転者を模した被験者を観測しており，このデータのみ観測時間が5分となっている．No.~1--No.~6のデータは観測時間が7分である．観測開始から1分間は振動を加えていない状態で観測し，その後の5分間は振動を加えた状態，残りの1分間は再度，振動を加えていない状態で観測している．振動は上下方向に加えている．No.~1--No.4~の振幅値はそれぞれ，4~mm, 10~mm, 40~mm, 40~mmで周波数の値は1.2~Hz，No.~5,及びNo.~6の振幅値はそれぞれ4~mm, 10~mmで周波数の値は2.4~Hzとなっている．また，No.~4では，振動の軽減の程度を確認するために被験者はハンドルを握りシートベルトを着用している．}
+		本研究で使用する信号の\textcolor{black}{振動測定系}はFig.~\ref{fig:sensorstructure}に示すとおりである．\textcolor{black}{運転者を模した}被験者が座った状態で\textcolor{black}{振動測定系}全体を振動させる．Fig.~\ref{fig:sensorimg}に示されている\textcolor{black}{レーダセンサ}を，\textcolor{black}{背部と臀部にあたるシートの内部に埋め込み}，\textcolor{red}{計測}を行う．レーダセンサのサンプリング周波数は40~Hzである．\textcolor{black}{振動測定系の振動はsin波の単軸加振であり，Fig.~\ref{fig:sensorstructure}に示す通り，前後・上下・左右方向に振動\textcolor{red}{させることができる}．本研究で使用したデータはTable~\ref{tab:vibevacondition}に示すように\textcolor{red}{Data nos.~0--6の7種類の条件である}．No.~0は振動を加えずに運転者を模した被験者を観測しており，このデータのみ\textcolor{red}{計測}時間が\textcolor{red}{300~s}となっている．\textcolor{red}{Data nos.~0--6}のデータは\textcolor{red}{計測}時間が\textcolor{red}{420~s}である．\textcolor{red}{計測}開始から\textcolor{red}{60~s}は振動を加えていない状態で\textcolor{red}{計測}し，その後の\textcolor{red}{300~s}は振動を加えた状態，残りの\textcolor{red}{60~s}は再度，振動を加えていない状態で観測している．\textcolor{red}{振動台の振動はNos.~1--6のいずれの条件も}上下方向に加えている．\textcolor{red}{Data nos~1--4}の\textcolor{red}{振動台の振動の振幅}はそれぞれ，4~mm, 10~mm, 40~mm, \textcolor{red}{及び}40~mm\textcolor{red}{であり，振動台の振動の周波数は}1.2~Hz\textcolor{red}{である．また，Data nos.~5及び6}の\textcolor{red}{振動台の振動の振幅}はそれぞれ4~mm\textcolor{red}{及び}10~mm\textcolor{red}{であり，振動台の振動の周波数は}2.4~Hzとなっている．\textcolor{red}{なお}，\textcolor{red}{Data no~4に関してのみ振動台の振動}の\textcolor{red}{影響がどの程度軽減するか観測する目的で，}被験者はハンドルを握りシートベルトを着用している．}
 
-\textcolor{red}{また，本研究では，分離した信号と比較する正解値としてFig.~\ref{fig:ecgsensor}に示すBiopac社の接触型ECGセンサ，Zephr~Bioharnessを用いて心拍のリファレンスデータを取得する．接触型ECGであるため，振動台の振動が加えられても高精度な心拍値を得ることが可能である．但し，\ref{chap:intro}章で述べた通りこのセンサは接触型であるので，本研究ではこのセンサから得られる心拍値と同程度の制度をレーダセンサから得られること目的としている．接触型ECGセンサはTable~\ref{tab:ecgdata}に示すように，ECGセンサ生データ，ピエゾセンサ生データ，R-R間隔（R-R interval: RRI），心拍数，呼吸数，及び呼吸の深さを測定する．また，サンプリング周波数は250~Hzである．}
+\textcolor{black}{\textcolor{red}{本論文}では，分離した信号と比較する\textcolor{red}{参照値を得るために，}Fig.~\ref{fig:ecgsensor}に示す\textcolor{red}{Zeohyr Technology}社の接触型ECGセンサBioharness~\cite{bioharness}を用いて\textcolor{red}{可能な限り正確なECG信号を取得している．心拍の参照値の計算には，このBioharness内部で実装されている推定アルゴリズムを用いる．Bioharnessの技術的な資料は公開されておらず原理は不明であるが，恐らく一般的な心拍推定アルゴリズムであるR-R間隔（R-R interval: RRI）推定に基づくものと予想される．}接触型ECG\textcolor{red}{センサ}であるため，振動台の振動が加えられても高精度な心拍を得ることが可能である．\textcolor{red}{本論文では，}この\textcolor{red}{接触型ECG}センサから得られる心拍と同程度の\textcolor{red}{精度で}レーダセンサ\textcolor{red}{のし号から心拍を推定することが目的となる}．接触型ECGセンサはTable~\ref{tab:ecgdata}に\textcolor{red}{例示するように}，ECGセンサ\textcolor{red}{の出力データ}，ピエゾセンサ\textcolor{red}{の出力データ}，RRI），心拍数，呼吸数，及び呼吸の深さを測定する．また，サンプリング周波数は250~Hzである．}
 
 
 %-%-%-%-%-%-%-%-%
@@ -24,9 +24,9 @@
   \centering
   \scalebox{1.0}[1.0]{
   \begin{tabular}{|c|c|c|c|} \hline
-    Data no.~ & Vibration direction & Amplitude~[mm] & Frequency~[Hz] \\ \hline \hline
+    Data no.~ & Vibration \textcolor{red}{type} & Amplitude~[mm] & Frequency~[Hz] \\ \hline \hline
     0 & No vibration & - & - \\ \hline
-    1 & \multirow{6}{*}{Up and Down} & 4 & 1.2  \\ \cline{1-1} \cline{3-4}
+    1 & \multirow{6}{*}{Up and Down for 60--360~s} & 4 & 1.2  \\ \cline{1-1} \cline{3-4}
     2 & & 10 & 1.2 \\ \cline{1-1} \cline{3-4}
     3 & & 40 & 1.2 \\ \cline{1-1} \cline{3-4}
     4 & & 40 & 1.2 \\ \cline{1-1} \cline{3-4}
@@ -36,20 +36,21 @@
   }
   \label{tab:vibevacondition}
 \end{table}
-%-%-%-%-%-%-%-%-%
+%-%-%-%-%-%-%-%-% 
+
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.45\hsize]{./ch_conventional/fig/ecgsensor.pdf}
-\caption{\textcolor{red}{Contact ECG sensor \cite{bioharness}.}}
+\caption{\textcolor{red}{Contact\textcolor{red}{-type} ECG sensor \cite{bioharness} \textcolor{red}{used to obtain driver's reference heart rate}.}}
 \label{fig:ecgsensor}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
 \begin{table}[tb]
-  \caption{\textcolor{red}{Data obtained by contact ECG sensor.}}
+  \caption{\textcolor{red}{\textcolor{red}{Example of output data} obtained by contact\textcolor{red}{-type} ECG sensor \textcolor{red}{(Bioharness)}.}}
   \centering
   \scalebox{1.0}[1.0]{
   \begin{tabular}{|c|c|c|c|c|c|} \hline
@@ -67,7 +68,7 @@
     \end{tabular} &
     \begin{tabular}{c}
     RRI \\
-    \relax [sec]
+    \relax [s]
     \end{tabular} &
     \begin{tabular}{c}
     Heart \\
@@ -87,13 +88,6 @@
     54.5852 & 0.0574969 & 0.759 & 91 & 18 & 11.864	\\ \hline
     54.4779 & 0.0574969 & 0.759 & 91 & 18 & 11.864	\\ \hline
     54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864	\\ \hline
-    54.4779 & 0.0573748 & 0.759 & 91 & 18 & 11.864    \\ \hline
     \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ \hline	
   \end{tabular}
   }
@@ -105,9 +99,9 @@
 \section{測定で得られる信号}
 \label{sec:conv:signal}
 %----------------------------------------------
-\ref{sec:conv:measurementcondition}節の\textcolor{red}{振動測定系}によって得られる\textcolor{red}{観測信号はFig.~\ref{fig:sensorimg}に示すように4チャネルの時間波形である．一例として，Tabel~\ref{tab:vibevacondition}に示すData no.~1の時間波形をFig.~\ref{fig:obssig}に示す．このとき，横軸及び縦軸は，それぞれ測定時間及び体表面の変位量となっている．\ref{sec:conv:measurementcondition}節で述べた通り，Fig.~\ref{fig:obssig}の60秒から360秒の間で振動が加えられているため時間波形が他の時間の時間波形とは異なっていることがわかる．振動が加えられていない時間での時間波形には，心拍，呼吸，及び，体動の信号に由来する成分が現れている．また，レーダセンサはチャネル間で近い距離にビームを当てて測定しているため，完全に一致した時間波形ではないが，チャネル間に強い相関を持っていることも確認できる．}
+\ref{sec:conv:measurementcondition}節の\textcolor{black}{振動測定系}によって得られる\textcolor{red}{観測信号はFig.~\ref{fig:sensorimg}に示すように4チャネルの時間波形である．一例として，Tabel~\ref{tab:vibevacondition}に示すData no.~1の時間波形をFig.~\ref{fig:obssig}に示す．このとき，横軸及び縦軸はそれぞれ測定時間及び体表面の変位量となっている．\ref{sec:conv:measurementcondition}節で述べた通り，Fig.~\ref{fig:obssig}の\textcolor{red}{60~s--360~s}の間で\textcolor{red}{振動台の振動}が加えられているため時間波形が他の時間の時間波形とは異なっていることがわかる．\textcolor{red}{振動台の振動}が加えられていない時間での時間波形には，心拍，呼吸，及び体動\textcolor{red}{に由来する信号の}成分が現れている．また，レーダセンサはチャネル間で\textcolor{red}{比較的近傍の体表面}にビームを当てて\textcolor{red}{計測}しているため，完全に一致した時間波形ではないが，チャネル間に強い相関を持っていることも確認できる．}
 
-\textcolor{red}{また，観測信号にSTFTを適用して得られる，パワースペクトログラムをFig.~\ref{fig:4chobsspect}に示す．Fig.~\ref{fig:4chobsspect}は4チャネルのパワースペクトログラムで，カラーマップは4チャネルで共通化している．Fig.~\ref{fig:1chobsspect}はFig.~\ref{fig:4chobsspect}のCh.~1のパワースペクトログラムである．60秒から360秒までの間に約1.2~Hz，そしてその整数倍の2.4~Hz, 3.6~Hz, 4.8~Hz, 6.0~Hz, 及び7.2~Hzの直線の成分は振動台による振動成分である．呼吸成分が約0.3~Hzに，そして1.5~Hz, 3.2~Hz, 4.0~Hzに呼吸の高調波成分が確認できる．このように時間波形をスペクトログラムに描画することで，振動台の振動成分，心拍や呼吸由来の成分，及び体動等のその他の成分が確認できる．}
+\textcolor{black}{また，\textcolor{red}{Fig.~\ref{fig:obssig}}観測信号にSTFTを適用して得られる，パワースペクトログラムをFig.~\ref{fig:4chobsspect}に\textcolor{red}{示す．ここで，STFTにおける短時間区間長及びシフト長はそれぞれ25.6~s及び0.8~sに設定し，窓関数にははハミング窓を用いている}．Fig.~\ref{fig:4chobsspect}は4チャネルのパワースペクトログラム\textcolor{red}{であり，各図の}カラーマップ（dB値と色の対応関係）は共通化している．Fig.~\ref{fig:1chobsspect}はFig.~\ref{fig:4chobsspect}のCh.~1のパワースペクトログラムに解説を加えたものである．60~sから360~sまでの間に確認できる約1.2~Hz及びその整数倍の2.4~Hz，3.6~Hz，4.8~Hz，6.0~Hz，及び7.2~Hzの直線の成分は振動台の振動成分である．また，呼吸の基本周波数成分が約0.3~Hzに存在し，その高周波成分が1.5~Hz，3.2~Hz，及び4.0~Hzに確認できる．本論文で分離・抽出する目的となる心拍信号は，基本周波数成分が約0.7~Hzに確認でき，さらにその高調波成分が2.3~Hz，5.0~Hz，及び6.0~Hz付近に確認できる．このように時間波形のスペクトログラムから，振動台の振動成分，心拍や呼吸由来の成分，及び体動等のその他の成分が確認できる．1章で述べた通り，観測信号としてはSNRが低く，この観測から直接心拍を推定することは困難であるため，BSSにより心拍信号を分離・抽出することの妥当性が伺える．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[b]
@@ -131,17 +125,18 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/1chobsspect.pdf}
-\caption{\textcolor{red}{Each component in spectrogram of observed signal calculated by STFT.}}
+\caption{\textcolor{red}{Each component in first channel spectrogram.}}
 \label{fig:1chobsspect}
 \end{figure}
 %-%-%-%-%-%-%-%
 
+\clearpage
 %----------------------------------------------
 \section{本章のまとめ}
 \label{sec:conv:conclusion2}
 %----------------------------------------------
-\textcolor{red}{本章では，振動測定系の測定条件と測定によって得られる時間波形について説明した．また，観測信号から心拍信号を分離した際に比較を行うために使用した接触型ECGセンサから得られる信号ついて説明た．その信号にSTFTを適用して得られたパワースペクトログラムを時間波形のパワースペクトログラムを比較し，振動台の振動成分，心拍，呼吸，及び体動等のその他の成分を確認した．
-次章では，本研究でBSSを適用する動機を述べる．時間周波数領域のBSSの定式化を行い，Itakura--Saitoダイバージェンスに基づくNMF（Nonnegative matrix factorization based on Itakura-Saito divergence: ISNMF）の説明を行う．また観測信号から心拍信号を分離するために適用するIVA, ILRMA，$t$-ILRMA，及び心拍推定アルゴリズムについて説明する．}
+\textcolor{red}{本章では，振動測定系の測定条件と測定によって得られる時間波形について説明した．また，観測信号から心拍信号を分離した際に比較を行うために使用した接触型ECGセンサから得られる信号ついて説明した．その信号にSTFTを適用して得られたパワースペクトログラムを時間波形のパワースペクトログラムを比較し，振動台の振動成分，心拍，呼吸，及び体動等のその他の成分を確認した．
+次章では，本研究でBSSを適用する動機と時間周波数領域BSSの定式化を行い，IVA，ILRMA，$t$-ILRMA，及び心拍推定アルゴリズムについて説明する．}
 
 
 \chapter{適用手法}
@@ -150,24 +145,24 @@
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-本章では，本研究で適用した手法について説明する．
-まず\ref{sec:conv:researchmotivation}節では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系において運転者の体表面とレーダセンサの相対的な位置関係は未知であること，及び音響信号処理分野で高度に発展していることから，BSSを観測信号に適用することの妥当性及び動機について述べる．}
+本章では，本研究で適用したBSSについて説明する．
+まず\ref{sec:conv:researchmotivation}節では，\textcolor{black}{\ref{chap:measurementstructsig}章の振動測定系において運転者の体表面とレーダセンサの相対的な位置関係が未知であることから，BSSを観測信号に適用することの妥当性及び動機について述べる．}
 \ref{sec:conv:bssformularization}節では，時間周波数領域におけるBSSの定式化を行う．
-\textcolor{red}{\ref{sec:conv:iva}節では，音響信号処理分野で有名な周波数領域BSSの一つであるIVAについて説明する．}
+\textcolor{black}{\ref{sec:conv:iva}節では，音響信号処理分野で一般的な周波数領域BSSの一つであるIVAについて説明する．}
 \ref{sec:conv:isnmf}節では，行列分解の手法の一つであるNMFのうちISNMFについて説明する
-\textcolor{red}{\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節では，IVAと同様に音響信号処理分野で有名な周波数領域BSSであるILRMA（基底数固定型及び基底数可変型）及び複素Student's $t$分布を生成モデルと仮定する$t$-ILRMAについて説明する．
-\ref{sec:conv:heartrateestalgo}節では，\ref{sec:conv:iva}節，\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節で説明する三つの手法によって得られる分離信号の心拍推定精度を確認するために用いる心拍推定アルゴリズムについて説明する．}
+\textcolor{black}{\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節では，本論文で適用するもう一つのBSSのILRMAで用いられる基礎理論として，ILRMA（基底数固定型及び基底数可変型）及び複素Student's $t$分布を生成モデルと仮定する$t$-ILRMAについてそれぞれ説明する．
+\ref{sec:conv:heartrateestalgo}節では，\ref{sec:conv:iva}節，\ref{sec:conv:ilrma}節及び\ref{sec:conv:tilrma}節で説明する三つの手法によって得られる分離信号の心拍推定精度を確認するために用いる心拍推定アルゴリズムについて説明し，\ref{sec:conv:conclusion3}節で本章をまとめる．}
 
 %----------------------------------------------
 \section{本研究の動機}
 \label{sec:conv:researchmotivation}
 %----------------------------------------------
-\textcolor{red}{運転者の体表面とレーダセンサの相対的な位置関係は未知としたまま心拍推定を行えることが望ましい．従って，BSSと呼ばれる手法を\ref{chap:measurementstructsig}章で述べた観測信号に適用することは妥当であると考えられる．さらに，BSSはとりわけ音響信号処理分野で高度に発展してきた歴史を持つ．音響信号処理分野では残響による信号源（音源）の混合が部屋の残響などによる畳み込み混合となってしまうため，時間領域でのBSSでは音源を分離することはできない．そのため，観測信号にSTFTを適用して時間周波数領域でBSSを行う手法が長く研究されており，近年においては，IVAやILRMA等，高度に発展したアルゴリズムが提案されている．本論文では前述の音響信号処理分野で高度に発展したBSSアルゴリズムをレーダセンサから観測された4チャネルの信号に適用し，心拍由来の信号，呼吸，及び体動由来の信号等の分離が可能であるか，実験的に調査する．}
+\textcolor{black}{1章で述べた運転者の車内での心拍推定という目的においては，運転者の体表面とレーダセンサの相対的な位置関係は未知としたまま心拍推定を行えることが望ましい．従って，混合系が未知であっても観測信号に含まれる各信号源を推定できる．BSSを\ref{chap:measurementstructsig}章で述べたレーダセンサの観測信号に適用することは妥当であると考えられる．BSSはとりわけ音響信号処理分野で高度に発展してきた歴史を持つ．音響信号処理分野では，信号源（音源）の混合が部屋の残等の影響を受けて，時間領域での畳み込み混合となってしまう．そのため，時間領域の信号ではなく時間周波数領域の信号（観測信号に対してSTFTを適用した信号）を対象とする時間周波数領域BSSが長く研究されており，近年においては，IVAやILRMA等の高度に発展したアルゴリズムが提案されている．本論文では，IVAやILRMA等の時間周波数領域BSSをレーダセンサの4チャネル観測信号に適用し，心拍信号及びノイズ信号の分離が可能であるか，実験的に調査する．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.75\hsize]{./ch_conventional/fig/bss.pdf}
+\includegraphics[width=0.9\hsize]{./ch_conventional/fig/bss.pdf}
 \caption{Process of BSS.}
 \label{fig:bss}
 \end{figure}
@@ -178,29 +173,45 @@
 \section{BSSの定式化}
 \label{sec:conv:bssformularization}
 %----------------------------------------------
+今，観測信号中に混合している信号源の数を$N$，観測信号のチャネル数（センサ数）を$M$と定義するとき，時間領域の信号源，観測信号，及び分離信号はそれぞれ次のよう表される．
+\begin{align}
+  \tilde{\bm{s}}[l] &= [ \tilde{s}_{1}[l], \tilde{s}_{1}[l], \cdots, \tilde{s}_{n}[l], \cdots, \tilde{s}_{N}[l] ]^\mathrm{T} \in \mathbb{R}^{N} \\
+  \tilde{\bm{x}}[l] &= [ \tilde{x}_{1}[l], \tilde{x}_{1}[l], \cdots, \tilde{x}_{m}[l], \cdots, \tilde{x}_{M}[l] ]^\mathrm{T} \in \mathbb{R}^{M} \\
+  \tilde{\bm{y}}[l] &= [ \tilde{y}_{1}[l], \tilde{y}_{1}[l], \cdots, \tilde{y}_{n}[l], \cdots, \tilde{y}_{N}[l] ]^\mathrm{T} \in \mathbb{R}^{N} 
+\end{align}
+ここで，$l = 1, 2, \cdots, L$，$n = 1, 2, \cdots, N$，及び$m = 1, 2, \cdots, M$は離散時間インデクス，信号源インデクス，及びチャネルインデクスをそれぞれ表す．
+また，$\cdot^\mathrm{T}$はベクトル及び行列の転置である．
+このとき，時間領域での時不変な（離散時間$l$に依存しない）瞬時混合系は次式で表される．
+\begin{align}
+  \tilde{\bm{x}}[l] = \tilde{\bm{A}} \tilde{\bm{s}}[l] \label{eq:mixtureica}
+\end{align}
+ここで，$\tilde{\bm{A}} \in \mathbb{R}^{M\times N}$は混合行列と呼ばれる．一方，分離信号は分離行列$\tilde{\bm{W}} \in \mathbb{R}^{N\times M}$を用いて次式で表せる．
+\begin{align}
+  \tilde{\bm{y}}[l] = \tilde{\bm{W}} \tilde{\bm{x}}[l] 
+\end{align}
+従って，もし混合行列が正方行列（即ち$M=N$）でかつ可逆であれば，$\tilde{\bm{W}} = \tilde{\bm{A}}^{-1}$なる分離行列を推定することで観測信号$( \tilde{\bm{x}}[l] )_{l=1}^L$から分離信号$( \tilde{\bm{y}}[l] )_{l=1}^L$を求めることができる．この様子をFig.~\ref{fig:bss}に示している．但し，通常は混合系に対応する$\tilde{\bm{A}}$は未知（ブラインド）であるため，信号源間の統計的独立性を仮定して$\tilde{\bm{W}}$を求めるアプローチが主流である．このような信号源間の独立性に基づくBSSには，独立成分分析（independent component analysis: ICA）\cite{ica}を起源としてこれまで長く研究されてきた歴史がある．
 
-\textcolor{red}{音響信号処理分野におけるBSSでは，録音時の部屋の残響や音速の遅さ等に起因して，音源の混合現象は時間領域での瞬時混合（Fig.~\ref{fig:bss}における混合行列$\bm{A}$の行列積）ではなく，畳み混み混合になる．このような複雑な混合系を持つ観測信号を単純な瞬時混合でモデル化するために，観測信号にSTFTを適用し，時間領域から時間周波数領域の信号に変換することが一般的である．時間領域での畳み込み混合は，時間周波数領域での瞬時混合とみなせるため，Fig.~\ref{fig:bss}に示すような混合系を周波数ごとに考えればよい．
-このような混合系のモデル化に基づくBSSを周波数領域BSSと呼ばれ，音響信号処理においては効果的な音源分離を達成するための重要なモデルとなっている．本論文で取り扱うBSSであるIVA及びILRMAはいずれも周波数領域のBSSの一つである．}
+\textcolor{black}{音響信号処理分野におけるBSSでは，録音時の部屋の残響や音速の遅さ等に起因して，音源の混合現象は式\eqref{eq:mixtureica}時間領域での時不変瞬時混合ではなく，畳み混み混合になる．ICAでは畳み込み混合された信号源を分離できないため，観測信号$( \tilde{\bm{x}}[l] )_{l=1}^L$にSTFTを適用し，時間領域から時間周波数領域の信号に変換することが一般的である．この場合，時間領域での畳み込み混合は，時間周波数領域での瞬時混合とみなせるため，Fig.~\ref{fig:bss}に示すような混合系を周波数毎に考えればよい．
+このような混合系のモデル化に基づくBSSを時間周波数領域BSSと呼び，音響信号処理においては効果的な音源分離を達成するための重要なモデルとなっている．本論文で取り扱うBSSであるIVA及びILRMAはいずれも時間周波数領域BSSの一つである．}
 
-以下に，周波数領域BSSの定式化を行う．
-複数の\textcolor{red}{信号源}が混合している観測信号\textcolor{red}{において，信号源数及び観測チャネル数（センサ数）}をそれぞれ$N$及び$M$と定義する．
-混合前の信号源，観測信号，及び分離信号に対して\textcolor{red}{STFTを適用したものをそれぞれ次式で定義する．}
+以下に，時間周波数領域BSSの定式化を行う．
+信号源$( \tilde{\bm{s}}[l] )_{l=1}^L$，観測信号$( \tilde{\bm{x}}[l] )_{l=1}^L$，及び分離信号$( \tilde{\bm{y}}[l] )_{l=1}^L$のそれぞれに対して\textcolor{black}{STFTを適用したものを次式で定義する．}
 \begin{align}
 \bm{s}_{ij} &= [s_{ij1}, s_{ij2}, \cdots, s_{ijn}, \cdots, s_{ijN}]^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:s} \\
 \bm{x}_{ij} &= [x_{ij1}, x_{ij2}, \cdots, x_{ijm}, \cdots, x_{ijM}]^{\mathrm{T}} \in \mathbb{C}^{M} \label{eq:x} \\
 \bm{y}_{ij} &= [y_{ij1}, y_{ij2}, \cdots, y_{ijn}, \cdots, y_{ijN}]^{\mathrm{T}} \in \mathbb{C}^{N} \label{eq:y}
 \end{align}
-ここで，\textcolor{red}{$i=1, 2,  \cdots, I$, $j=1, 2,  \cdots, J$, $n=1, 2,  \cdots, N$, 及び$m=1, 2, \cdots, M$はそれぞれ周波数ビン，時間フレーム，信号源，及びチャネルのインデクスを表す．ここで，$^{\mathrm{T}}$は行列及びベクトルの転置を表す．また，式(\ref{eq:s})--(\ref{eq:y})の各信号においては，時間周波数行列としての表記もそれぞれ$\bm{S}_n\in\mathbb{C}^{{I\times J}}$, $\bm{X}_m\in\mathbb{C}^{{I\times J}}$，及び$\bm{Y}_n\in\mathbb{C}^{{I\times J}}$として定義しておく．}
-\textcolor{red}{式(\ref{eq:s})--(\ref{eq:y})において}，周波数ごとの時不変な（時間フレーム$j$に依存しない）混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いると，混合時の\textcolor{red}{畳み込み長}がSTFTの短時間信号長（窓長）$L$よりも十分に短い場合，観測信号は次式で表せる.
+ここで，$i=1, 2,  \cdots, I$及び$j=1, 2,  \cdots, J$はそれぞれ周波数ビンインデクス及び時間フレームインデクスを表す．また，式\eqref{eq:s}--\eqref{eq:y}の各信号においては，時間周波数行列としての表記もそれぞれ$\bm{S}_n\in\mathbb{C}^{{I\times J}}$，$\bm{X}_m\in\mathbb{C}^{{I\times J}}$，及び$\bm{Y}_n\in\mathbb{C}^{{I\times J}}$として定義しておく．
+\textcolor{black}{式(\ref{eq:s})--(\ref{eq:y})において}，周波数毎の時不変な（時間フレーム$j$に依存しない）瞬時混合は，混合行列$\bm{A}_i \in \mathbb{C}^{M\times N}$を用いて次式で表せる.
 \begin{align}
   \bm{x}_{ij} = \bm{A}_i \bm{s}_{ij} \label{eq:xas}
 \end{align}
-ここで，$M=N$\textcolor{red}{（信号源数とチャネル数が等しい）}かつ$\bm{A}_i$がフルランクの場合は，分離行列$\bm{W}_{i} = [\bm{w}_{i1}~\bm{w}_{i2}~\cdots~ ~\bm{w}_{iN}]^{\mathrm{H}} \in \mathbb{C}^{N \times M} $が存在し，分離信号は次式で表せる．
+時間領域の場合と同様に$M=N$かつ$\bm{A}_i$がフルランクの場合は，分離行列$\bm{W}_{i} = [\bm{w}_{i1}~\bm{w}_{i2}~\cdots~ ~\bm{w}_{iN}]^{\mathrm{H}} \in \mathbb{C}^{N \times M} $が存在し，分離信号は次式で表せる．
 \begin{align}
   \bm{y}_{ij} = \bm{W}_i \bm{x}_{ij} \label{eq:ywj}
 \end{align}
-ここで，$^{\mathrm{H}}$は行列及びベクトルのエルミート転置を表す．
-\textcolor{red}{周波数領域BSSは周波数ごとの混合行列$\bm{A}_i$が未知の状態で周波数ごとの分離行列$\bm{W}_{i} \approx \bm{A}_i^{-1}$}を全ての周波数$i=1, 2, \cdots, I$において推定する問題である．
+ここで，$^{\mathrm{H}}$は行列及びベクトルのエルミート転置を表す．従って，
+\textcolor{black}{時間周波数領域BSSは周波数毎の混合行列$\bm{A}_i$が未知の状態で周波数毎の分離行列$\bm{W}_{i} \approx \bm{A}_i^{-1}$}を全ての周波数$i=1, 2, \cdots, I$において推定する問題である．但し，そのままでは周波数毎に分離された信号源の順序（$\bm{y}_{ij}$のベクトルの要素の順序）が周波数間で統一されない問題が生じる．これは時間周波数領域BSSにおけるパーミュテーション問題\cite{permute}と呼ばれ，これまで様々な解決法が提案されてきた（例えば\cite{persolve1,persolve2,persolve3,persolve4}等）．近年では，信号源間の統計的独立性だけでなく，各信号源の時間周波数表現に何らかの構造を仮定することで，パーミュテーション問題を回避するBSSが主流となっている．特に，次節以降で述べるIVA及びILRMAが良く用いられる代表的な時間周波数領域BSSとなっている．
 
 
 %----------------------------------------------
@@ -208,12 +219,31 @@
 \label{sec:conv:iva}
 %----------------------------------------------
 %-%-%-%-%-%-%-%-%
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.95\hsize]{./ch_conventional/fig/iva.pdf}
-\caption{Mixing and demixing models in IVA, where $M=N=2$.}
-\label{fig:ivamodel}
-\end{figure}
+\begin{figure}[htbp]
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6cm]{./ch_conventional/fig/mixingiva.pdf}
+        \subcaption{Mixing model}
+        \label{fig:mixingiva}
+      \end{minipage} 
+      \begin{minipage}[t]{0.45\hsize}
+        \centering
+        \includegraphics[keepaspectratio, width=6cm]{./ch_conventional/fig/demixingiva.pdf}
+        \subcaption{Demixing model}
+        \label{fig:demixingiva}
+      \end{minipage} 
+     \caption{Mixing and demixing models assumed in IVA, where $M=N=2$.}
+     \label{fig:ivamodel}
+  \end{figure}
+%-%-%-%-%-%-%-%-%
+
+%-%-%-%-%-%-%-%-%
+%\begin{figure}[t]
+%\centering
+%\includegraphics[width=0.95\hsize]{./ch_conventional/fig/iva.pdf}
+%\caption{Mixing and demixing models in IVA, where $M=N=2$.}
+%\label{fig:ivamodel}
+%\end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
@@ -224,15 +254,15 @@
 \label{fig:laplace}
 \end{figure}
 %-%-%-%-%-%-%-%-%
-\textcolor{red}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
+\textcolor{black}{本節では，音響信号処理分野で有名な周波数領域のBSSの一つであるIVAについて概説する．信号源，観測信号，及び分離信号のそれぞれについて，全ての周波数ビンに関する成分をまとめたベクトルを次のように定義する．}
 \begin{align}
     \overline{\bm{s}}_{jn} &= [s_{1jn}, s_{2jn}, \cdots, s_{ijn}, \cdots, s_{Ijn} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
     \overline{\bm{x}}_{jm} &= [x_{1jm}, x_{2jm}, \cdots, x_{ijm}, \cdots, x_{Ijm} ]^{\mathrm{T}} \in \mathbb{C}^{I} \\
     \overline{\bm{y}}_{jn} &= [y_{1jn}, y_{2jn}, \cdots, y_{ijn}, \cdots, y_{Ijn} ]^{\mathrm{T}} \in \mathbb{C}^{I}
 \end{align}
 Fig. \ref{fig:ivamodel}に$M=N=2$の場合\textcolor{red}{におけるIVAの混合系及び分離系のモデル図を示す．}
-IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分離行列}$\bm{W}_i$を推定する．
-ただし，推定の過程\textcolor{red}{において，}全周波数を含む$I$次元\textcolor{red}{複素}分布を\textcolor{red}{$\overline{\bm{s}}_{jn}$の生成モデルと仮定されている．さらに，この}$I$次元ベクトル内には高次相関\textcolor{red}{（ベクトル内の要素の共起性）があることを仮定している．}
+IVAは時間周波数領域BSSであるため，全周波数の分離行列$( \bm{W}_i )_{i=1}^I$を推定する．
+ただし，推定の過程\textcolor{black}{において，}全周波数を含む$I$次元\textcolor{black}{複素}分布を各信号源\textcolor{black}{$\overline{\bm{s}}_{jn}$の生成モデルと仮定している．さらに，この}$I$次元ベクトル内には高次相関（ベクトル内の要素が共起するという性質）があることを仮定している．
 このIVAの生成モデルには，Fig. \ref{fig:laplace} で示すような\textcolor{red}{$I$次元球対称複素Laplace分布}が用いられ，式(\ref{eq:iva_model})で表される．
 \begin{align}
   \nonumber p(\overline{\bm{s}}_{jn}) &= p(\overline{\bm{y}}_{jn}) \\
@@ -241,9 +271,9 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 \end{align}
 ここで，$\sigma_{in}>0$はスケールパラメタである．
 式(\ref{eq:iva_model})の分布は球対称性を持つため，同一ベクトル内の成分が高次相関を持つ\cite{Kim2007_iva}．
-したがって，IVAは同時に生起する周波数成分を一つの\textcolor{red}{信号源}としてまとめる傾向がある．\textcolor{red}{この性質は，信号源が基本周波数成分とその整数倍の周波数成分からなる場合（調波構造を持つ場合）に，それらの成分を同一の信号源の成分とみなすことに対応する．本論文で扱う信号源においては，Fig.~\ref{fig:4chobsspect}に示されるように，心拍由来の成分や振動台で加振される成分などに顕著な調波構造がみられる．そのため，IVAが仮定する周波数間の高次相関は，本論文が対象とする観測信号や信号源に対しても有効であると考えられる．}
+したがって，IVAは同時に生起する周波数成分を一つの\textcolor{red}{信号源}としてまとめる傾向がある．\textcolor{red}{この性質は，信号源が基本周波数成分とその整数倍の周波数成分からなる場合（調波構造を持つ場合）に，それらの成分を同一の信号源の成分とみなすこと対応する．そして，そのような信号源が出力されるように分離行列$( \bm{W}_i )_{i=1}^I$が推定される．即ち，もし各信号源が実際に周波数方向の共起性を持っていれば，IVAはパーミュテーション問題を回避しながら分離行列$( \bm{W}_i )_{i=1}^I$を推定することができ，BSSが達成される．本論文で扱う信号源においては，Fig.~\ref{fig:4chobsspect}に示されるように，心拍由来の成分や振動台で加振される成分などに顕著な調波構造（異なる周波数の共起性）がみられる．そのため，IVAが仮定する周波数間の高次相関は，本論文が対象とする観測信号や信号源に対しても有効であると考えられる．}
 
-\textcolor{red}{信号源}周波数ベクトル間の独立性$p(\overline{\bm{y}}_{j1}, \overline{\bm{y}}_{j2}, \cdots, \overline{\bm{y}}_{jN}) = \prod_n p(\overline{\bm{y}}_{in})$を仮定すると，IVAの観測信号に対する負対数尤度関数は次式で得られる．
+信号源周波数ベクトル間の独立性$p(\overline{\bm{y}}_{j1}, \overline{\bm{y}}_{j2}, \cdots, \overline{\bm{y}}_{jN}) = \prod_n p(\overline{\bm{y}}_{in})$を仮定すると，IVAの観測信号に対する負対数尤度関数は次式で得られる．
 \begin{align}
     \mathcal{L} = -2J \sum_i \log |\det \bm{W}_i| + \sum_{j,n} G(\overline{\bm{y}}_{j,n})
     \label{eq:ivalike}
@@ -251,16 +281,17 @@ IVAは\textcolor{red}{周波数領域BSSであるため，周波数ごとの分�
 ここで，$G(\overline{\bm{y}}_{jn})$はコントラスト関数と呼ばれ，次式で定義される．
 \begin{align}
   \nonumber G(\overline{\bm{y}}_{jn}) &= -\log p(\overline{\bm{y}}_{j,n}) \\
-  &= -\log \frac{1}{\pi \prod_{i} \sigma_{in}} \exp \left(  - \sqrt{ \sum_i \left| \frac{y_{ijn}}{\sigma_{in}} \right|^2}  \right)
+  \nonumber  &= -\log \frac{1}{\pi \prod_{i} \sigma_{in}} \exp \left(  - \sqrt{ \sum_i \left| \frac{y_{ijn}}{\sigma_{in}} \right|^2}  \right) \\
+  &= \log \pi + \sum_i \log \sigma_{in} + \frac{1}{2} \log \sum_i \left| \frac{y_{ijn}}{\sigma_{in}}\right|^2
 \end{align}
-IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（iterative projection: IP）\cite{auxIVA}を用いた最適化アルゴリズムによって，高速かつ安定に分離行列を推定できる\cite{stable_auxIVA}．この反復最適化更新則は下記の通りである．}
+IVAにおける分離行列$( \bm{W}_i )_{i=1}^I$の推定は，最尤推定（式\eqref{eq:ivalike}の最小化）として定式化される．この最適化問題は, 補助関数法\cite{auxfunc}\textcolor{black}{及び反復射影法（iterative projection: IP）\cite{auxIVA}を用いた最適化アルゴリズムによって，高速かつ安定に解くことができる\cite{stable_auxIVA}．この反復最適化更新則は下記の通りである．}
 \begin{align}
 \bm{G}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sqrt{\sum_{i} |\bm{w}_{in}^\mathrm{H}\bm{x}_{ij}|^{2}}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{ep:auxIVAip1} \\
 \bm{w}_{in} &\leftarrow (\bm{W}_i \bm{G}_{in})^{-1} \bm{e}_n \label{ep:auxIVAip2} \\
 \bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{G}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{ep:auxIVAip3}
 \end{align}
-ここで，$\bm{e}_{n} \in \mathbb{R}^{N}_{\{0,1\}}$は$n$番目の要素が,他要素が0のベクトルである．
-\textcolor{red}{式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）を反復計算して分離行列$\bm{W}_i$を求めることができる．なお，この反復最適化アルゴリズムは1回の更新で負対数尤度関数（\ref{eq:ivalike}）の値が減少する（または変動しない）ことが理論的に保証されている．}
+ここで，$\bm{e}_{n} \in \mathbb{R}^{N}_{\{ 0, 1 \}^N}$は$n$番目の要素のみが1，他要素が0のベクトルである．
+\textcolor{black}{式\eqref{ep:auxIVAip1}--\eqref{ep:auxIVAip3}を反復計算して分離行列$( \bm{W}_i )_{i=1}^I$を求めることができる．なお，この反復最適化アルゴリズムは1回の更新で負対数尤度関数\eqref{eq:ivalike}の値が減少する又は変動しないこと（単調非増加）が理論的に保証されている．}
 
 
 %----------------------------------------------
@@ -268,28 +299,27 @@ IVAは, 補助関数法\cite{auxfunc}\textcolor{red}{及び反復射影法（ite
 \label{sec:conv:isnmf}
 %----------------------------------------------
 
-\textcolor{red}{本節では，次節で取り扱う周波数領域BSSであるILRMAを説明するために必要なNMF~\cite{NMF}の理論（特にISNMFの生成モデル）について概説する．}
-NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列を低ランク近似する数理アルゴリズムの一つである．特に，少数の非負の来てベクトルを教師なし学習として推定できるため，観測された非負行列に含まれる非負潜在パターンを抽出することが可能である．音響信号処理分野では，NMFに基づくBSSも数多く提案されている\cite{singlechsep, supNMF, MNMF_oz, iwase}．}
+\textcolor{black}{本節では，次節で取り扱う周波数領域BSSであるILRMAを説明するために必要なNMF~\cite{NMF}の理論（特にISNMFの生成モデル\cite{isnmf}）について概説する．}
+NMFとは，\textcolor{black}{非負行列を低ランク近似する数理アルゴリズムの一つである．特に，少数の非負の基底ベクトルを教師なし学習で推定できるため，観測された非負行列に含まれる非負潜在パターンを抽出することが可能である．音響信号処理分野では，NMFに基づくBSSも数多く提案されている\cite{singlechsep, supNMF, MNMF_oz, iwase}．}
 
-単一チャネルの\textcolor{red}{観測信号（時間波形）にSTFTを適用して得られる複素スペクトログラムを$\bm{B}\in\mathbb{C}^{I\times J}$とする．この$\bm{B}$に対するパワースペクトログラムを$|\bm{B}|^{.2}$と表記する．ここで，行列に対する$|\cdot|$及びドット付きの指数乗はそれぞれ要素毎の絶対値及び要素毎の次数場を表す．パワースペクトログラムは非負行列であるため，NMFで次式のように低ランク近似することが可能である．}
+単一チャネルの\textcolor{black}{観測信号（時間波形）にSTFTを適用して得られる複素スペクトログラムを$\bm{B}\in\mathbb{C}^{I\times J}$とする．この$\bm{B}$に対するパワースペクトログラムを$|\bm{B}|^{.2}$と表記する．ここで，行列に対する$|\cdot|$及びドット付きの指数乗はそれぞれ要素毎の絶対値及び要素毎の指数乗を表す．パワースペクトログラムは非負行列であるため，NMFで次式のように低ランク近似することが可能である．}
 
 \begin{align}
     |\bm{B}|^{.2} = \bm{TV}　\label{eq:powerspect}
 \end{align}
 ここで，$\bm{T} \in \mathbb{R}^{I \times K}_{\geq 0}$を基底行列，$\bm{V} \in \mathbb{R}^{K \times J}_{\geq 0}$をアクティベーション行列という．
-\textcolor{red}{また，$\bm{T}$の列数及び$\bm{V}$の行数である$K$は事前に設定するパラメタであり，式（\ref{eq:powerspect}）の右辺（モデル行列$\bm{TV}$）のランクに対応する．}通常は$K \ll \min (I,J)$となるように設定される．
-\textcolor{red}{一例として，音響信号のパワースペクトログラムを$K=2$のNMFで低ランク近似した様子をFig. \ref{fig:nmf_ps}に示す．このような場合，パワースペクトログラム中に頻繁に出現するスペクトルパターンが2本の基底ベクトル（基底行列$\bm{T}$の列ベクトル）として抽出され，またそれらの時間的な強度変化がアクティベーションベクトル（アクティベーション行列の行ベクトル）に現れる．}
+\textcolor{black}{また，$\bm{T}$の列数及び$\bm{V}$の行数である基底数$K$は事前に設定するパラメタであり，式（\ref{eq:powerspect}）の右辺（モデル行列$\bm{TV}$）のランクに対応する．}通常は$K \ll \min (I,J)$となるように設定される．
+\textcolor{black}{一例として，音響信号のパワースペクトログラムを$K=2$のNMFで低ランク近似した様子をFig. \ref{fig:nmf_ps}に示す．このような場合，パワースペクトログラム中に頻繁に出現するスペクトルパターンが2本の基底ベクトル（基底行列$\bm{T}$の列ベクトル）として抽出され，またそれらの時間的な強度変化がアクティベーションベクトル（アクティベーション行列$\bm{V}$の行ベクトル）に現れる．}
 
-\textcolor{red}{ISNMFでは，}基底行列$\bm{T}$とアクティベーション行列$\bm{V}$は次式の最小化問題の解として推定される．
-
+\textcolor{black}{特に，NMFのコスト関数にItakura--Saitoダイバージェンスを用いたISNMF\cite{isnmf}は，複素分布に基づく生成モデル\cite{GGD}を有しており，次節で説明する時間周波数領域BSSのILRMAに用いられている．ISNMFでは，}基底行列$\bm{T}$とアクティベーション行列$\bm{V}$は次式の最小化問題の解として推定される．
 \begin{align}
     \min_{\bm{T,V}} \mathcal{D}(|\bm{B}|^{.2} | \bm{TV}) ~~\mathrm{s.t.} ~ t_{ik}, v_{kj} \geq 0 ~~\forall i,~j,~k
 \end{align}
 \begin{align}
-    \mathcal{D}(|\bm{B}|^{.2}|\bm{TV}) = \sum_{i,j}\left[ \frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj} } - \log{\frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj}}} -1 \right] \label{eq:matrixisdiv}
+    \mathcal{D}(|\bm{B}|^{.2}|\bm{TV}) = \sum_{i,j}\left( \frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj} } - \log{\frac{ |b_{ij}|^2 }{ \sum_{k}t_{ik}v_{kj}}} -1 \right) \label{eq:matrixisdiv}
 \end{align}
-ここで，\textcolor{red}{$b_{ij}$，$t_{ik}$，及び$v_{kj}$はそれぞれ$\bm{B}$, $\bm{T}$, 及び$\bm{V}$}の要素である．
-また，\textcolor{red}{$k= 1, 1, \cdots, K$は基底ベクトルのインデクスを表す．さらに，式（\ref{eq:matrixisdiv}）}は2つの行列（$|\bm{B}|^{.2}$及び$\bm{TV}$）間の類似度を測る関数で\textcolor{red}{あり，Itakura--Saitoダイバージェンスと呼ばれる．}ISNMFの$\bm{T}$及び$\bm{V}$の最適化のための反復更新式は式(\ref{eq:MUT})及び式(\ref{eq:MUV})で表される\cite{MU}．
+ここで，\textcolor{black}{$b_{ij}$，$t_{ik}$，及び$v_{kj}$はそれぞれ$\bm{B}$，$\bm{T}$，及び$\bm{V}$}の要素である．
+また，\textcolor{black}{$k= 1, 1, \cdots, K$は基底ベクトルのインデクスを表す．さらに，式（\ref{eq:matrixisdiv}）}は2つの行列（$|\bm{B}|^{.2}$及び$\bm{TV}$）間の類似度を測る関数で\textcolor{red}{あり，Itakura--Saitoダイバージェンスと呼ばれる．}ISNMFの$\bm{T}$及び$\bm{V}$の最適化のための反復更新式は式(\ref{eq:MUT})及び式(\ref{eq:MUV})で表される\cite{MU}．
 
 \begin{align}
     t_{ik} \leftarrow t_{ik} \sqrt \frac{ \sum_j |b_{ij}|^2 v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-2} }{ \sum_j v_{kj} \left( \sum_{k'} t_{ik'} v_{k'j} \right)^{-1} } \label{eq:MUT} \\
@@ -301,7 +331,7 @@ NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列�
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.95\hsize]{./ch_conventional/fig/NMF_ps.pdf}
-\caption{NMF decomposition of power spectrogram of ordio signal, where $K=2$.}
+\caption{NMF decomposition of power spectrogram of audio signal, where $K=2$.}
 \label{fig:nmf_ps}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -324,7 +354,7 @@ NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列�
 \begin{align}
     c_{ij,k} \sim \mathcal{N}_{\mathbb{C}} (c_{ijk}; 0, t_{ik}v_{kj})
 \end{align}
-ここで，$c_{ijk}\in \mathbb{C}$は全ての$i$，$j$, 及び$k$に関して互いに独立と仮定する．
+ここで，$c_{ijk}\in \mathbb{C}$は全ての$i$，$j$，及び$k$に関して互いに独立と仮定する．
 また，$c$を複素数の確率変数としたとき，\textcolor{red}{$\mathcal{N}_{\mathbb{C}} (c; \mu, \sigma^2)$は原点対称複素Gauss分布を表し，その確率密度関数は次式で与えられる．}
 \begin{align}
     \mathcal{N}_{\mathbb{C}} (c; \mu, \sigma^2) &= \frac{1}{\pi \sigma^2} \exp \left( -\frac{|c-\mu|^2}{\sigma^2} \right) \label{eq:compGausiandist}
@@ -343,19 +373,19 @@ NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列�
     -\log\mathcal{L}(\bm{T}, \bm{V}) = \sum_{i,j} \left( \frac{|b_{ij}|^2}{\sum_k t_{ik} v_{kj}} + \log \sum_k t_{ik} v_{kj} + \log \pi \right) \label{eq:negativeloglikelihood}
 \end{align}
 で表される．
-\textcolor{red}{式（\ref{eq:negativeloglikelihood}）は，パワースペクトログラム$|B_{ij}|^2$に対するISNMFの目的関数（\ref{eq:matrixisdiv}）と定数部分の違いを除いて一致する．そのため，負対数尤度関数は以下のように書き換えられる．}
+\textcolor{red}{式（\ref{eq:negativeloglikelihood}）は，パワースペクトログラム$|\bm{B}_{ij}|^{.2}$に対するISNMFの目的関数（\ref{eq:matrixisdiv}）と定数部分の違いを除いて一致する．そのため，負対数尤度関数は以下のように書き換えられる．}
 \begin{align}
-    -\log\mathcal{L}(\bm{T}, \bm{V}) = \mathcal{D} \left( |B|^{.2} | \bm{TV} \right) + \mathrm{const.}
+    -\log\mathcal{L}(\bm{T}, \bm{V}) = \mathcal{D} \left( |\bm{B}|^{.2} | \bm{TV} \right) + \mathrm{const.}
     \label{eq:isnmf}
 \end{align}
-\textcolor{red}{この事実は，パワースペクトログラム$|\bm{B}|^{.2}$にISNMFを適用することが，式(\ref{eq:nmfgen})の生成モデルを仮定した分散の最尤推定問題と等価であることを示している．}
+\textcolor{red}{この事実は，パワースペクトログラム$|\bm{B}|^{.2}$にISNMFを適用することが，式(\ref{eq:nmfgen})の生成モデルを仮定した分散の最尤推定問題と等価であることを示している\cite{GGD}．}
 
 %----------------------------------------------
 \section{ILRMA}
 \label{sec:conv:ilrma}
 %----------------------------------------------
 
-\textcolor{red}{IVAよりも高精度なBSSを達成できるアルゴリズムとしてILRMA\cite{ILRMA, Kitamura2018_ilrma}が提案されている．本論文においても，ILRMAに基づく心拍信号のBSSを検討するため，本節ではILRMAの生成モデル及び反復更新式について概説する．}
+\textcolor{red}{IVAよりも高精度なBSSを達成できるアルゴリズムとしてILRMA~\cite{ILRMA, Kitamura2018_ilrma}が提案されている．本論文においても，ILRMAに基づく心拍信号のBSSを検討するため，本節ではILRMAの生成モデル及び反復更新式について概説する．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
@@ -367,9 +397,9 @@ NMFとは行列分解の方法の一つである．\textcolor{red}{非負行列�
 %-%-%-%-%-%-%-%-%
 
 ILRMAの反復最適化の概要をFig. \ref{fig:ilrma_outline}に示す．
-\textcolor{red}{図中の}$\bm{T}_n\in\mathbb{R}_{\geq 0}^{I\times K}$及び$\bm{V}_n\in\mathbb{R}_{\geq 0}^{K\times J}$は，$n$番目の\textcolor{red}{信号源}のパワースペクトログラム\textcolor{red}{$|\bm{Y}_n|^{.2}$をISNMFで低ランク近似したモデル$\bm{T}_n\bm{V}_n$の基底行列及びアクティベーション行列である．}
-ILRMAは, IVAに\textcolor{red}{基づく}分離行列$\bm{W}_i$の反復最適化とISNMF\textcolor{red}{による分離信号源$|\bm{Y}_n|^{.2}$の}低ランクモデリングに対応する$\bm{T}_n\bm{V}_n$の反復最適化が交互に行われる．
-具体的には，分離行列$\bm{W}_i$により推定された分離信号\textcolor{red}{$|\bm{Y}_n|^{.2}$}をISNMF\textcolor{red}{で非負低ランク行列としてモデル化し}，得られた$\bm{T}_n$及び$\bm{V}_n$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）に用いて分離行列\textcolor{red}{$\bm{W}_i$}を再度推定する，というプロセスが反復的に行われる．
+\textcolor{black}{図中の}$\bm{T}_n\in\mathbb{R}_{\geq 0}^{I\times K}$及び$\bm{V}_n\in\mathbb{R}_{\geq 0}^{K\times J}$は，$n$番目の信号源のパワースペクトログラム$|\bm{Y}_n|^{.2}$をISNMFで低ランク近似したモデル$\bm{T}_n\bm{V}_n$の基底行列及びアクティベーション行列である．
+ILRMAは，IVAに\textcolor{red}{基づく}分離行列$\bm{W}_i$の反復最適化とISNMFによる分離信号源$( |\bm{Y}_n|^{.2} )_{n=1}^N$の低ランクモデリングに対応する$( \bm{T}_n\bm{V}_n )_{n=1}^N$の反復最適化が交互に行われる．
+具体的には，分離行列$( \bm{W}_i )_{i=1}^I$により推定された分離信号$( |\bm{Y}_n|^{.2} )_{n=1}^N$をISNMFで非負低ランク行列としてモデル化し，得られた$( \bm{T}_n )_{n=1}^N$及び$( \bm{V}_n )_{n=1}^N$の各時間周波数成分を式(\ref{eq:nmfgen})における分散（各音源の生成モデルの推定パラメタ）に用いて分離行列$( \bm{W}_i )_{i=1}^I$を再度推定する，というプロセスが反復的に行われる．
 
 ILRMAの生成モデルはISNMFと同様に次式の複素ガウス分布\textcolor{red}{が仮定されている．}
 \begin{align}
@@ -404,84 +434,71 @@ ISNMFの\textcolor{red}{生成モデルより，}
 \end{align}}
 ここで，$\mathsf{W}=\{ \bm{W}_i \}_{i=1}^I$，$\mathsf{T}=\{ \bm{T}_n \}_{n=1}^N$, 及び$\mathsf{V}=\{ \bm{V}_n \}_{n=1}^N$は最適化パラメタの集合である．
 
-\textcolor{red}{式（\ref{eq:ilrmalike2}）を最小化するパラメタは，以下に示す反復最適化アルゴリズムで推定される．まず}
-式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式(\ref{eq:negativeloglikelihood})のISNMFの尤度関数\textcolor{red}{等価であることがわかる．従って，式（\ref{eq:ilrmalike2}）を最小化する$\mathsf{T}$及び$\mathsf{V}$はISNMFと同様に，次式の更新式で反復最適化できる．}
+式\eqref{eq:ilrmalike2}を最小化するパラメタは，以下に示す反復最適化アルゴリズムで推定される．まず，式(\ref{eq:ilrmalike2})を見ると，第二項と第三項は式\eqref{eq:negativeloglikelihood}のISNMFの尤度関数\textcolor{black}{等価であることがわかる．従って，式\eqref{eq:ilrmalike2}を最小化する$\mathsf{T}$及び$\mathsf{V}$はISNMFと同様に，次式の更新式で反復最適化できる．}
 \begin{align}
     t_{ikn} \leftarrow t_{ikn} \sqrt \frac{ \sum_j |\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2 v_{kjn} \left( \sum_{k'} t_{ik'n} v_{k'jn} \right)^{-2} }{ \sum_j v_{kjn} \left( \sum_{k'} t_{ik'n} v_{k'jn} \right)^{-1} } \label{eq:MUTilrma} \\
     v_{kjn} \leftarrow v_{kjn} \sqrt \frac{ \sum_i |\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2 t_{ikn} \left( \sum_{k'} t_{ik'n} v_{k'jn} \right)^{-2} }{ \sum_i t_{ikn} \left( \sum_{k'} t_{ik'n} v_{k'jn} \right)^{-1} } \label{eq:MUVilrma}
 \end{align}
-\textcolor{red}{一方，分離行列$\bm{W}_i$に関する最適化は，分離ベクトル$\bm{w}_{in}$をIPで更新することで達成される．}
+一方，分離行列$\bm{W}_i$に関する最適化は，分離ベクトル$\bm{w}_{in}$をIPで更新することで達成される．
 \begin{align}
 \bm{U}_{in} &= \frac{1}{J} \sum_j \frac{1}{\sum_{l}t_{ikn}v_{kjn}} \bm{x}_{ij} \bm{x}_{ij}^{\mathrm{H}} \label{eq:ip1} \\
 \bm{w}_{in} &\leftarrow (\bm{W}_i \bm{U}_{in})^{-1} \bm{e}_n \label{eq:ip2} \\
 \bm{w}_{in} &\leftarrow \bm{w}_{in} ( \bm{w}_{in}^{\mathrm{H}} \bm{U}_{in} \bm{w}_{in} )^{-\frac{1}{2}} \label{eq:ip3}
 \end{align}
+\textcolor{red}{これらの更新式も, IVAやISNMFと同様に，目的関数\eqref{eq:ilrmalike2}の値が単調非増加となることが保証されている．}
 
-\textcolor{red}{これらの更新式も, IVAやISNMFと同様に，目的関数（\ref{eq:ilrmalike2}）の値が単調非増加となることが保証されている．}
+\textcolor{red}{上記のILRMAは基底数$K$が信号源毎に同じ数を設定した場合の定式化であり，以後，基底数固定型ILRMAと呼ぶ．一方で，信号源毎に適切な基底数は未知であるため，全信号源に用いる基底数を$r=1, 2, \cdots, R$と設定したうえで，適応的に各信号源に基底数を割り振る定式化も提案されている．以後，この手法を基底数可変型ILRMAと呼ぶ．以下に，基底数可変型ILRMAの定式化及び反復更新式を記載する．}
 
-\textcolor{red}{上記のILRMAは基底数$K$が信号源毎に同じ数を設定した場合の定式化であり，以後，基底数固定型ILRMAと呼ぶ．一方で，信号源毎に適切な基底数は未知であるため，全信号源に用いる基底数を$r=1, 2, \cdots, R$と設定したうえで，適応的に各信号源に基底数を割り振る定式も提案されている．以後，この手法を基底数可変型ILRMAと呼ぶ．以下に，基底数可変型ILRMAの定式化及び反復更新式を記載する．}
-
-\textcolor{red}{基底数可変型ILRMAでは，式（\ref{eq:ISNMFmodel}）の生成モデルにおける分散$\sigma_{ijn}^2$を次式で定式化している．}
+\textcolor{red}{基底数可変型ILRMAでは，式\eqref{eq:ISNMFmodel}の生成モデルにおける分散$\sigma_{ijn}^2$を次式で定式化している．}
 \begin{align}
 \sigma_{ijn}^2 = \sum_{r} z_{nr}t_{ir}v_{ri}
-\end{align}
-\textcolor{red}{ここで，$z_{nr}\in [0, 1]$は分割関数と呼ばれ，$r$番目の基底を$n$番目の音源に分配する潜在変数である．従って，$\sum_{n} z_{nr} = 1$という制約がある．この分割関数を含めた基底数可変型ILRMAの更新式は次式となる．
+\end{align}ここで，$z_{nr}\in [0, 1]$は分割関数と呼ばれ，$r$番目の基底を$n$番目の音源に分配する潜在変数である．従って，$\sum_{n} z_{nr} = 1$という制約がある．この分割関数を含めた基底数可変型ILRMAの更新式は次式となる．
 \begin{align}
 t_{ir}&\leftarrow t_{ir}\sqrt{\dfrac{\sum _{j,n}\left| b_{ijn}\right| ^{2}z_{nr}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{j,n}z_{nr}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip1} \\
 v_{ir}&\leftarrow v_{ir}\sqrt{\dfrac{\sum _{i,n}\left| b_{ijn}\right| ^{2}z_{nr}t_{ir}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{i,n}z_{nr}t_{ir}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip2} \\
 z_{nr}&\leftarrow z_{nr}\sqrt{\dfrac{\sum _{i,j}\left| b_{ijn}\right| ^{2}t_{ir}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-2}}{\sum _{i,j}t_{ir}v_{rj}\left( \sum _{r'}z_{nr'}t_{ir'}v_{r'j}\right) ^{-1}}} \label{eq:ilrma2ip3} \\
 z_{nr}&\leftarrow \dfrac{z_{nr}}{\sum _{n'}z_{nr}} \label{eq:normalizez}
-\end{align}}
+\end{align}
 
-\textcolor{red}{式（\ref{eq:ilrma2ip1}）--（\ref{eq:ilrma2ip3}）で音源モデルを更新した後は，基底数固定型ILRMAと同様に式（\ref{eq:ip1}）--（\ref{eq:ip3}）で分離行列を更新する．この手続きを反復する．また，式（\ref{eq:normalizez}）は前述した通り，$\sum_{n} z_{nr} = 1$を保証するために計算される．}
+式\eqref{eq:ilrma2ip1}--\eqref{eq:ilrma2ip3}で音源モデルを更新した後は，基底数固定型ILRMAと同様に式\eqref{eq:ip1}--\eqref{eq:ip3}で分離行列を更新する．この手続きを反復する．また，式\eqref{eq:normalizez}は前述した通り，$\sum_{n} z_{nr} = 1$を保証するために計算される．
 
-\textcolor{red}{本論文では，本節で説明したILRMAに関しては基底数固定型及び基底数可変型の2つのアルゴリズムを適用する．しかしながら，次節で述べる$t$-ILRMAにおいては，基底数固定型のみ適用する．}
+\textcolor{red}{本論文では，本節で説明したILRMAに関しては基底数固定型及び基底数可変型の2つのアルゴリズムを適用する．但し，実験の章で述べる通り，基底数の固定・可変に対して顕著な差は現れないため，次節で述べる$t$-ILRMAにおいては，基底数固定型のみ適用する．}
 
 %----------------------------------------------
 \section{$t$-ILRMA}
 \label{sec:conv:tilrma}
 %----------------------------------------------
 
-\textcolor{red}{近年，ISNMFの複素Gauss分布に基づくに基づく生成モデルを，一般化したNMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GGD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデル\textcolor{red}{と仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．}
-複素Student's~$t$分布には形状パラメタ$\nu~\textgreater~0$があ\textcolor{red}{る．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow2$とすると複素Gauss分布に一致する．}
+\textcolor{red}{近年，ISNMFの複素Gauss分布に基づくに基づく生成モデルを一般化したNMFが数多く提案されている．例えば，複素一般化Gauss分布に基づくNMF~\cite{GGD}や複素Student's $t$分布に基づくNMF（$t$-NMF）\cite{tnmf}等が提案されており，NMFに基づく特定のタスク（BSSやスパースノイズ除去等）においてISNMFよりも性能が向上することが報告されている．このことに鑑み，}複素Student's~$t$分布を生成モデルとして仮定するILRMA（$t$-ILRMA）が提案された\cite{tdist1, tdist2}．
+複素Student's~$t$分布には形状パラメタ$\nu~\textgreater~0$がある．$\nu=1$とすると複素Cauchy分布に一致し，$\nu\rightarrow \infty$とすると複素Gauss分布に一致する．
 
 $t$-ILRMAの生成モデルは次式で表される．
-\textcolor{red}{
 \begin{align}
      \prod_{i,j}\left(\bm{Y}_{n}\right)= \prod_{i,j}\frac{1}{\pi \sigma_{ijn}^{2} } \left( 1+\frac{2}{\nu}\frac{|y_{ijn}|^2}{\sigma_{ijn}^{2}} \right)^{\frac{2+\nu}{2}}　\label{eq:tmodel}
 \end{align}
 \begin{align}
      \sigma_{ijn}^{p}=\left(\sum_{k}t_{ikn}v_{kjn}\right)^{p} \label{eq:tsigma}
-\end{align}}
-
-ここで，\textcolor{red}{$\sigma_{ijn}$は時間周波数ごとに変動する非負パラメタであり，分離信号$\bm{Y}_{n}$の振幅スペクトログラム$|\bm{Y}_{n}|$のNMFモデルである．また，}$p$はNMFモデルの\textcolor{red}{信号領域を決定する量であり}，$p=1$のときは振幅ドメイン，$p=2$のときはパワードメインを\textcolor{red}{モデル化することに}相当する．\textcolor{red}{従って}$p=2$\textcolor{red}{かつ}$\nu\rightarrow\infty$のときは，\textcolor{red}{式（\ref{eq:tmodel}）は}ISNMFの\textcolor{red}{生成}モデルに一致\textcolor{red}{する．}この\textcolor{red}{生成モデルの負対数尤度関数が$t$-ILRMAの目的関数であり，次式で与えられる．}
+\end{align}
+ここで，$\sigma_{ijn}>0$は時間周波数ごとに変動する非負パラメタであり，分離信号$\bm{Y}_{n}$の振幅スペクトログラム$|\bm{Y}_{n}|$のNMFモデルである．また，$p$はNMFモデルの信号領域を決定するドメインパラメタであり，$p=1$のときは振幅ドメイン，$p=2$のときはパワードメインをモデル化することに相当する．従って$p=2$かつ$\nu\rightarrow\infty$のときは，式\eqref{eq:tmodel}はISNMF及びILRMAの生成モデルに一致する．この生成モデルの負対数尤度関数が$t$-ILRMAの目的関数であり，次式で与えられる．
 \textcolor{red}{
 \begin{align}
-    \nonumber \mathcal{L}_{t}(\mathsf{W, T, V}) =& \mathrm{const.}-2J \sum_{i}\log|\mathrm{det}\bm{W}_{i}| \\
-&+\sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\left(\sum_{k}t_{ikn}v_{kjn}\right)^2}\right)+2\log\left(\sum_{k}t_{ikn}v_{kjn}\right)\right\rbrack \label{eq:tcost}
+    \nonumber \mathcal{L}_{t}(\mathsf{W, T, V}) &= \mathrm{const.}-2J \sum_{i}\log|\mathrm{det}\bm{W}_{i}| \\
+&+ \sum_{i,j}\left\lbrack\left(1+\frac{\nu}{2}\right)\log\left(1+\frac{2}{\nu}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\left(\sum_{k}t_{ikn}v_{kjn}\right)^2}\right)+2\log\left(\sum_{k}t_{ikn}v_{kjn}\right)\right\rbrack \label{eq:tcost}
 \end{align}}
 
-式（\ref{eq:tcost}）を最小化するNMFの最適化パラメタ$\bm{T}_{n}，\bm{V}_{n}$の更新式は次式で表される．
-\textcolor{red}{
+式\eqref{eq:tcost}を最小化するNMFの最適化パラメタ$\mathsf{T}$及び$\mathsf{V}$の更新式は次式で表される．
 \begin{align}
-    t_{ikn}\leftarrow t_{ikn}\left\lbrack\frac{\sum_{j}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tt}
+    t_{ikn}&\leftarrow t_{ikn}\left\lbrack\frac{\sum_{j}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}v_{kjn}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tt} \\
+    v_{lj,n}&\leftarrow v_{lj,n}\left\lbrack\frac{\sum_{i}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tv}
 \end{align}
-\begin{align}
-    v_{lj,n}\leftarrow v_{lj,n}\left\lbrack\frac{\sum_{i}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\frac{\nu}{\nu+2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}+\frac{2}{\nu+2}|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}^{-\frac{2}{p}}}{\sum_{i}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{-p}t_{il,n}}\right\rbrack^{\frac{p}{p+2}} \label{eq:tv}
-\end{align}}
 
-\textcolor{red}{一方}分離行列$\bm{W}_{i}$は節\ref{sec:conv:ilrma}と同様に分離ベクトル$\bm{w}_{in}$をIPで更新することで達成される．
+一方，分離行列$\mathsf{W}$は節\ref{sec:conv:ilrma}と同様に分離ベクトル$\bm{w}_{in}$をIPで更新することで達成される．
 \begin{align}
-    \bm{U}_{in}=\frac{1}{J}\left(\frac{2}{\nu}+1\right)\sum_{j}\frac{1}{\alpha_{ijn}\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}}\bm{x}_{ij}\bm{x}_{ij}^{\mathrm{H}} \label{eq:tip1}
-\end{align}
-\begin{align}
-    \bm{w}_{in}\leftarrow\left(\bm{W}_{i}\bm{U}_{in}\right)^{-1}\bm{e}_{n} \label{eq:tip2}
-\end{align}
-\begin{align}
-    \bm{w}_{in}\leftarrow\frac{\bm{w}_{in}}{\sqrt{\bm{w}_{in}^{\mathrm{H}}\bm{U}_{in}\bm{w}_{in}}} \label{eq:tip3}
+    \bm{U}_{in}&=\frac{1}{J}\left(\frac{2}{\nu}+1\right)\sum_{j}\frac{1}{\left\lbrack1+\frac{2}{\nu}\frac{|\bm{w}_{in}^{\mathrm{H}}\bm{x}_{ij}|^2}{\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}}\right\rbrack\left(\sum_{k}t_{ikn}v_{kjn}\right)^{2}}\bm{x}_{ij}\bm{x}_{ij}^{\mathrm{H}} \label{eq:tip1} \\
+    \bm{w}_{in}&\leftarrow\left(\bm{W}_{i}\bm{U}_{in}\right)^{-1}\bm{e}_{n} \label{eq:tip2} \\
+    \bm{w}_{in}&\leftarrow\frac{\bm{w}_{in}}{\sqrt{\bm{w}_{in}^{\mathrm{H}}\bm{U}_{in}\bm{w}_{in}}} \label{eq:tip3}
 \end{align}
 \textcolor{red}{ここで，$\alpha_{ijn}>0$は補助変数である．}
-
 これらの更新式も，\textcolor{red}{IVA, ISNMF, 及びILRMAと同様に，目的関数}(\ref{eq:tcost})の値が単調非増加となることが保証されている．
 
 
@@ -490,7 +507,7 @@ $t$-ILRMAの生成モデルは次式で表される．
 \label{sec:conv:heartrateestalgo}
 %----------------------------------------------
 
-\textcolor{red}{本節では，レーダセンサの観測信号やBSSで推定された心拍信号等に対して適用する心拍推定アルゴリズムについて説明する．なお，本節では単一チャネルの時間信号を処理の対象としている．この時間信号を}$\left(x[l]\right)_{l=1}^{L}$とする．ここで，$l=1, 2, \cdots , L$は離散時間インデクスであり，$L$は\textcolor{red}{信号の}時間長である．\textcolor{red}{本論文で使用する心拍推定アルゴリズムを下記に順を追って示す．また，心拍推定アルゴリズムの処理の流れを以下にFig.~{fig:hralgo}として示す．}
+本節では，レーダセンサの観測信号やBSSで推定された心拍信号等に対して適用する心拍推定アルゴリズムについて説明する．なお，本節ではBSSにより得られる推定心拍の時間領域の分離信号を処理の対象としている．この分離信号を$( \tilde{y}_\mathrm{HR}[l] )_{l=1}^L$と表記する．本論文で使用する心拍推定アルゴリズムを下記に順を追って示す．また，心拍推定アルゴリズムの処理の流れを以下にFig.~\ref{fig:hralgo}として示す．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -505,33 +522,32 @@ $t$-ILRMAの生成モデルは次式で表される．
 \begin{equation} 
     \begin{cases}
         \begin{split}
-        & x'[l]=x[l+1]-x[l] \\
-        & x''[l]=x'[l+1]-x'[l]
+        & \tilde{\dot{y}}_\mathrm{HR}[l]=\tilde{y}_\mathrm{HR}[l+1]-\tilde{y}_\mathrm{HR}[l] \\
+        & \tilde{\ddot{y}}_\mathrm{HR}[l]=\tilde{\dot{y}}_\mathrm{HR}[l+1]-\tilde{\dot{y}}_\mathrm{HR}[l]
         \end{split}                         &   \forall{l}
     \end{cases}
 \end{equation}
-
-\textcolor{red}{次に，もう一度調波構造を強調する目的で，信号に半波整流を適用する．}
+次に，もう一度調波構造を強調する目的で，信号に半波整流を適用する．
 \begin{equation} 
-x_{\mathrm{r}}[l] =
+\hat{y}_{\mathrm{HR}}[l] =
     \begin{cases}
         \begin{split}
-        & x''[l]\quad \mathrm{if}\quad x''[l]\geqq0 \\
+        & \tilde{\ddot{y}}_\mathrm{HR}[l]\quad \mathrm{if}\quad \tilde{\ddot{y}}_\mathrm{HR}[l]\geqq0 \\
         & 0\hspace{25pt} \mathrm{otherwise}
         \end{split}                         &   \forall{l}
     \end{cases}
 \end{equation}
-\textcolor{red}{さらに，心拍信号が多く存在する帯域である.7--1.4~Hzを通過域とする5次楕円IIRバンドパスディジタルフィルタを適用する．この処理を次式で表す．}
+\textcolor{red}{さらに，心拍信号が多く存在する帯域である0.7--1.4~Hzを通過域とする5次楕円IIRバンドパスディジタルフィルタを適用する．この処理を次式で表す．}
 \begin{align}
-    \left(x_{\mathrm{BPF}}[l]\right)_{l=1}^{L}=\mathrm{BPF}\left[\left(x_{\mathrm{r}}\right)_{l=1}^{L}\right]
+    \left(\breve{y}_{\mathrm{HR}}[l]\right)_{l=1}^{L}=\mathrm{BPF}\left[\left(\hat{y}_{\mathrm{HR}}[l]\right)_{l=1}^{L}\right]
 \end{align} \label{eq:bpf}
-
-\textcolor{red}{最後に}，$\left(x_{\mathrm{BPF}}[l]\right)_{l=1}^{L}$\textcolor{red}{にSTFTを適用してスペクトログラムに変換し，振幅スペクトログラムの最大ピークとなる周波数を時間フレーム毎に求めることで，推定心拍を得る．}
+最後に，$( \breve{y}_{\mathrm{HR}}[l] )_{l=1}^L$にSTFTを適用してスペクトログラムに変換し，振幅スペクトログラムの最大ピークとなる周波数を時間フレム毎に求めることで，推定心拍を得る．
 
 %----------------------------------------------
 \section{本章のまとめ}
+\label{sec:conv:conclusion3}
 %----------------------------------------------
-\textcolor{red}{本章では，前章で得られた観測信号に対してBSSを適用する動機について述べた．振動測定系と体表面の相対的な位置関係が未知であることと，BSSは音響信号処理分野で高度に発展しているため本研究で用いることは妥当である．また，周波数領域BSSの定式化を行い，その代表的な手法であるIVAについて説明した．行列分解の手法の一つであるISNMFについて説明し，ILRMAの生成モデル及び反復更新式について概説した．で導入された手法について説明した．また，複素Student's $t$分布を生成モデルに持つようなILRMAである$t$-ILRMAについて説明した．振動測定系から得られる観測信号に前述した手法を適用して得られる分離信号に対して適用する心拍推定アルゴリズムについても説明した．次章では予備実験として，\ref{chap:measurementstructsig}章の振動測定系から得られる観測信号に，\ref{sec:conv:iva}節で説明したIVAを適用し，実験結果の解説を行う．}
+\textcolor{red}{本章では，前章で得られた観測信号に対してBSSを適用する動機について述べた．振動測定系と体表面の相対的な位置関係が未知であることと，BSSは音響信号処理分野で高度に発展していることから，本論文の目的に対してBSSを適用しその効果を検証することは重要と考えられる．また，時間周波数領域BSSの定式化を行い，その代表的な手法であるIVAについて説明した．行列分解の手法の一つであるISNMFについて説明し，ILRMAの生成モデル及び反復更新式について概説した．さらに，複素Student's $t$分布を生成モデルに持つようなILRMAである$t$-ILRMAについて説明した．振動測定系から得られる観測信号に前述した手法を適用して得られる分離信号に対して適用する心拍推定アルゴリズムについても説明した．次章では予備実験として，\ref{chap:measurementstructsig}章の振動測定系から得られる観測信号に，\ref{sec:conv:iva}節で説明したIVAを適用し，実験結果の解説を行う．}
 
 \chapter{観測信号にフィルタを適用しない場合のBSS及び心拍推定実験}
 \label{chap:bsshrexp}

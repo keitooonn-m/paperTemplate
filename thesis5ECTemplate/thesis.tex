@@ -17,7 +17,7 @@
 %\documentclass[senkouka,english]{nitkagawathesis}%特論（専攻科2年）英語用
 
 %%%%% タイトル %%%%%
-\title{ブラインド信号源分離に基づく\\心拍推定}
+\title{\underline{レーダセンサ及びブラインド信号源分離に}\\ \underline{基づく心拍推定}}
 %\titlewidth{}% タイトル幅 (指定するときは単位つきで)
 
 %%%%% 著者 %%%%%
@@ -57,24 +57,24 @@
 
 %%%%% English title %%%%%
 \etitle{Heart Rate Estimation Based on \\
-Blind Source Separation}
+Radar Sensor and Blind Source Separation}
 
 %%%%% Abstract %%%%%
 \eabstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-It is often fatal for a driver to suffer from sleep, sudden seizure, or loss of consciousness due to deterioration of physical condition while driving a car. Therefore, it is one of the important issues to manage the driver's condition in some way while driving.
-In order to solve this problem, this paper deals with a system for constant monitoring of the driver's heartbeat while driving, utilizing a radar non-contact biometric sensor array (hereafter referred to as radar sensor).
-The radar sensor can measure the small displacement of the surface of the driver's body, and a method to estimate the driver's heartbeat from the observed signal is discussed.
-However, there is a problem that the observed signal contains noise signals such as vibration of the measurement system itself and body motion in addition to the signal derived from the driver's heartbeat.
-Therefore, it is necessary to separate and extract only the signals originating from the heartbeat from the observed signals in order to estimate the heartbeat with high accuracy.
-In this thesis, we consider the application of blind source separation (BSS), which has been studied in the field of acoustic signal processing, to observation signals measured by radar sensors. We also experimentally investigate the improvement in estimation accuracy when the heartbeat-derived signals separated by BSS are input to a heartbeat estimation algorithm. From the experimental results, it is confirmed that the combination of radar sensor and BSS can improve the accuracy of heart rate estimation significantly.
+It is often fatal for a driver to \textcolor{red}{fall aaleep, have a sudden seizure}, or \textcolor{red}{lose} consciousness due to deterioration of physical condition while driving a \textcolor{red}{vehicle}. \textcolor{red}{Thus, monitoring the driver's condition in a vehicle is an crucial issue.}
+\textcolor{red}{To address this issue}, this \textcolor{red}{thesis} deals with a system for constant\textcolor{red}{ly} monitoring the driver's heartbeat while driving utilizing a \textcolor{red}{contactless biometric sensor array} (hereafter referred to as radar sensor).
+\textcolor{red}{Since the} radar sensor can measure the small displacement of the \textcolor{red}{driver's body surface}, a method to estimate the driver's heartbeat from the observed signal is discussed.
+\textcolor{red}{The observed signal contains the driver's heartbeat signal but is contaminated with some noise including body motion and vibrations of the measurement system itself.}
+Therefore, it is necessary to separate and extract only the \textcolor{red}{heartbeat signal} from the observed signals \textcolor{red}{to achieve the accurate heartbeat estimation.}
+In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS) techniques}, which has been \textcolor{red}{well} studied in the field of acoustic signal processing, \textcolor{red}{to the observed signal measured by the radar sensor.} \textcolor{red}{I experimentally show how much BSS can improve the estimation accuracy of the driver's heart rates.} From the experimental results, it is confirmed that the combination of \textcolor{red}{the radar sensor measurement} and BSS can \textcolor{red}{significantly} improve the accuracy of \textcolor{red}{the} heart rate estimation.
 }
 
 %%%%% 概要 %%%%%
 \abstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
 自動車の運転中に運転者が睡眠，突発的な発作，体調の悪化による意識喪失等に見舞われることは多くの場合致命的な状況となる．そのため，運転中に運転者の状態を何らかの方法で管理することが重要課題の一つとなっている．
-この問題を解決するために，本論文では，運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステムを取り扱う．
-\textcolor{red}{このとき，レーダセンサによって運転差の体表面の微小変位を測定することができるため，この観測信号から運転者の心拍を推定する手法について検討する．
-しかしながら，観測信号には運転者の心拍に由来数信号以外にも，測定系自体の振動や体動等のノイズ信号が含まれる問題がある．
+\textcolor{red}{この課題に取り組むために}，本論文では，運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステムを取り扱う．
+\textcolor{black}{レーダセンサ\textcolor{red}{では，}運転差の体表面の微小変位を測定することができるため，この観測信号から運転者の心拍を推定する手法について検討する．
+観測信号には運転者の心拍に由来数信号以外にも，測定系自体の振動や体動等のノイズ信号が含まれる問題がある．
 従って，高精度な心拍の推定のためには，観測信号から心拍由来の信号のみを分離・抽出する必要がある．
 本論文では，レーダセンサで測定される観測信号に対して，音響信号処理分野で研究されているブラインド信号源分離（blind source separation: BSS）の適用を考える．また，BSSで分離された心拍由来の信号を，心拍推定アルゴリズムに入力した際の推定精度の改善量について実験的に調査する．実験結果より，レーダセンサとBSSの組み合わせが，心拍の推定精度を大きく向上させられることが確認された．}
 }
@@ -168,6 +168,27 @@ In this thesis, we consider the application of blind source separation (BSS), wh
 
     \bibitem{bioharness}
    Zephr Bioharness, https://www.zephyranywhere.com/media/download/bioharness3-user-manual.pdf
+
+    \bibitem{ica}
+    P. Comon, ``Independent component analysis, a new concept?,'' 
+    {\em Signal Processing}, vol.~36, no.~3, pp.~287--314.
+
+　　\bibitem{permute}
+    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. ICASSP}, vol. 5, pp. 3140--3143, 2000.
+
+    \bibitem{persolve1}
+    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. ICASSP}, vol. 5, pp. 3140--3143, 2000.
+
+    \bibitem{persolve2}
+    N. Murata, S. Ikeda, and A. Ziehe, ``An approach to blind source separation based on temporal structure of speech signals,'' {\em Neurocomputing}, vol. 41, no. 1--4, pp. 1--24, 2001.
+
+    \bibitem{persolve3}
+    H. Sawada, R. Mukai, S. Araki, and S. Makino, ``A robust and precise method for solving the permutation problem of frequency-domain blind source separation,'' {\em IEEE Trans. Speech Audio Process.}, vol. 12, no. 5, pp. 530--538, 2004.
+
+    \bibitem{persolve4}
+    H. Saruwatari, T. Kawamura, T. Nishikawa, A. Lee, and K. Shikano, ``Blind source separation based on a fast-convergence algorithm combining ICA and beamforming,'' {\em IEEE Trans. Audio, Speech, Lang. Process.}, vol. 14, no. 2, pp. 666--678, 2006.
+[F] H. Sawada, S. Araki, and S. Makino, ``Measuring dependence of bin-wise separated signals for permutation alignment in frequency-domain BSS,'' {\em Proc. IEEE Int. Symp. Circuits Syst.}, pp. 3247–3250, 2007.
+
   
 %  \bibitem{bss_review}
 %  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
