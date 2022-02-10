@@ -555,43 +555,42 @@ $t$-ILRMAの生成モデルは次式で表される．
 %----------------------------------------------
 \section{まえがき}
 %------------------------------------------
-本章では，\textcolor{red}{\ref{chap:measurementstructsig}章の振動測定系で観測された4チャネルのレーダアレイの}観測信号に対して，\textcolor{red}{\ref{sec:conv:iva}節で述べた}IVAを適用した結果を\textcolor{red}{示し，}心拍推定アルゴリズム\textcolor{red}{の精度向上について実験的に検討する．但し，本節では，レーダセンサから得られる信号に前処理を加えず，そのままIVAを適用した結果を予備実験として示している．より詳細な実験については次章にまとめて示すが，\ref{chap:bsshrexp}章と\ref{chap:fbsshrexp}章の違いは，前処理として観測信号に呼吸による体動に由来するノイズを除去するためのハイパスフィルタの適用の有無である．}
-\textcolor{red}{なお，心拍推定の精度を確認するために必要な心拍の参考値（リファレンス）については，\ref{chap:measurementstructsig}章で述べた接触型ECGセンサの観測信号を心拍推定アルゴリズムに適用した推定値を用いている．}心拍推定の比較には，接触型ECGセンサの測定値を用いている．
+本章では，\ref{chap:measurementstructsig}章の振動測定系で観測された4チャネルのレーダアレイの観測信号に対して，\ref{sec:conv:iva}節で述べたIVAを適用した結果を示し，心拍推定アルゴリズムの精度向上について実験的に検討する．但し，本節では，レーダセンサから得られる信号に前処理を加えず，そのままIVAを適用した結果を予備実験として示している．より詳細な実験については次章にまとめて示すが，\ref{chap:bsshrexp}章と\ref{chap:fbsshrexp}章の違いは，呼吸の体動に由来するノイズを除去するためのハイパスフィルタを前処理として観測信号に適用するか否かである．
+なお，心拍推定の精度を確認するために必要な心拍の参考値については，\ref{chap:measurementstructsig}章で述べた接触型ECGセンサの観測信号を心拍推定アルゴリズムに適用した推定値を用いている．
 
 まず\ref{sec:conv:expcondition4}節では，IVAを適用させる際のパラメタについて述べる．
-\ref{sec:conv:expresult4}節では，IVAを適用させて得られたスペクトログラムと心拍推定グラフについての解説を述べる．
+\ref{sec:conv:expresult4}節では，IVAを適用させて得られたスペクトログラムと心拍推定グラフについての解説を述べる．\ref{sec:conv:conclusion4}節で本章をまとめる．
 
 %----------------------------------------------
 \section{本実験の動機}
 \label{sec:conv:expmotivation}
 %----------------------------------------------
-\textcolor{red}{まず，本章では\ref{chap:measurementstructsig}章で述べた振動測定系から得られる時間波形（背部及び臀部のData no. 0からData no. 6）を使用する．これらの時間波形には呼吸による体動に起因するノイズ及び振動台による振動が含まれている．また，振動測定系の混合系は未知であるため，最適なSTFTの窓長を定めることができない．しかしながら，これまで研究されてきたBSSの傾向としてSTFTの窓長は，分離精度にかなり影響を与えるパラメタであることが分かっている\cite{winlengthBSS}．従って，本実験における最適な窓長を実験的に調査する必要がある．}
-
-\textcolor{red}{本論文で取り扱う観測信号は音響信号ではないが，依然としてSTFTの窓長がBSSの性能に与える影響は大きいと予想される．そのため，本章では予備実験として4パターンのSTFTの窓長を試し，それぞれのBSSの結果及び心拍推定アルゴリズムを適用した結果の精度について調査する．}
+まず，本章では\ref{chap:measurementstructsig}章で述べた振動測定系から得られる時間波形として，背部及び臀部のData no. 0からData no. 6を使用する．本論文で取り扱う振動測定系の混合系は未知であるため，最適なSTFTの窓長を定めることができない．STFTの窓長はBSSの精度に強く影響するパラメタである\cite{winlengthBSS}ため，本実験における最適な窓長は実験的に調査する必要がある．
+本論文で取り扱う観測信号は音響信号ではないが，依然としてSTFTの窓長がBSSの性能に与える影響は大きいと予想される．そのため，本章では予備実験として4パターンのSTFTの窓長を試し，それぞれのBSSの結果及び心拍推定アルゴリズムを適用した結果の精度について調査する．
 
 %----------------------------------------------
 \section{実験条件}
 \label{sec:conv:expcondition4}
 %----------------------------------------------
-\textcolor{red}{前節で述べた通り，STFTの窓長は分離精度にかなり影響を与えるパラメタであることが知られている．そのため，本章の実験では，窓長を32点（0.8~s），64点（1.6~s），96点（2.4~s）, 及び128点（3.2~s）, シフト長をそれぞれ，2点（0.05~s），4点（0.1~s），6点（0.15~s）, 及び8点（0.2~s）に設定したSTFTによって計算される．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して$N\times N$の単位行列とした．ここで$N$はチャネル数を表す．また，IVAの式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）に示した反復更新式の反復回数は100回に設定した．}
+\textcolor{red}{前節で述べた通り，本章の実験ではSTFTの窓長を32点（0.8~s），64点（1.6~s），96点（2.4~s）, 及び128点（3.2~s）, シフト長をそれぞれ，2点（0.05~s），4点（0.1~s），6点（0.15~s）, 及び8点（0.2~s）に設定した4条件のSTFTを適用する．分離行列$\bm{W}_{i}$の初期値は全ての周波数に対して単位行列とした．また，IVAの式\eqref{ep:auxIVAip1}--\eqref{ep:auxIVAip3}に示した反復更新式の反復回数は100回に設定した．}
 
 %----------------------------------------------
 \section{実験結果}
 \label{sec:conv:expresult4}
 %----------------------------------------------
 
-\textcolor{red}{本節以降では，\ref{chap:measurementstructsig}章のTable~\ref{tab:vibevacondition}で示した振動条件（Data no.~0からData no.~6）と2種類の測定部位（背部又は臀部）を組み合わせて実験データを参照する．例えば，Data no.~0の背部のレーダセンサから得られる観測信号を「Back no.~0」，Data no.~2の臀部のレーダセンサから得られる観測信号を「Bottom no.~2」等と呼称する．また，本節以降に多くのスペクトログラムを掲載するが，これらの図は窓長を1024点（25.6~s），シフト長を32点（0.8~s）に設定したSTFTで計算されるものに統一されている．周波数領域BSSで処理の対象となる信号（$\bm{X}_m$等）とは，窓長及びシフト長が異なる点に注意する．}
+\textcolor{red}{本節以降では，\ref{chap:measurementstructsig}章のTable~\ref{tab:vibevacondition}で示した振動条件（Data no.~0からData no.~6）と2種類の測定部位（背部又は臀部）を組み合わせて実験データを参照する．例えば，Data no.~0の背部のレーダセンサから得られる観測信号を「Back no.~0」，Data no.~2の臀部のレーダセンサから得られる観測信号を「Bottom no.~2」等と呼称する．また，本節以降に多くのスペクトログラムを掲載するが，これらの図は見やすさのために窓長を1024点（25.6~s），シフト長を32点（0.8~s）に設定したSTFTで計算されるものに統一されている．前節の条件で述べたように，IVAやILRMA等の時間周波数領域BSSで処理の対象となる信号（$\bm{X}_m$等）とは，窓長及びシフト長が異なる点に注意されたい．}
 
-Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムである．\textcolor{red}{Fig.~\ref{fig:ecgspect}に\ref{chap:measurementstructsig}章で述べた接触型ECGセンサから得られる心拍信号のスペクトログラムを示す．従って，BSSで得られた分離信号の中の心拍信号がこのスペクトログラムにどの程度近いかが重要となる．Figs. \ref{fig:siva32est}--\ref{fig:siva128est}は，Back no.~2の観測信号に対して，前節で述べた4種類の窓長及びシフト長でSTFTしIVAを適用することで得られる分離信号のスペクトログラムである．観測信号は4チャネルであるため，BSSによる分離信号も4つ得られるが，理想的にはこの内のいずれかが心拍信号に対応することを想定している．なお，4つ分離信号から心拍信号を選択する方法については今後の課題とし，本論文では取り扱わない．これらの結果を見るとFigs. \ref{fig:siva32est}では，3番目のスペクトログラムに強く心拍の高調波成分が3.5~Hz，5~Hz，及び6~Hz付近に見られる．一方で，0.4~Hz付近に呼吸による体動に起因するノイズが強く残留しており，心拍成分のみを完全に分離できていない．また，振動の高調波成分はほとんど他のスペクトログラムに分離されているが，1.2~Hzの基本周波数成分がよく残留している．1番目, 2番目, 及び4番目のスペクトログラムを見ると，3番目のスペクトログラムでは見られなかった成分が分離されているが，どれも呼吸又は振動台由来のノイズとなっている．Fig.~\ref{fig:siva64est}についても同様のことがいえる．呼吸の成分は4つの分離信号全てに残留してしまうことが多い．依然として3番目のスペクトログラムに心拍由来の調波構造がよく分離されていることが分かる．Figs. \ref{fig:siva96est}及びFigs. \ref{fig:siva128est}についても概ね同様の傾向であるが，Figs. \ref{fig:siva32est}--\ref{fig:siva128est}の3番目のスペクトログラムのみに注目して窓長の違いとして比較してみると，窓長が長くなるほど振動台由来の3.5~Hz付近の3次高調波成分が強く現れてくる．Figs. \ref{fig:siva32est}では，ノイズの高調波成分は当然分離されているが，呼吸成分も同時に僅かに分離されているのに対してFigs. \ref{fig:siva64est}では心拍成分があまり分離されずに残留している．これらより，最もバランスよく心拍成分が分離されている窓長は64点であるといえる．}
+Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムである．Fig.~\ref{fig:ecgspect}に\ref{chap:measurementstructsig}章で述べた接触型ECGセンサから得られる心拍信号のスペクトログラムを示す．従って，BSSで得られた分離信号の中の心拍信号がFig.~\ref{fig:ecgspect}ににどの程度近いかが重要となる．Figs. \ref{fig:siva32est}--\ref{fig:siva128est}は，Back no.~2の観測信号に対して，前節で述べた4種類の窓長及びシフト長でSTFTしIVAを適用することで得られる分離信号のスペクトログラムである．観測信号は4チャネルであるため，BSSによる分離信号も4つ得られるが，理想的にはこの内のいずれかが心拍信号に対応することを想定している．なお，4つ分離信号から心拍信号を選択する方法については今後の課題とし，本論文では取り扱わない．これらの結果を見るとFig. \ref{fig:siva32est}では，3番目のスペクトログラムに強く心拍の高調波成分が3.5~Hz，5~Hz，及び6~Hz付近に見られる．一方で，0.4~Hz付近に呼吸による体動に起因するノイズが強く残留しており，心拍成分のみを完全に分離できていない．また，振動の高調波成分はほとんど他のスペクトログラムに分離されているが，1.2~Hzの基本周波数成分がよく残留している．1番目, 2番目, 及び4番目のスペクトログラムを見ると，3番目のスペクトログラムでは見られなかった成分が分離されているが，どれも呼吸又は振動台由来のノイズとなっている．Fig.~\ref{fig:siva64est}についても同様のことがいえる．呼吸の成分は4つの分離信号全てに残留してしまうことが多い．依然として3番目のスペクトログラムに心拍由来の調波構造がよく分離されていることが分かる．Figs. \ref{fig:siva96est}及び\ref{fig:siva128est}についても概ね同様の傾向であるが，Figs. \ref{fig:siva32est}--\ref{fig:siva128est}の3番目のスペクトログラムのみに注目して窓長の違いを比較してみると，窓長が長くなるほど振動台由来の3.5~Hz付近の3次高調波成分が強く現れてくる．Fig. \ref{fig:siva32est}では，ノイズの高調波成分は分離されているが，呼吸成分も同時に僅かに分離されているのに対してFig. \ref{fig:siva64est}では心拍成分があまり分離されずに残留している．これらより，最もバランスよく心拍成分が分離されている窓長は64点であるといえる．
 
-\textcolor{red}{次に，窓長を64点に設定したIVAによって分離された観測信号に，心拍推定アルゴリズムを適用した結果をFig.~\ref{fig:hriva}に示す．赤及び青のグラフはそれぞれ，分離信号に心拍推定アルゴリズムを適用したグラフ及び接触型ECGセンサから得られる心拍信号に心拍推定アルゴリズムを適用した推定心拍値（以後，リファレンスデータと呼ぶ）をグラフとして示しており，4つの心拍推定グラフ全てにおいて共通である．Fig.~{fig:hriva}を見ると，1番目及び4番目の心拍推定グラフに振動台由来の振動成分が現れていることが分かる．特に4番目の心拍推定グラフでは振動が加えられている60秒から360秒までの間の振動成分が顕著に表れている．一方で，3番目の心拍推定グラフでは，分離された心拍信号がリファレンスデータを概ね捉えていることが分かる．さらに，心拍数の推定結果の領域においても窓長による違いをFig.~\ref{fig:hrivawinlen}に示す．但し，すべての窓長において分離信号の3番目の信号に心拍推定アルゴリズムを適用した心拍推定グラフを掲載している．4つの心拍推定グラフを比較すると，窓長が96点および128点の心拍推定信号は前述した通り，振動の3次高調波成分現れてくることからリファレンスデータをあまり捉えられていない．窓長が32点及び64点の心拍推定信号はどちらも概ねリファレンスデータを捉えている．この２つの窓長における違いは甲乙つけ難いが，その他のデータ（背部及び臀部の他のData no.~）についても同様の比較を行った結果，窓長が64点の場合安定してリファレンスデータに近い心拍推定値が得られたため，以後の実験ではSTFTの窓長を64点に設定して調査を行う．}
+次に，窓長を64点に設定したIVAによって分離された4つの分離信号それぞれに心拍推定アルゴリズムを適用した結果をFig.~\ref{fig:hriva}に示す．赤色のグラフは分離信号に心拍推定アルゴリズムを適用した結果を示し，青色のグラフは接触型ECGセンサから得られる心拍信号に心拍推定アルゴリズムを適用した推定心拍値（参照値）を示している．そのため，参照値のグラフは4つの心拍推定グラフ全てにおいて共通である．Fig.~\ref{fig:hriva}を見ると，1番目及び4番目の心拍推定グラフに振動台由来の振動成分が現れていることが分かる．特に4番目の心拍推定グラフでは振動が加えられている60~sから360~sまでの間の振動成分が顕著に表れている．一方で，3番目の心拍推定グラフでは，分離された心拍信号が参照値と概ね合致していることが分かる．さらに，推定心拍の窓長に関する違いをFig.~\ref{fig:hrivawinlen}に示す．但し，すべての窓長において3番目の分離信号に心拍推定アルゴリズムを適用した結果を掲載している．4つの心拍推定グラフを比較すると，窓長が96点および128点の心拍推定信号は前述した通り，振動の3次高調波成分現れてくることから参照値とあまり合致していない．窓長が32点及び64点の心拍推定信号はどちらも概ね参照値と合致している．この2つの窓長における違いはどちらが良いか判断が難しいが，背部及び臀部の他の観測信号についても同様の比較を行った結果，窓長が64点の場合安定して参照値に近い心拍推定値が得られたため，以後の実験ではSTFTの窓長を64点に設定して調査を行う．
 
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_obs.pdf}
-\caption{Observed signal Back no.~2.}
+\caption{Spectrograms of observed signal of Back no.~2.}
 \label{fig:siva32obs}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -600,7 +599,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\hsize]{./ch_conventional/fig/ecgspect.pdf}
-\caption{Spectrogram obtained by contact ECG sensor.}
+\caption{Spectrogram Spectrogram of observed signal obtained by contact-type ECG sensor for Data no.~2.}
 \label{fig:ecgspect}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -609,7 +608,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_32_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 32 points.}
+\caption{Spectrograms of separated signals estimated by IVA (Back no.~2), where window and shift lengths were respectively set to 32 and 2 points.}
 \label{fig:siva32est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -618,7 +617,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_64_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 64 points.}
+\caption{Spectrograms of separated signals estimated by IVA (Back no.~2), where window and shift lengths were respectively set to 64 and 4 points.}
 \label{fig:siva64est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -627,7 +626,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_96_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 96 points.}
+\caption{Spectrograms of separated signals estimated by IVA (Back no.~2), where window and shift lengths were respectively set to 96 and 6 points.}
 \label{fig:siva96est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -636,7 +635,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./ch_conventional/fig/spect_iva_128_est.pdf}
-\caption{Spectrograms of separated signals of Back no.~2, wher window length is set to 128 points.}
+\caption{Spectrograms of separated signals estimated by IVA (Back no.~2), where window and shift lengths were respectively set to 128 and 8 points.}
 \label{fig:siva128est}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -667,7 +666,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
         \subcaption{Fourth estimated signal}
         \label{fig:hriva32ch4}
       \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of Back no.~2 obtained by IVA for each separated signal.}
+     \caption{Estimated (red) and reference (blue) heart rates obtained by IVA (Back no.~2) for each separated signal.}
      \label{fig:hriva}
   \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -677,37 +676,38 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_32_ch3.pdf}
-        \subcaption{Windw length is set to 32}
+        \subcaption{Windw length: 32 points}
         \label{fig:hriva32ch3}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_64_ch3.pdf}
-        \subcaption{Windw length is set to 64}
+        \subcaption{Windw length: 64 points}
         \label{fig:hriva64ch3}
       \end{minipage} \\
    
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_96_ch3.pdf}
-        \subcaption{Windw length is set to 96}
+        \subcaption{Windw length: 96 points}
         \label{fig:hriva96ch3}
       \end{minipage} 
       \begin{minipage}[t]{0.45\hsize}
         \centering
         \includegraphics[keepaspectratio, width=6.5cm]{./ch_conventional/hrfig/hr_iva_128_ch3.pdf}
-        \subcaption{Windw length is set to 128}
+        \subcaption{Windw length: 128 points}
         \label{fig:hriva128ch3}
       \end{minipage} 
-     \caption{Estimated (red) and reference (blue) heart rates of separated heartbeat signals of Back no.~2 obtained by IVA with various window lengths: (a)~32 points, (b)~64 points, (c)~96, (d)~128 points.}
+     \caption{Estimated (red) and reference (blue) heart rates of separated heartbeat signals obtained by IVA (Back no.~2) with various window lengths: (a)~32 points, (b)~64 points, (c)~96, and (d)~128 points.}
      \label{fig:hrivawinlen}
   \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
 \section{本章のまとめ}
+\label{sec:conv:conclusion4}
 %----------------------------------------------
-\textcolor{red}{本章では，\ref{chap:measurementstructsig}章で得られた観測信号に対してIVAを適用した．但し，STFTの窓長が分離制度に影響を与えるパラメタであるため，窓長を32点（0.8~s），64点（1.6~s），96点（2.4~s）, 及び128点（3.2~s）, シフト長をそれぞれ，2点（0.05~s），4点（0.1~s），6点（0.15~s）, 及び8点（0.2~s）に設定して最適な窓長の調査を行った．また，接触型ECGセンサから得られる心拍信号のスペクトログラムと比較も行った．さらに，これらの分離信号に心拍推定アルゴリズムを適用し，心拍推定値とリファレンスデータとの比較も行った．これらの実験の結果，STFTの最適な窓長は64点であることを確認した．しかしながら，呼吸による体動に起因するノイズは全ての分離信号に強く残留しているため，完全に心拍信号のみを分離することは困難である．そのため，前処理として観測信号から呼吸を落とすハイパスフィルタを適用してBSSを行う手法について次章で検討する．}
+本章では，\ref{chap:measurementstructsig}章で得られた観測信号に対してIVAを適用した．但し，STFTの窓長が分離精度に影響を与えるパラメタであるため，窓長とシフト長の組み合わせを4種類に設定して最適な窓長の調査を行った．また，接触型ECGセンサから得られる心拍信号のスペクトログラムと比較も行った．さらに，これらの分離信号に心拍推定アルゴリズムを適用し，心拍推定値と参照値との比較も行った．これらの実験の結果，STFTの最適な窓長は64点であることを確認した．しかしながら，呼吸による体動に起因するノイズは全ての分離信号に強く残留しているため，完全に心拍信号のみを分離することは困難であった．そのため次章では，前処理として観測信号から呼吸の基本周波数成分を落とすハイパスフィルタを適用してから各種BSSを適用する手法について検討する．
 
 
 \chapter{観測信号にフィルタを適用した場合のBSS及び心拍推定実験}
@@ -716,14 +716,14 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 %----------------------------------------------
 \section{まえがき}
 %----------------------------------------------
-\textcolor{red}{前章の実験結果より，観測信号に含まれる呼吸による体動に起因するノイズ信号（Fig.~\ref{fig:siva32obs}における0.4~Hz付近の成分）が周波数領域BSSではあまり除去できないことが確認された．この呼吸のノイズ信号はあまり明確な調波構造を持っておらず，基本周波数のみが顕著な周波数特性であることがFig.~\ref{fig:siva32obs}から確認される．そこで，本章では，周波数領域BSSをてきようする前の処理として，呼吸のノイズ信号を除去するハイパスフィルタを適用することを提案し，この効果について実験的に調査する．特に本章では，前述の前処理の適用に加えて，IVA，基底数固定型ILRMA, 基底数可変型LRMA, 及び$t$-ILRMAの４手法を適用して比較することにより，どの手法が高精度な心拍推定を実現できるか検討する．
-まず\ref{sec:conv:filteroutline}節では，前処理として新たに観測信号の各チャネルに適用するディジタルフィルタの設計仕様について述べる．\ref{sec:conv:expcond5}節では，IVA，基底数固定型ILRMA，基底数可変型ILRMA，$t$-ILRMAの4手法の実験条件について説明する．\ref{sec:conv:expresult5}節では，各項に手法毎の結果をまとめて考察し，本章の結論を\ref{sec:conv:conclusion5}で述べる．}
+\textcolor{red}{前章の実験結果より，観測信号に含まれる呼吸の基本周波数成分（Fig.~\ref{fig:siva32obs}における0.4~Hz付近の成分）は相対的に他の信号よりも強く，IVAではあまり除去できないことが確認された．この呼吸のノイズ信号はあまり明確な調波構造を持っておらず，基本周波数のみが顕著な周波数特性であることがFig.~\ref{fig:siva32obs}から確認される．そこで，本章では，時間周波数領域BSSを適用する前の処理として，呼吸基本周波数成分を除去するハイパスフィルタを適用することを提案し，この効果について実験的に調査する．特に本章では，前述の前処理の適用に加えて，IVA，基底数固定型ILRMA, 基底数可変型LRMA, 及び$t$-ILRMAの4手法を適用して比較することにより，どの手法が高精度な心拍推定を実現できるか検討する．
+まず\ref{sec:conv:filteroutline}節では，前処理として新たに観測信号の各チャネルに適用するディジタルフィルタの設計仕様について述べる．\ref{sec:conv:expcond5}節では，IVA，基底数固定型ILRMA，基底数可変型ILRMA，及び$t$-ILRMAの4手法の実験条件について説明する．\ref{sec:conv:expresult5}節では，各項に手法毎の結果をまとめて考察し，本章の結論を\ref{sec:conv:conclusion5}で述べる．}
 
 %----------------------------------------------
 \section{\textcolor{red}{前処理として適用するフィルタの設計}}
 \label{sec:conv:filteroutline}
 %----------------------------------------------
-\textcolor{red}{本章の実験で適用するハイパスフィルタの詳細について説明する．観測信号のスペクトログラムであるFig.~\ref{fig:siva32obs}より，呼吸による体動に起因するノイズ信号はおよそ0.4~Hz付近に存在することが確認できる．そこで，本論文では，前処理として，カットオフ周波数を1.5~Hzとするハイパスフィルタを観測信号の各チャネルに対して適用する．このハイパスフィルタは，位相歪みが生じない線形位相特性を満たすようにFIRディジタルフィルタとして設計している．フィルタのタップ長（次数）は170次である．このフィルタの振幅応答と位相応答をFigs.~\ref{fig:ampres}及び\ref{fig:phaseres}にそれぞれ示す．次節では，このハイパスフィルタをチャネル毎に適用した信号を周波数領域BSSの観測信号とみなし，心拍信号の分離を行う．}
+\textcolor{red}{本章の実験で適用するハイパスフィルタの詳細について説明する．観測信号のスペクトログラムであるFig.~\ref{fig:siva32obs}より，呼吸の基本周波数成分はおよそ0.4~Hz付近に存在することが確認できる．そこで，本論文では，前処理として，カットオフ周波数を1.5~Hzとするハイパスフィルタを観測信号の各チャネルに対して適用する．このハイパスフィルタは，位相歪みが生じない（線形位相特性を満たす）ようにFIRディジタルフィルタとして設計している．フィルタのタップ長（次数）は170次である．このフィルタの振幅応答と位相応答をFigs.~\ref{fig:ampres}及び\ref{fig:phaseres}にそれぞれ示す．次節では，このハイパスフィルタをチャネル毎に適用した信号を周波数領域BSSの観測信号$( \tilde{\bm{x}}[l] )_{l=1}^L$とみなし，心拍信号の分離を行う．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[!t]
@@ -748,13 +748,13 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \label{sec:conv:expcond5}
 %----------------------------------------------
 
-\textcolor{red}{前章の実験において，最もバランスよく心拍信号が分離されたSTFTの窓長及びシフト長はそれぞれ，64点（1.6~s）及び4点（0.1~s）であることが分かったため，これらをIVA，ILRMA（基底数固定型と基底数可変型を含む），及び$t$-ILRMAのSTFTの窓長及びシフト長として設定した．IVA，ILRMA，及び$t$-ILRMAのその他の実験条件を以下に示す．}
+前章の実験において，最もバランスよく心拍信号が分離されたSTFTの窓長及びシフト長はそれぞれ，64点（1.6~s）及び4点（0.1~s）であることが分かったため，これらをIVA，ILRMA（基底数固定型と基底数可変型を含む），及び$t$-ILRMAのSTFTの窓長及びシフト長として設定した．IVA，ILRMA，及び$t$-ILRMAのその他の実験条件を以下に示す．
 
-\textcolor{red}{まず，IVAの実験条件を示す．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して$N\times N$の単位行列とした．ここで$N$はチャネル数を表す．また，IVAの式（\ref{ep:auxIVAip1}）--（\ref{ep:auxIVAip3}）に示した反復更新式の反復回数は100回に設定した．}
+まず，IVAの実験条件を示す．分離行列$\bm{W}_{i}$の初期値は全ての周波数ビンに対して単位行列とした．また，IVAの式\eqref{ep:auxIVAip1}--\eqref{ep:auxIVAip3}に示した反復更新式の反復回数は100回に設定した．
 
-\textcolor{red}{次に，ILRMAの実験条件（基底数固定型と基底数可変型を含む）を示す．\ref{sec:conv:ilrma}節で示した式（\ref{eq:ip1}）--（\ref{eq:ip3}）の反復更新式の反復回数は100回に設定した．また基底数固定型ILRMAの基底数を各チャネル毎に3本とした．基底数可変型ILRMAでは基底数を12本とした．基底数固定型ILRMAは反復毎にプロジェクションバックで正規化を行い，反復毎にプロジェクションバックで正規化を行わない．その他の実験条件はIVAと同様である．}
+次に，ILRMAの実験条件（基底数固定型と基底数可変型を含む）を示す．\ref{sec:conv:ilrma}節で示した式\eqref{eq:ip1}--\eqref{eq:ip3}の反復更新式の反復回数は100回に設定した．また基底数固定型ILRMAの基底数を信号源毎に$K=3$とした．基底数可変型ILRMAでは全信号源の基底数を$R=12$とした．基底数固定型ILRMAは反復毎にプロジェクションバックで正規化を行い，基底数可変型ILRMAは反復毎にプロジェクションバックで正規化を行わない．基底行列及びアクティベーション行列の初期値は，基底数固定型及び基底数可変型のいずれにおいても，区間$(0,1)$の一様乱数に設定した．その他の実験条件はIVAと同様である．
 
-\textcolor{red}{最後に，$t$-ILRMAの実験条件を示す．複素Studen's~$t$分布の形状パラメタ$\nu$は1, 2, 及び5に設定し，NMFの信号領域を決定するパラメタ$p$は1（振幅ドメイン）及び2（パワードメイン）と設定した．また，\ref{sec:conv:tilrma}節で示した式（\ref{eq:tip1}）--（\ref{eq:tip3}）の反復更新式の反復回数は100回に設定した．その他の実験条件はIVA及びILRMAと同様である．}
+最後に，$t$-ILRMAの実験条件を示す．複素Studen's~$t$分布の形状パラメタ$\nu$は1, 2, 及び5に設定し，NMFの信号領域を決定するドメインパラメタ$p$は1（振幅ドメイン）及び2（パワードメイン）と設定した．また，\ref{sec:conv:tilrma}節で示した式\eqref{eq:tip1}--\eqref{eq:tip3}の反復更新式の反復回数は100回に設定した．その他の実験条件はIVA及びILRMAと同様である．
 
 
 %----------------------------------------------
@@ -766,7 +766,7 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \subsection{\textcolor{red}{フィルタを適用した観測信号}}
 \label{sec:conv:resultiva}
 %----------------------------------------------
-\textcolor{red}{Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用した測定信号である．1.5~Hz以下の信号がフィルタによって落とされているが，依然としてパワーの小さい領域において, 呼吸信号がみられる0.4~Hzの周波数成分及び振動台による振動の信号が卓越して残留している．}
+\textcolor{red}{Fig. \ref{fig:sfiva64obs}は\ref{sec:conv:filteroutline}節のフィルタを前処理として適用したBack bo.~2の観測信号である．1.5~Hz以下の信号がフィルタによって落とされているが，依然としてパワーの小さい領域において, 呼吸信号がみられる0.4~Hzの周波数成分及び振動台による振動の信号が卓越して残留している．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
@@ -782,9 +782,9 @@ Fig. \ref{fig:siva32obs}は観測信号Back no.~2のスペクトログラムで�
 \label{sec:conv:resultiva}
 %----------------------------------------------
 Fig. \ref{fig:sfiva64est}はFig. \ref{fig:sfiva64obs}にIVAを適用した結果である．
-\textcolor{red}{前章のFig. \ref{fig:siva64est}で見られた3.5~Hz付近の振動の3次高調波がほとんど見られず，心拍の高調波が3.5~Hz，5~Hz，及び6~Hz付近に強く現れている．1番目，2番目，及び4番目のスペクトログラムには心拍の高調波成分が見られず，振動及び呼吸の高調波成分が分離されていることが分かる．}
+\textcolor{red}{前章のFig. \ref{fig:hrivawinlen}~(b)で見られた3.5~Hz付近の振動の3次高調波がほとんど見られず，心拍の高調波が3.5~Hz，5~Hz，及び6~Hz付近に強く現れている．1番目，2番目，及び4番目のスペクトログラムには心拍の高調波成分が見られず，振動及び呼吸の高調波成分が分離されていることが分かる．}
 
-\textcolor{red}{また，Fig. \ref{fig:sfiva64est}に対して心拍推定アルゴリズムを適用した心拍推定値をFig. \ref{fig:fhriva64ch3}はに示す．前章のFig. \ref{fig:hriva64ch3}の150秒から加振終了時（360秒）では捉えられていなかったリファレンスデータを捉えていることが分かる．但し，200秒付近の推定心拍値はリファレンスデータを捉えられていない．この結果より，フィルタリングを行うことで心拍推定精度が向上するといえる．しかし，加振時（60秒から360秒）にリファレンスデータを捉えられていない箇所がまだ多く存在するため，次節以降で，より心拍推定精度が高くなるBSSの手法について調査する．}
+\textcolor{red}{また，Fig. \ref{fig:sfiva64est}に対して心拍推定アルゴリズムを適用した心拍推定値をFig. \ref{fig:fhriva64ch3}に示す．前章のFig. \ref{fig:hriva64ch3}の150秒から加振終了時（360秒）では捉えられていなかったリファレンスデータを捉えていることが分かる．但し，200秒付近の推定心拍値はリファレンスデータを捉えられていない．この結果より，フィルタリングを行うことで心拍推定精度が向上するといえる．しかし，加振時（60秒から360秒）にリファレンスデータを捉えられていない箇所がまだ多く存在するため，次節以降で，より心拍推定精度が高くなるBSSの手法について調査する．}
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
