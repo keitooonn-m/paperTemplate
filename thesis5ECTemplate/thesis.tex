@@ -61,19 +61,19 @@ Radar Sensor and Blind Source Separation}
 
 %%%%% Abstract %%%%%
 \eabstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-It is often fatal for a driver to \textcolor{red}{fall aaleep, have a sudden seizure}, or \textcolor{red}{lose} consciousness due to deterioration of physical condition while driving a \textcolor{red}{vehicle}. \textcolor{red}{Thus, monitoring the driver's condition in a vehicle is an crucial issue.}
-\textcolor{red}{To address this issue}, this \textcolor{red}{thesis} deals with a system for constant\textcolor{red}{ly} monitoring the driver's heartbeat while driving utilizing a \textcolor{red}{contactless biometric sensor array} (hereafter referred to as radar sensor).
-\textcolor{red}{Since the} radar sensor can measure the small displacement of the \textcolor{red}{driver's body surface}, a method to estimate the driver's heartbeat from the observed signal is discussed.
-\textcolor{red}{The observed signal contains the driver's heartbeat signal but is contaminated with some noise including body motion and vibrations of the measurement system itself.}
-Therefore, it is necessary to separate and extract only the \textcolor{red}{heartbeat signal} from the observed signals \textcolor{red}{to achieve the accurate heartbeat estimation.}
-In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS) techniques}, which has been \textcolor{red}{well} studied in the field of acoustic signal processing, \textcolor{red}{to the observed signal measured by the radar sensor.} \textcolor{red}{I experimentally show how much BSS can improve the estimation accuracy of the driver's heart rates.} From the experimental results, it is confirmed that the combination of \textcolor{red}{the radar sensor measurement} and BSS can \textcolor{red}{significantly} improve the accuracy of \textcolor{red}{the} heart rate estimation.
+It is often fatal for a driver to \textcolor{black}{fall aaleep, have a sudden seizure}, or \textcolor{black}{lose} consciousness due to deterioration of physical condition while driving a \textcolor{black}{vehicle}. \textcolor{black}{Thus, monitoring the driver's condition in a vehicle is an crucial issue.}
+\textcolor{black}{To address this issue}, this \textcolor{black}{thesis} deals with a system for constant\textcolor{black}{ly} monitoring the driver's heartbeat while driving utilizing a \textcolor{black}{contactless biometric sensor array} (hereafter referred to as radar sensor).
+\textcolor{black}{Since the} radar sensor can measure the small displacement of the \textcolor{black}{driver's body surface}, a method to estimate the driver's heartbeat from the observed signal is discussed.
+\textcolor{black}{The observed signal contains the driver's heartbeat signal but is contaminated with some noise including body motion and vibrations of the measurement system itself.}
+Therefore, it is necessary to separate and extract only the \textcolor{black}{heartbeat signal} from the observed signals \textcolor{black}{to achieve the accurate heartbeat estimation.}
+In this thesis, \textcolor{black}{I propose to apply blind source separation (BSS) techniques}, which has been \textcolor{black}{well} studied in the field of acoustic signal processing, \textcolor{black}{to the observed signal measured by the radar sensor.} \textcolor{black}{I experimentally show how much BSS can improve the estimation accuracy of the driver's heart rates.} From the experimental results, it is confirmed that the combination of \textcolor{black}{the radar sensor measurement} and BSS can \textcolor{black}{significantly} improve the accuracy of \textcolor{black}{the} heart rate estimation.
 }
 
 %%%%% 概要 %%%%%
 \abstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
 自動車の運転中に運転者が睡眠，突発的な発作，体調の悪化による意識喪失等に見舞われることは多くの場合致命的な状況となる．そのため，運転中に運転者の状態を何らかの方法で管理することが重要課題の一つとなっている．
-\textcolor{red}{この課題に取り組むために}，本論文では，運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステムを取り扱う．
-\textcolor{black}{レーダセンサ\textcolor{red}{では，}運転差の体表面の微小変位を測定することができるため，この観測信号から運転者の心拍を推定する手法について検討する．
+\textcolor{black}{この課題に取り組むために}，本論文では，運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステムを取り扱う．
+\textcolor{black}{レーダセンサ\textcolor{black}{では，}運転差の体表面の微小変位を測定することができるため，この観測信号から運転者の心拍を推定する手法について検討する．
 観測信号には運転者の心拍に由来数信号以外にも，測定系自体の振動や体動等のノイズ信号が含まれる問題がある．
 従って，高精度な心拍の推定のためには，観測信号から心拍由来の信号のみを分離・抽出する必要がある．
 本論文では，レーダセンサで測定される観測信号に対して，音響信号処理分野で研究されているブラインド信号源分離（blind source separation: BSS）の適用を考える．また，BSSで分離された心拍由来の信号を，心拍推定アルゴリズムに入力した際の推定精度の改善量について実験的に調査する．実験結果より，レーダセンサとBSSの組み合わせが，心拍の推定精度を大きく向上させられることが確認された．}
@@ -163,21 +163,52 @@ In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS)
     \bibitem{ica2}
   H. Sawada, N. Ono, H. Kameoka, D. Kitamura, and H. Saruwatari, ``A review of
   blind source separation methods: Two converging routes to ILRMA originating from
-  ICA and NMF,'' {\em APSIPA Trans. Signal and Information Processing}, vol. 8, no. e12,
+  ICA and NMF,'' {\em Asia Pacific Signal and Information Processing Association Trans. Signal and Information Processing}, vol. 8, no. e12,
   pp. 1–14, 2019.
 
+  \bibitem{isnmf}
+  C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
+  ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
+  {\em Neural Computation}, vol.~21, 793--830, 2009.
+
+  \bibitem{Kim2007_iva}
+  T.~Kim, H.~T.~Attias, S.-Y.~Lee, and T.-W.~Lee, ``Blind source separation exploiting higher-order frequency dependencies,'' 
+  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~15, no.~1, pp.~70--79, 2007.
+
+  \bibitem{auxIVA}
+  N.~Ono and S.~Miyabe, ``Auxiliary-function-based independent component analysis for super-Gaussian sources,'' 
+  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation,} pp.165--172, 2010.
+
+  \bibitem{ILRMA}
+  D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari,
+  ``Determined blind source separation unifying independent vector analysis and nonnegative matrix factorization,'' 
+  {\em IEEE/ACM Trans. Audio, Speech, and Language Processing}, vol.~24, no.~9, pp.~1626--1641, 2016.
+
+  \bibitem{Kitamura2018_ilrma}
+  D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari, ``Determined blind source separation with independent low-rank matrix analysis,'' 
+  {\em Audio Source Separation}, S.~Makino, Ed., pp. 125--155. Springer, Cham, 2018.
+
+  \bibitem{tdist1}
+  S.~Mogami, D.~Kitamura, Y.~mitsui, N.~Takamune, H.~Saruwatari, and N.~Ono, ``Independent low-rank matrix analysis based on complex Student's t-distribution for blind audio source     separation,''
+  {\em Proc.~IEEE International Workshop on Machine Learning for Signal Processing}, 2017. 
+ 
+  \bibitem{tdist2}
+  D.~Kitamura, S.~Mogami,~Y.~Mitsui, N.~Takamune, H.~Saruwatari, N.~Ono, Y.~Takahashi, and K.~Kondo, 
+  ``Generalized independent low-rank matrix analysis using heavy-tailed distributions for blind source separation,''
+  {\em European Association for Speech, Signal and Image Processing Journal on Advances in Signal Processing}, vol. 2018, no. 28, p. 25, 2018. 
+
     \bibitem{bioharness}
-   Zephr Bioharness, https://www.zephyranywhere.com/media/download/bioharness3-user-manual.pdf
+   Zephyr Technology Bioharness, https://www.zephyranywhere.com/media/download/bioharness3-user-manual.pdf
 
     \bibitem{ica}
     P. Comon, ``Independent component analysis, a new concept?,'' 
     {\em Signal Processing}, vol.~36, no.~3, pp.~287--314.
 
 　　\bibitem{permute}
-    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. ICASSP}, vol. 5, pp. 3140--3143, 2000.
+    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. International Conference on Acoustics, Speech, and Signal Processing}, vol. 5, pp. 3140--3143, 2000.
 
     \bibitem{persolve1}
-    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. ICASSP}, vol. 5, pp. 3140--3143, 2000.
+    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. International Conference on Acoustics, Speech, and Signal Processing}, vol. 5, pp. 3140--3143, 2000.
 
     \bibitem{persolve2}
     N. Murata, S. Ikeda, and A. Ziehe, ``An approach to blind source separation based on temporal structure of speech signals,'' {\em Neurocomputing}, vol. 41, no. 1--4, pp. 1--24, 2001.
@@ -194,17 +225,9 @@ In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS)
 %  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
 %  {\em APSIPA Trans. Signal and Information Processing,} vol.~8, no.~e12, pp.~1--14, 2019.
 
-  \bibitem{Kim2007_iva}
-  T.~Kim, H.~T.~Attias, S.-Y.~Lee, and T.-W.~Lee, ``Blind source separation exploiting higher-order frequency dependencies,'' 
-  {\em IEEE Trans. Audio, Speech, and Language Processing}, vol.~15, no.~1, pp.~70--79, 2007.
-
   \bibitem{auxfunc}
   D.~R.~Hunter and K.~Lange, ``A tutorial on MM algorithms,'' 
   {\em The American Statistician,} vol.~58, no.~1, pp.~30-–37, 2004.
-
-  \bibitem{auxIVA}
-  N.~Ono and S.~Miyabe, ``Auxiliary-function-based independent component analysis for super-Gaussian sources,'' 
-  {\em Proc. International Conference on Latent Variable Analysis and Signal Separation,} pp.165--172, 2010.
 
   \bibitem{stable_auxIVA}
   N.~Ono,
@@ -234,25 +257,11 @@ In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS)
   \bibitem{iwase}
   Y.~Iwase and D.~Kitamura, 
   ``Supervised audio source separation based on nonnegative matrix factorization with cosine similarity penalty''
-  {\em IEICE Transactions on Fundamentals of Electronics, Communications and Computer Sciences}, vol.~E105-A, no.~6, pp. ???–???, 2022.
+  {\em IEICE Trans. Fundamentals}, vol.~E105-A, no.~6, pp. ???–???, 2022.
 
   \bibitem{MU}
   M.~Nakano, H.~Kameoka, J.~Le~Roux, Y.~Kitano, N.~Ono, S.~Sagayama, ``Convergence-guaranteed multiplicative algorithms for nonnegative matrix factorization with beta-divergence,''
   {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, 2010, pp.~283--288.
-
-  \bibitem{isnmf}
-  C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
-  ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
-  {\em Neural Computation}, vol.~21, 793--830, 2009.
-    
-  \bibitem{ILRMA}
-  D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari,
-  ``Determined blind source separation unifying independent vector analysis and nonnegative matrix factorization,'' 
-  {\em IEE/ACM Trans. Audio, Speech, and Language Processing}, vol.~24, no.~9, pp.~1626--1641, 2016.
-
-  \bibitem{Kitamura2018_ilrma}
-  D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari, ``Determined blind source separation with independent low-rank matrix analysis,'' 
-  {\em Audio Source Separation}, S.~Makino, Ed., pp. 125--155. Springer, Cham, 2018.
 
   \bibitem{GGD}
   D.~Kitamura,~``Nonnegative matrix factorization based on complex generative model,''
@@ -261,16 +270,7 @@ In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS)
   \bibitem{tnmf}
   K.~Yoshii, K.~Itoyama, and M.~Goto, ``Student's $t$ nonnegative matrix factorization and positive semidefinite tensor    
   factorization for single-channel audio source separation,''
-  {\em Proc.~ICASSP}, pp.51-55, 2016.
-
-  \bibitem{tdist1}
-  S.~Mogami, D.~Kitamura, Y.~mitsui, N.~Takamune, H.~Saruwatari, and N.~Ono, ``Independent low-rank matrix analysis based on complex Student's t-distribution for blind audio source     separation,''
-  {\em Proc.~IEEE International Workshop on Machine Learning for Signal Processing}, 2017. 
- 
-  \bibitem{tdist2}
-  D.~Kitamura, S.~Mogami,~Y.~Mitsui, N.~Takamune, H.~Saruwatari, N.~Ono, Y.~Takahashi, and K.~Kondo, 
-  ``Generalized independent low-rank matrix analysis using heavy-tailed distributions for blind source separation,''
-  {\em EURASIP Journal on Advances in Signal Processing}, vol. 2018, no. 28, p. 25, 2018. 
+  {\em Proc.~International Conference on Acoustics, Speech, and Signal Processing}, pp.51--55, 2016.
   
   \bibitem{winlengthBSS}
   D.~Kitamura, N.~Ono, and H.~Saruwatari, 
@@ -288,6 +288,6 @@ In this thesis, \textcolor{red}{I propose to apply blind source separation (BSS)
 \appendix
 
 %%%%% 付録A %%%%%
-%\input{appendix_aux/appendix_aux.tex}
+\input{appendix_aux/appendix_aux.tex}
 
 \end{document}

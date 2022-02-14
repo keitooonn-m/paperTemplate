@@ -1,16 +1,13 @@
 \chapter{その他の観測信号に本研究で用いた手法を適用した実験結果}
 \label{chap:ineq}
 
-%----------------------------------------------
-\section{IVA}
-%----------------------------------------------
-以下に，{chap:bbshrexp}章及び{chap:fbsshrexp}章で掲載していなかった，Back No.~4, Back no.~6, Bottom No.~1, Bottom No.~3, Bottom No.~5の実験結果を示す．但し，基底数可変型ILRMA及び$t$-ILRMAについてはBack No.~2についてのみ実験を行ったため掲載していない．また，以下に示すスペクトログラムのSTFTの窓長は64点（1.6~s）で計算を行い，心拍推定グラフは全て分離信号の3番目に対して心拍推定アルゴリズムを適用したものである．
+以下に，\ref{chap:bsshrexp}章及び\ref{chap:fbsshrexp}章で掲載していなかった，Back No.~4，Back No.~6，Bottom No.~1，Bottom No.~3，Bottom No.~5の実験結果を示す．但し，基底数可変型ILRMA及び$t$-ILRMAについてはBack No.~2についてのみ実験を行ったため掲載していない．また，以下に示すスペクトログラムのSTFTの窓長は64点（1.6~s）で計算を行い，心拍推定グラフは全ての分離信号の3番目に対して心拍推定アルゴリズムを適用したものである．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Back/no4siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~4.}
+\caption{Spectrograms of separated signals obtained by IVA (Back no.~4).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -18,7 +15,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Back/no6siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~6.}
+\caption{Spectrograms of separated signals obtained by IVA (Back no.~6).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -26,7 +23,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no1siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~1.}
+\caption{Spectrograms of separated signals obtained by IVA (Bottom no.~1).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -34,7 +31,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no3siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~3.}
+\caption{Spectrograms of separated signals obtained by IVA (Bottom no.~3).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -42,15 +39,15 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no5siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~5.}
+\caption{Spectrograms of separated signals obtained by IVA (Back no.~5).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1.0\hsize]{./appendix_aux/Back/no4siva.pdf}
-\caption{Spectrograms of separated signals of Back no.~4.}
+\includegraphics[width=1.0\hsize]{./appendix_aux/Back/no4sfiva.pdf}
+\caption{Spectrograms of separated signals obtained by IVA (Back no.~4, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -58,7 +55,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Back/no6sfiva.pdf}
-\caption{Spectrograms of separated signals of Back no.~6.}
+\caption{Spectrograms of separated signals obtained by IVA (Back no.~6, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -66,7 +63,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no1sfiva.pdf}
-\caption{Spectrograms of separated signals of Back no.~1.}
+\caption{Spectrograms of separated signals obtained by IVA (Bottom no.~1, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -74,7 +71,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no3sfiva.pdf}
-\caption{Spectrograms of separated signals of Back no.~3.}
+\caption{Spectrograms of separated signals obtained by IVA (Bottom no.~3, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -82,7 +79,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no5sfiva.pdf}
-\caption{Spectrograms of separated signals of Back no.~5.}
+\caption{Spectrograms of separated signals obtained by IVA (Bottom no.~5, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -91,7 +88,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no4iva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~4 obtained by IVA.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Back no.~4).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -99,7 +96,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no6iva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~6 obtained by IVA.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Back no.~6).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -107,7 +104,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no1iva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~1 obtained by IVA.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Bottom no.~1).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -115,7 +112,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no3iva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~3 obtained by IVA.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Bottom no.~3).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -123,7 +120,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no5iva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~5 obtained by IVA.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Bottom no.~5).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -131,7 +128,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no4fiva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~4 obtained by IVA with filter.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Back no.~4, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -139,7 +136,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no6fiva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~6 obtained by IVA with filter.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Back no.~6, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -147,7 +144,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no1fiva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~1 obtained by IVA with filter.}
+  \caption{Third estimated (red) and reference (blue) heart rates of Bottom no.~1 obtained by IVA with filter.}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -155,7 +152,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no3fiva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~3 obtained by IVA with filter.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Bottom no.~3, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -163,19 +160,15 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no5fiva.pdf}
-  \caption{Third estimated (red) and reference (blue) heart rates of Back no.~5 obtained by IVA with filter.}
+  \caption{Third Estimated (red) and reference (blue) heart rates obtained by IVA (Bottom no.~5, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
-
-%----------------------------------------------
-\section{基底数固定型ILRMA}
-%----------------------------------------------
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Back/no4silrma1.pdf}
-\caption{Spectrograms of separated signal of Back no. 4 with high-pass filtering obtained by ILRMA without partitioning function.}
+\caption{Spectrograms of separated signal obtained by ILRMA without partitioning function　(Back no.~4, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -183,7 +176,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Back/no6silrma1.pdf}
-\caption{Spectrograms of separated signal of Back no. 6 with high-pass filtering obtained by ILRMA without partitioning function.}
+\caption{Spectrograms of separated signal obtained by ILRMA without partitioning function　(Back no.~6, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -191,7 +184,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no1silrma1.pdf}
-\caption{Spectrograms of separated signal of Back no. 1 with high-pass filtering obtained by ILRMA without partitioning function.}
+\caption{Spectrograms of separated signal obtained by ILRMA without partitioning function　(Bottom no.~1, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -199,7 +192,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no3silrma1.pdf}
-\caption{Spectrograms of separated signal of Back no. 3 with high-pass filtering obtained by ILRMA without partitioning function.}
+\caption{Spectrograms of separated signal obtained by ILRMA without partitioning function　(Bottom no.~3, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -207,7 +200,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1.0\hsize]{./appendix_aux/Bottom/no5silrma1.pdf}
-\caption{Spectrograms of separated signal of Back no. 5 with high-pass filtering obtained by ILRMA without partitioning function.}
+\caption{Spectrograms of separated signal obtained by ILRMA without partitioning function　(Bottom no.~5, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -216,7 +209,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no4ilrma1.pdf}
-\caption{Third estimated (red) and reference (blue) heart rates of Back no.~4 obtained by ILRMA without partitioning function.}
+\caption{Third Estimated (red) and reference (blue) heart rates obtained by ILRMA without partitioning function (Back no.~4, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -224,7 +217,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Back/no6ilrma1.pdf}
-\caption{Third estimated (red) and reference (blue) heart rates of Back no.~6 obtained by ILRMA without partitioning function.}
+\caption{Third Estimated (red) and reference (blue) heart rates obtained by ILRMA without partitioning function (Back no.~6, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -232,7 +225,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no1ilrma1.pdf}
-\caption{Third estimated (red) and reference (blue) heart rates of Back no.~1 obtained by ILRMA without partitioning function.}
+\caption{Third Estimated (red) and reference (blue) heart rates obtained by ILRMA without partitioning function (Bottom no.~1, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -240,7 +233,7 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no3ilrma1.pdf}
-\caption{Third estimated (red) and reference (blue) heart rates of Back no.~3 obtained by ILRMA without partitioning function.}
+\caption{Third Estimated (red) and reference (blue) heart rates obtained by ILRMA without partitioning function (Bottom no.~3, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
@@ -248,6 +241,6 @@
 \begin{figure}[tb]
 \centering
 \includegraphics[width=70mm]{./appendix_aux/hr/Bottom/no5ilrma1.pdf}
-\caption{Third estimated (red) and reference (blue) heart rates of Back no.~5 obtained by ILRMA without partitioning function.}
+\caption{Third Estimated (red) and reference (blue) heart rates obtained by ILRMA without partitioning function (Bottom no.~5, high-pass-filtered).}
 \end{figure}
 %-%-%-%-%-%-%-%-%
