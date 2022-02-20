@@ -43,6 +43,7 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{subcaption}
+\usepackage{url}
 
 %%%%% \usepackage等のプリアンブル宣言（macros.texに記載） %%%%%
 \input{macros.tex}
@@ -61,7 +62,7 @@ Radar Sensor and Blind Source Separation}
 
 %%%%% Abstract %%%%%
 \eabstract{ % これ単体で複数ページにまたがる場合はエラーが出るので注意，アブスト内で改段落は禁止
-It is often fatal for a driver to \textcolor{black}{fall aaleep, have a sudden seizure}, or \textcolor{black}{lose} consciousness due to deterioration of physical condition while driving a \textcolor{black}{vehicle}. \textcolor{black}{Thus, monitoring the driver's condition in a vehicle is an crucial issue.}
+It is often fatal for a driver to \textcolor{black}{fall asleep, have a sudden seizure}, or \textcolor{black}{lose} consciousness due to deterioration of physical condition while driving a \textcolor{black}{vehicle}. \textcolor{black}{Thus, monitoring the driver's condition in a vehicle is an crucial issue.}
 \textcolor{black}{To address this issue}, this \textcolor{black}{thesis} deals with a system for constant\textcolor{black}{ly} monitoring the driver's heartbeat while driving utilizing a \textcolor{black}{contactless biometric sensor array} (hereafter referred to as radar sensor).
 \textcolor{black}{Since the} radar sensor can measure the small displacement of the \textcolor{black}{driver's body surface}, a method to estimate the driver's heartbeat from the observed signal is discussed.
 \textcolor{black}{The observed signal contains the driver's heartbeat signal but is contaminated with some noise including body motion and vibrations of the measurement system itself.}
@@ -117,6 +118,9 @@ In this thesis, \textcolor{black}{I propose to apply blind source separation (BS
 %%%%% 参考文献（直接書く場合） %%%%%
 \addcontentsline{toc}{chapter}{\bibname} % 参考文献を目次に表示
 \begin{thebibliography}{99}
+    \bibitem{traficaccident}
+    \url{https://www8.cao.go.jp/koutu/taisaku/r01kou_haku/zenbun/genkyo/h1/h1b1s1_2.html}. Accessed 16 February 2022.
+
     \bibitem {sensorreview}
   Y. Dong, Z. Hu, K. Uchimura, and N. Murayama, ``Driver inattention monitoring system for intelligent vehicles: A review,'' {\em IEEE Trans. Intelligent Transportation 
   Systems}, vol.           
@@ -202,28 +206,22 @@ In this thesis, \textcolor{black}{I propose to apply blind source separation (BS
 
     \bibitem{ica}
     P. Comon, ``Independent component analysis, a new concept?,'' 
-    {\em Signal Processing}, vol.~36, no.~3, pp.~287--314.
+    {\em Signal Processing}, vol.~36, no.~3, pp.~287--314, 1994.
 
 　　\bibitem{permute}
     S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. International Conference on Acoustics, Speech, and Signal Processing}, vol. 5, pp. 3140--3143, 2000.
 
     \bibitem{persolve1}
-    S. Kurita, H. Saruwatari, S. Kajita, K. Takeda, and F. Itakura, ``Evaluation of blind signal separation method using directivity pattern under reverberant conditions,'' {\em Proc. International Conference on Acoustics, Speech, and Signal Processing}, vol. 5, pp. 3140--3143, 2000.
-
-    \bibitem{persolve2}
     N. Murata, S. Ikeda, and A. Ziehe, ``An approach to blind source separation based on temporal structure of speech signals,'' {\em Neurocomputing}, vol. 41, no. 1--4, pp. 1--24, 2001.
 
-    \bibitem{persolve3}
+    \bibitem{persolve2}
     H. Sawada, R. Mukai, S. Araki, and S. Makino, ``A robust and precise method for solving the permutation problem of frequency-domain blind source separation,'' {\em IEEE Trans. Speech Audio Process.}, vol. 12, no. 5, pp. 530--538, 2004.
 
-    \bibitem{persolve4}
+    \bibitem{persolve3}
     H. Saruwatari, T. Kawamura, T. Nishikawa, A. Lee, and K. Shikano, ``Blind source separation based on a fast-convergence algorithm combining ICA and beamforming,'' {\em IEEE Trans. Audio, Speech, Lang. Process.}, vol. 14, no. 2, pp. 666--678, 2006.
-[F] H. Sawada, S. Araki, and S. Makino, ``Measuring dependence of bin-wise separated signals for permutation alignment in frequency-domain BSS,'' {\em Proc. IEEE Int. Symp. Circuits Syst.}, pp. 3247–3250, 2007.
 
-  
-%  \bibitem{bss_review}
-%  H.~Sawada, N.~Ono, H.~Kameoka, D.~Kitamura, and H.~Saruwatari, ``A review of blind source separation methods: Two converging routes to ILRMA originating from ICA and NMF,'' 
-%  {\em APSIPA Trans. Signal and Information Processing,} vol.~8, no.~e12, pp.~1--14, 2019.
+    \bibitem{persolve4}
+    H. Sawada, S. Araki, and S. Makino, ``Measuring dependence of bin-wise separated signals for permutation alignment in frequency-domain BSS,'' {\em Proc. IEEE Int. Symp. Circuits Syst.}, pp. 3247–3250, 2007.
 
   \bibitem{auxfunc}
   D.~R.~Hunter and K.~Lange, ``A tutorial on MM algorithms,'' 
@@ -257,11 +255,11 @@ In this thesis, \textcolor{black}{I propose to apply blind source separation (BS
   \bibitem{iwase}
   Y.~Iwase and D.~Kitamura, 
   ``Supervised audio source separation based on nonnegative matrix factorization with cosine similarity penalty''
-  {\em IEICE Trans. Fundamentals}, vol.~E105-A, no.~6, pp. ???–???, 2022.
+  {\em IEICE Trans. Fundamentals}, vol.~E105-A, no.~6, 2022 (in press).
 
   \bibitem{MU}
   M.~Nakano, H.~Kameoka, J.~Le~Roux, Y.~Kitano, N.~Ono, S.~Sagayama, ``Convergence-guaranteed multiplicative algorithms for nonnegative matrix factorization with beta-divergence,''
-  {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, 2010, pp.~283--288.
+  {\em Proc. IEEE International Workshop on Machine Learning for Signal Processing}, pp.~283--288, 2010.
 
   \bibitem{GGD}
   D.~Kitamura,~``Nonnegative matrix factorization based on complex generative model,''
@@ -270,7 +268,7 @@ In this thesis, \textcolor{black}{I propose to apply blind source separation (BS
   \bibitem{tnmf}
   K.~Yoshii, K.~Itoyama, and M.~Goto, ``Student's $t$ nonnegative matrix factorization and positive semidefinite tensor    
   factorization for single-channel audio source separation,''
-  {\em Proc.~International Conference on Acoustics, Speech, and Signal Processing}, pp.51--55, 2016.
+  {\em Proc.~International Conference on Acoustics, Speech, and Signal Processing}, pp.~51--55, 2016.
   
   \bibitem{winlengthBSS}
   D.~Kitamura, N.~Ono, and H.~Saruwatari, 
