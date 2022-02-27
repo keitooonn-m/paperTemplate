@@ -59,7 +59,9 @@
 \section{はじめに}
 %----------------------------------------------
 
-自動車の運転中に運転者が睡眠，突発的な発作，体調の悪化による意識喪失等に見舞われることは多くの場合致命的な状況となる．そのため，運転中に運転者の状態を何らかの方法で管理することが重要課題の一つとなっている．この課題に取り組むために，本研究では，Fig.~\ref{fig:sensorstructure}に示す運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステム（以後，振動測定系と呼ぶ）を取り扱う．しかし，この振動測定系においては，目的としている心拍信号以外にも振動測定系自体のノイズ，運転者の体動，呼吸による体表面変動等の信号も同時に観測されてしまう．これらの問題は観測信号の信号対ノイズ比を著しく低下させる．本稿では，レーダセンサや体表面の位置関係を事前に改定しないことから，ブラインド信号源分離（BSS）\cite{originica}を適用し観測信号から心拍信号のみを分離することを検討する．また，心拍推定アルゴリズムを適用して心拍推定を行い心拍推定精度についても同様に検討を行う．
+自動車の運転中に運転者が睡眠，突発的な発作，体調の悪化による意識喪失等に見舞われることは多くの場合致命的な状況となる．そのため，運転中に運転者の状態を何らかの方法で管理することが重要課題の一つとなっている．
+
+この課題に取り組むために，本稿では，Fig.~\ref{fig:sensorstructure}に示す運転中の運転者の心拍をレーダ非接触型生体センサアレイ（以後，レーダセンサと呼ぶ）を活用した常時モニタリングシステム（以後，振動測定系と呼ぶ）を取り扱う．この振動測定系においては，目的としている心拍信号以外にも振動測定系自体のノイズ，運転者の体動，呼吸による体表面変動等の信号も同時に観測されるため，信号対ノイズ比（SNR）を著しく低下する．本稿の目的は，観測信号が低SNRとなる問題に対してブラインド信号源分離（BSS）\cite{originica}を適用することで，心拍の推定精度の向上を目指すことである．本稿で仮定する状況では，レーダセンサや体表面の位置関係が事前に未知であるため，心拍信号の分離にBSSを適用することは妥当と考えられる．また，心拍推定アルゴリズムを適用して心拍推定を行い心拍推定精度についても同様に検討を行う．
 
 %----------------------------------------------
 \section{振動測定系と測定条件}
@@ -69,72 +71,83 @@
 \subsection{振動測定系}
 %----------------------------------------------
 
-本研究で使用する信号の振動測定系はFig.~\ref{fig:sensorstructure}に示す通りである．運転者を模した被験者が座った状態で振動測定系全体を振動させる．Fig.~\ref{fig:sensorimg}に示されているレーダセンサを，背部と臀部にあたるシートの内部に埋め込み，計測を行う．レーダセンサのサンプリング周波数は40~Hzである．振動測定系の振動はsin波の単軸加振であり，Fig.~\ref{fig:sensorstructure}に示す通り，前後$\cdot$ 上下$\cdot$ 左右方向に振動させることができる．
-Fig.~\ref{fig:sensorstructure}に示すレーダセンサでは，運転者の体表面の微小変位を測定することができる．またFig.~\ref{fig:sensorimg}に示すように，1つのレーダセンサは4チャネルの異なる指向性レーダで駆動しているため，同時に近傍4点の体表面変位を測定することが可能となっている．
-
+本稿で仮定するレーダセンサの振動測定系はFig.~\ref{fig:sensorstructure}を示す．運転者を模した被験者が座った状態で振動測定系全体を上下方向に振動させる．Fig.~\ref{fig:sensorimg}に示す通り，レーダセンサを背部にあたるシートの内部に埋め込んでいるため，運転者の背部の体表面の微小変位を測定することが可能である．またFig.~\ref{fig:sensorimg}に示すように，4チャネルの異なる指向性レーダで駆動しているため，同時に近傍4点の体表面変位を測定した4~chの観測信号を得ることができる．
 %-%-%-%-%-%-%-%-%
 \begin{figure}[tb]
   \centering
   \vspace{0pt} % 図上部の余白調整
-  \includegraphics[width=0.8\columnwidth]{sensorstructure.pdf}
+  \includegraphics[width=0.8\columnwidth]{sensorsystem.pdf}
   \vspace{0pt} % 図とキャプション間の余白調整
-  \caption{Vibration measurement system and driver's seat with radar sensors.}
-  \vspace{-10pt} % キャプション下部の余白調整
+  \caption{(a) Vibration measurement system and driver's seat with radar sensor and (b) Beams from radar sensor for measurering back of driver's body.}
+  \vspace{0pt} % キャプション下部の余白調整
   \label{fig:sensorstructure}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %-%-%-%-%-%-%-%-%
+%\begin{figure}[t]
+%  \centering
+%  \vspace{0pt} % 図上部の余白調整
+%  \includegraphics[width=0.8\columnwidth]{sensorimg.pdf}
+%  \vspace{0pt} % 図とキャプション間の余白調整
+%  \caption{Beams from radar sensor for measurering back of driver's body.}
+%  \vspace{-20pt} % キャプション下部の余白調整
+%  \label{fig:sensorimg}
+%\end{figure}
+%-%-%-%-%-%-%-%-%
+
+%----------------------------------------------
+\subsection{レーダセンサの観測スペクトログラム}
+%----------------------------------------------
+
+%本研究では，計測時間が420~sで，計測開始から60~sは振動を加えない状態で計測し，その後の300~sは振動を加えた状態，残りの60~sは再度，振動を加えていない状態で計測している．振動台の振動は上下方向に加えている．振動台の振幅及び周波数はそれぞれ10~mm及び1.2~Hzとしてい
+レーダセンサで観測された信号の内1~chのスペクトログラムをFig.~\ref{fig:1chobs}に示す．観測信号には心拍以外にも，振動台による振動成分及び呼吸に起因する体動成分等が混在していることが確認できる．そのため，本稿ではBSSを用いて心拍成分のみを抽出することを目指す．
+
+また本稿では，分離した信号と比較する参照値を得るために，Zephyr Technology社の接触型心電図センサ（ECG）Bioharnessを用いてECG信号を取得している．心拍の参照値の計算には，このBioharness内部で実装されているアルゴリズムを用いる．Bioharnessの技術的な資料は公開されておらず原理は不明であるが，恐らく一般的な心拍推定アルゴリズムであるR-R間隔（R波と呼ばれる心拍波形の間隔）推定に基づくものと予想される．また，このECGセンサのサンプリング周波数は250~Hzである．接触型ECGセンサであるため，振動台の振動が加えられても高精度な心拍を得ることが可能である．本稿では，このECGセンサから得られる心拍と同程度の精度でレーダセンサの信号から心拍を推定することが目的となる．
+
+%-%-%-%-%-%-%-%-%
 \begin{figure}[t]
   \centering
   \vspace{0pt} % 図上部の余白調整
-  \includegraphics[width=0.8\columnwidth]{sensorimg.pdf}
-  \vspace{0pt} % 図とキャプション間の余白調整
-  \caption{Beams from radar sensor for measurering (a) back and (b) bottom surfaces of driver's body.}
+  \includegraphics[width=1.0\columnwidth]{1chobsspect.pdf}
+  \vspace{-20pt} % 図とキャプション間の余白調整
+  \caption{Each component in first channel spectrogram obtained by radar sensor.}
   \vspace{-20pt} % キャプション下部の余白調整
-  \label{fig:sensorimg}
+  \label{fig:1chobs}
 \end{figure}
 %-%-%-%-%-%-%-%-%
 
 %----------------------------------------------
-\subsection{振動測定条件}
-%----------------------------------------------
-
-本研究では，計測時間が420~sで，計測開始から60~sは振動を加えない状態で計測し，その後の300~sは振動を加えた状態，残りの60~sは再度，振動を加えていない状態で計測している．振動台の振動は上下方向に加えている．振動台の振幅及び周波数はそれぞれ10~mm及び1.2~Hzとしている．
-
-また本稿では，分離した信号と比較する参照値を得るために，Zephyr Technology社の接触型心電図センサ（以後，ECGセンサと呼ぶ）Bioharness\cite{bioharness}を用いて可能な限りECG信号を取得している．心拍の参照値の計算には，このBioharness内部で実装されているアルゴリズムを用いる．Bioharnessの技術的な資料は公開されておらず原理は不明であるが，恐らく一般的な心拍推定アルゴリズムであるR-R間隔推定に基づくものと予想される．また，このECGセンサのサンプリング周波数は250~Hzである．接触型ECGセンサであるため，振動台の振動が加えられても高精度な心拍を得ることが可能である．本稿では，このECGセンサから得られる心拍と同程度の精度でレーダセンサの信号から心拍を推定することが目的となる．
-
-%----------------------------------------------
-\section{観測信号に適用するBSS手法及び心拍推定アルゴリズム（タイトル思いつきません...）}
+\section{BSS及び心拍推定アルゴリズム}
 %----------------------------------------------
 
 %----------------------------------------------
 \subsection{$t$-ILRMA}
 %----------------------------------------------
-近年，複素Student's~$t$分布に基づく非負地行列因子分解（$t$-NMF）が提案されており，BSS等のNMFに基づく特定のタスクにおいてItakura--Saitoダイバージェンスに基づくNMF\cite{isnmf}よりも性能が向上することが報告されている．このことに鑑み，複素tudent's~$t$分布を生成モデルとして仮定する独立低ランク行列分析（ILRMA）\cite{ILRMA}である$t$-ILRMAが提案された\cite{tdist1}．複素Student's~$t$分布二は形状パラメタ$\mu >0$がある．$\mu \rightarrow \infty$とすると複素Gauss分布に一致する．また，$p$はNMFモデルの信号領域を決定するドメインパラメタであり，$p=1$及び$p=2$はそれぞれ振幅ドメイン及びパワードメインを表す．
+音響信号におけるBSSとして独立低ランク行列分析（ILRMA）~\cite{ILRMA}が提案されている．ILRMAは，各信号源が低ランクな時間周波数構造（同じスペクトルを多くの時間で含む）を持つと仮定しながら周波数ごとの分離行列を推定することでBSSを実現する．本稿で適用する$t$-ILRMA~\cite{tdist1}は，各信号源の低ランク時間周波数モデルに複素$t$分布を用いることで，幅広いタイプの信号源が取り扱えるように一般化した手法である．なお本稿では，呼吸に由来する成分の除去を目的として，$t$-ILRMAを適用する前にカットオフ周波数1.5~Hzのハイパスフィルタを適用している．
 
 %----------------------------------------------
 \subsection{心拍推定アルゴリズム}
 %----------------------------------------------
-$t$-ILRMAを適用することで得られる分離信号に適用する心拍推定アルゴリズムについて説明する．まず，心拍信号の調波構造を強調しつつ低周波成分を除去するために二階微分フィルタを適用する．もう一度調波構造を強調するために半波整流を適用する．さらに，心拍信号が多く存在する帯域である0.7~Hz--1.4~Hzを通過帯域とする5次楕円IIRバンドパスディジタルフィルタを適用する．最後に，短時間フーリエ変換を適用してスペクトログラムに変換し，振幅スペクトログラムの最大ピークとなる周波数を時間フレーム毎に求めることで，推定心拍値を得る．
+一般的な心拍推定アルゴリズムにはR-R間隔推定が用いられるが，レーダセンサの観測信号にBSSを適用して得られる分離心拍信号にはR波が顕著に現れない．そこで，本稿では下記に示す心拍推定アルゴリズムを適用する．
+
+まず，心拍信号の調波構造を強調しつつ低周波成分を除去するために，心拍分離信号に二階微分フィルタ及び半波整流を適用する．次に，心拍信号の基本周波数成分を強調するために0.7~Hz--1.4~Hzを通過帯域とするバンドパスフィルタを適用する．最後に，短時間フーリエ変換を適用してスペクトログラムに変換し，振幅のピークとなる周波数を時間フレーム毎に求めることで，推定心拍値を得る．
 
 %----------------------------------------------
 \section{実験結果}
 %----------------------------------------------
-観測信号に表れる呼吸のノイズ信号はあまり明確な調波構造を持っておらず，基本周波数のみが顕著な周波数特性である．時間周波数領域BSSを適用する前の処理として，呼吸基本周波数成分を除去するハイパスフィルタを適用する．このハイパスフィルタは，カットオフ周波数及びタップ長（次数）がそれぞれ1.5~Hz及び170次である．また，位相歪みが生じない（線形位相特性を満たす）ようにFIRディジタルフィルタとして設計している．
+$t$-ILRMAを適用して得られる分離信号のスペクトログラムをFig.~\ref{fig:stilrmaa5}に示す．3番目の分離信号を見ると，心拍の高調波成分が2.5~Hz，3.5~Hz，5~Hz，及び6~Hz付近に分離されていることがわかる．1番目，2番目，及び4番目の分離信号には心拍成分が見られず，振動台による振動及び呼吸の高調波成分が分離されていることが分かる．しかし，振動が加えられる60~sでは振動成分が残留していることが分かる．これは，振動が加えられた瞬間の体動は大きくなるためであると考えられる．
 
-Fig.~\ref{fig:stilrmaa5}の3番目のスペクトログラムより，心拍の高調波成分が2.5~Hz，3.5~Hz，5~Hz，及び6~Hz付近に分離されている．1番目，2番目，及び4番目のスペクトログラムには心拍の高調波成分が見られず，振動台による振動及び呼吸の高調波成分が分離されていることが分かる．しかし，振動が加えられる60~sでは振動成分が残留していることが分かる．これは，振動が加えられた瞬間の体動は大きくなるためであると考えられる．
-
-Fig.~\ref{fig:stilrmaa5}に対して心拍推定アルゴリズムを適用した心拍推定値をFig.~\ref{fig:hrtilrmaa5}に示す．振動が加えられた60~s--100~sでは参照値と合致していないが，その他の時間においては参照値と合致していることがわかる．
+Fig.~\ref{fig:stilrmaa5}の3番目の分離信号に対して心拍推定アルゴリズムを適用した心拍推定値をFig.~\ref{fig:hrtilrmaa5}に示す．振動が加えられた60~s--100~sでは参照値と合致していないが，その他の時間においては参照値と合致していることがわかる．
 
 %-%-%-%-%-%-%-%-%
 \begin{figure}[t]
   \centering
   \vspace{0pt} % 図上部の余白調整
-  \includegraphics[width=0.8\columnwidth]{spect_tILRMA_ampdom_dofp5_64_est.pdf}
-  \vspace{0pt} % 図とキャプション間の余白調整
-  \caption{Spectrograms of separated signal obtained by $t$-ILRMA, where $p=1$ and $\nu=5$ (high-pass-filtered).}
-  \vspace{-5pt} % キャプション下部の余白調整
+  \includegraphics[width=1.0\columnwidth]{spect_tILRMA_ampdom_dofp5_64_est.pdf}
+  \vspace{-20pt} % 図とキャプション間の余白調整
+  \caption{Spectrograms of separated signal obtained by $t$-ILRMA (high-pass-filtered).}
+  \vspace{0pt} % キャプション下部の余白調整
   \label{fig:stilrmaa5}
 \end{figure}
 %-%-%-%-%-%-%-%-%
@@ -145,11 +158,17 @@ Fig.~\ref{fig:stilrmaa5}に対して心拍推定アルゴリズムを適用し�
   \vspace{-10pt} % 図上部の余白調整
   \includegraphics[width=0.8\columnwidth]{hr_tILRMA_ampdom_dofp5_64_ch3.pdf}
   \vspace{-10pt} % 図とキャプション間の余白調整
-  \caption{Third Estimated (red) and reference (blue) heart rates obtained by $t$-ILRMA, where $p=1$ and $\nu=5$ (high-pass-filtered).}
+  \caption{Estimated (red) and reference (blue) heart rates obtained by $t$-ILRMA.}
   \vspace{-20pt} % キャプション下部の余白調整
   \label{fig:hrtilrmaa5}
 \end{figure}
 %-%-%-%-%-%-%-%-%
+
+%----------------------------------------------
+\section{結論}
+%----------------------------------------------
+
+本稿では，レーダセンサから得られる観測信号にBSSの手法の一つである$t$-ILRMAを適用し，心拍信号の分離を行った．実験結果より加振時に一時的に参照値と合致していないが，その他の時間では概ね合致していることを確認した．
 
 %%%%% 参考文献 %%%%%
 \begin{thebibliography}{99}% 10以上の文献数であれば99とする
@@ -158,24 +177,21 @@ Fig.~\ref{fig:stilrmaa5}に対して心拍推定アルゴリズムを適用し�
 \fontsize{8pt}{10pt}\selectfont  % 項目のフォントサイズ微調整用
 
 \bibitem{originica}
-P. Comon, "Independent component analysis, A new concept?," {\em Signal Processing}, vol. 36, no. 3, pp.287--314, 1994.
-
-\bibitem{bioharness}
-\url{Zephyr~Technology~Bioharness, https://www.zephyranywhere.com/media/download/bioharness3-user-manual.pdf}. Accessed 4 January 2022.
+P. Comon,``Independent component analysis, A new concept?,'' {\em Signal Process.}, vol. 36, no. 3, pp. 287--314, 1994.
 
 \bibitem{isnmf}
-C.~Févotte, N.~Bertin, J.-L.~Durrieu, 
+C.~Févotte, N.~Bertin, and J.-L.~Durrieu, 
 ``Nonnegative matrix factorization with the Itakura-Saito divergence. With application to music analysis.'' 
-{\em Neural Computation}, vol.~21, 793--830, 2009.
+{\em Neural Comput.}, vol.~21, pp. 793--830, 2009.
 
 \bibitem{ILRMA}
 D.~Kitamura, N.~Ono, H.~Sawada, H.~Kameoka, and H.~Saruwatari,
 ``Determined blind source separation unifying independent vector analysis and nonnegative matrix factorization,'' 
-{\em IEEE/ACM Trans. Audio, Speech, and Language Processing}, vol.~24, no.~9, pp.~1626--1641, 2016.
+{\em IEEE/ACM Trans. ASLP}, vol.~24, no.~9, pp.~1626--1641, 2016.
 
 \bibitem{tdist1}
-S.~Mogami, D.~Kitamura, Y.~mitsui, N.~Takamune, H.~Saruwatari, and N.~Ono, ``Independent low-rank matrix analysis based on complex Student's t-distribution for blind audio source     separation,''
-{\em Proc.~IEEE International Workshop on Machine Learning for Signal Processing}, 2017. 
+S.~Mogami, D.~Kitamura, Y.~Mitsui, N.~Takamune, H.~Saruwatari, and N.~Ono, ``Independent low-rank matrix analysis based on complex Student's t-distribution for blind audio source     separation,''
+{\em Proc.~MLSP}, 2017. 
 
 \end{thebibliography}
 
